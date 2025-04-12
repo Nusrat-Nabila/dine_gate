@@ -16,7 +16,25 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
+from accounts import views as a_views
+from restaurant_project import views as rp_views
+from reservations import views as re_views
+from event_reservations import views as er_views
+from restaurants import views as r_views
 
 urlpatterns = [
     path('admin/', admin.site.urls),
+    path('',rp_views.home,name='home'),
+    path('accounts/login/',a_views.login,name= 'login'),
+    path('accounts/sign_up/',a_views.sign_up,name= 'sign_up'),
+    path('accounts/profile/',a_views.profile,name= 'profile'),
+    path('accounts/logout/',a_views.logout,name= 'logout'),
+    path('reservations/reserve_table/',re_views.reserve_table,name= 'reserve_table'),
+    path('reservations/manage_reservation/',re_views.manage_reservation,name= 'manage_reservation'),
+    path('reservations/my_reservation/',re_views.my_reservation,name= 'my_reservation'),
+    path('event_reservations/reserve_event/',er_views.reserve_event,name= 'reserve_event'),
+    path('restaurants/add_restaurant/',r_views.add_restaurant,name='add_restaurant'),
+    path('restaurants/my_restaurant/',r_views.my_restaurant,name='my_restaurant'),
+    path('restaurants/restaurant_list/',r_views.restaurant_list,name='restaurant_list'),
+    path('restaurants/owner_dashboard/',r_views.owner_dashboard,name='owner_dashboard'),
 ]
