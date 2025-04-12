@@ -1,0 +1,40 @@
+<nav class="navbar navbar-expand-lg navbar-light bg-white">
+    <div class="container-fluid">
+        <a class="navbar-brand text-dark" href="#">DineGate</a> <!-- Brand name in black -->
+
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarMain">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarMain">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+
+                <!-- Home link -->
+                <li class="nav-item">
+                    <a class="nav-link text-dark" href="{% url 'home' %}">Home</a>
+                </li>
+
+                <!-- Search Bar -->
+                <li class="nav-item">
+                    <form class="d-flex" action="" method="GET"> <!-- Add proper URL for search -->
+                        <input class="form-control me-2" type="search" placeholder="Search Restaurants" aria-label="Search" name="q">
+                        <button class="btn btn-outline-dark" type="submit">Search</button>
+                    </form>
+                </li>
+
+                <!-- Add Restaurant link -->
+                <li class="nav-item">
+                    <a class="nav-link text-dark" href="{% url 'add_restaurant' %}">Add Restaurant</a>
+                </li>
+
+                <!-- Login and Sign Up links for users not logged in -->
+                <li class="nav-item">
+                    <a class="nav-link text-dark" href="{% url 'login' %}?next={% url 'reserve_table' %}">Login</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link text-dark" href="{% url 'sign_up' %}">Sign Up</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
