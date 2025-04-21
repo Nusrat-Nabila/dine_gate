@@ -40,8 +40,7 @@ INSTALLED_APPS = [
     'account.apps.AccountConfig',
     'restaurant.apps.RestaurantConfig',
     'reservation.apps.ReservationConfig',
-    'request.apps.RequestConfig',
-    'adminpanel.apps.AdminpanelConfig',
+
 ]
 
 MIDDLEWARE = [
