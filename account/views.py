@@ -6,9 +6,6 @@ def Login(request):
 
 def Customer_signup(request):
     return render(request,template_name='account\Customer_signup.html')
+def Customer_profile(request):
+    return render(request,template_name='account\Customer_profile.html')
 
-def Add_restaurant(request):
-    return render(request,template_name='account\Add_restaurant.html')
-
-def Restaurant_signup(request):
-    return render(request,template_name='account\Restaurant_signup.html')

@@ -9,3 +9,6 @@ def Restaurant_list(request):
 
 def View_restaurant_detail(request):
     return render(request,template_name='restaurant\View_restaurant_detail.html')
+
+def Restaurant_signup(request):
+    return render(request,template_name='restaurant\Restaurant_signup.html')

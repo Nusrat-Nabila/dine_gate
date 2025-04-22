@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+{% block content %}
+  <h1 style="text-align:center">Welcome to the Restaurant Reservation System</h1>
+  <p style="text-align:center">Browse restaurants, reserve a table, and enjoy your meal!</p>
+<div class="container mt-5">
+  <div class="row justify-content-center">
+    <div class="col-md-6 text-center">
+      <h2 class="mb-4">Find the Best Restaurants</h2>
+
+      <form class="d-flex" method="GET" action="#">
+        <input class="form-control me-2" type="text" name="q" placeholder="Search restaurants..." required>
+        <button class="btn btn-outline-dark" type="submit">Search</button>
+      </form>
+    </div>
+  </div>
+</div>
+
+{% endblock %}
