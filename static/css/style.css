@@ -1,0 +1,111 @@
+/* === Base === */
+body {
+    background-color: #F5F0E6; /* Beige */
+    color: #4B3A2F;            /* Body Text */
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    margin: 0;
+    padding: 0;
+}
+body {
+    background-image: url('../images/home back.png'); /* Put your image in static/images/ */
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    color: #fff8dc;
+}
+/* === Navbar === */
+/* === Navbar === */
+.navbar {
+    background-color: #fff8dc !important; /* Soft Cream background */
+    padding: 0.8rem 1.5rem;
+    border-bottom: 1px solid #D4A72C; /* Optional: subtle bottom border */
+}
+
+.navbar-brand {
+    font-weight: bold;
+    color: #4B3A2F !important;
+    font-size: 1.5rem;
+}
+
+.navbar-nav .nav-link {
+    color: #4B3A2F !important;
+    margin-right: 15px;
+    transition: 0.3s ease;
+    font-weight: 500;
+}
+
+.navbar-nav .nav-link:hover {
+    color: #C75B39 !important;
+    text-decoration: underline;
+}
+
+.navbar-toggler {
+    border: none;
+}
+
+.navbar-toggler-icon {
+    background-color: #C75B39;
+}
+
+/* === Buttons === */
+.btn-primary {
+    background-color: #C75B39;
+    border-color: #C75B39;
+    color: white;
+}
+
+.btn-primary:hover {
+    background-color: #F2B8A0;
+    border-color: #F2B8A0;
+    color: #4B3A2F;
+}
+
+.btn-secondary {
+    background-color: #6B7D3B;
+    border-color: #6B7D3B;
+    color: white;
+}
+
+.btn-secondary:hover {
+    background-color: #8E9E57;
+    border-color: #8E9E57;
+}
+
+/* === Forms / Inputs === */
+input, textarea, select {
+    background-color: #FFFDF8;
+    border: 1px solid #D4A72C;
+    color: #4B3A2F;
+}
+
+input:focus, textarea:focus, select:focus {
+    outline: none;
+    border-color: #C75B39;
+    box-shadow: 0 0 4px #C75B39;
+}
+
+/* === Cards / Boxes === */
+.card {
+    background-color: #FFFDF8;
+    border: 1px solid #D4A72C;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.06);
+    border-radius: 10px;
+    padding: 20px;
+}
+
+/* === Headings === */
+h1, h2, h3, h4 {
+    color: #4B3A2F;
+}
+
+/* === Links === */
+a {
+    color: #C75B39;
+}
+
+a:hover {
+    color: #A54626;
+    text-decoration: underline;
+}

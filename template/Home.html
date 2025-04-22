@@ -1,18 +1,24 @@
 {% extends 'base.html' %}
 {% block content %}
-  <h1 style="text-align:center">Welcome to the Restaurant Reservation System</h1>
-  <p style="text-align:center">Browse restaurants, reserve a table, and enjoy your meal!</p>
-<div class="container mt-5">
-  <div class="row justify-content-center">
-    <div class="col-md-6 text-center">
-      <h2 class="mb-4">Find the Best Restaurants</h2>
+  <div class="container mt-5">
+    <div class="row align-items-center">
 
-      <form class="d-flex" method="GET" action="#">
-        <input class="form-control me-2" type="text" name="q" placeholder="Search restaurants..." required>
-        <button class="btn btn-outline-dark" type="submit">Search</button>
-      </form>
+      <!-- Left Side: Text + Search -->
+      <div class="col-md-6">
+        <h1><strong>Welcome to DineGate</strong></h1>
+        <h2>Browse restaurants, reserve a table, and enjoy your meal!
+</h2>
+        <h1><strong>Find the Best Restaurants</strong></h1>
+
+        <!-- Search Form -->
+        <form class="d-flex mt-4" method="GET" action="#">
+  <input class="form-control me-2" type="text" name="q" placeholder="Search restaurants..." required
+         style="background-color: #fff8dc;">  <!-- Light yellow (cornsilk) -->
+  <button class="btn btn-dark" type="submit">Search</button>
+</form>
+      </div>
+
+
     </div>
   </div>
-</div>
-
 {% endblock %}

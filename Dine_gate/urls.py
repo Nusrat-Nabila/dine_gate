@@ -15,9 +15,10 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 from django.contrib import admin
+
+
 from . import settings
 from django.conf.urls.static import static
-
 from django.urls import path
 from django.shortcuts import render
 from account import views as a_views
@@ -47,4 +48,4 @@ urlpatterns = [
     path('Book_history/',rv_views.Book_history,name='Book_history'),
 
 
-]+static(settings.MEDIA_URL, document_root = settings.MEDIA_ROOT)
+]
