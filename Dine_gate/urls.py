@@ -48,4 +48,4 @@ urlpatterns = [
     path('Book_history/',rv_views.Book_history,name='Book_history'),
 
 
-]
+]+static(settings.MEDIA_URL, document_root = settings.MEDIA_ROOT)
