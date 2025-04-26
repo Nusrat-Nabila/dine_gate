@@ -32,5 +32,6 @@ def Customer_signup(request):
     return render(request,'account/Customer_signup.html', {'form': frm})
 
 def Customer_profile(request):
-    return render(request,template_name='account/Customer_profile.html')
+    return render(request, 'account/Customer_profile.html', {'user': request.user})
+
 
