@@ -1,5 +1,5 @@
-from django.shortcuts import render
-
+from django.shortcuts import render,redirect
+from .forms import RestaurantAddForm
 # Create your views here.
 def Customer_home(request):
     return render(request,template_name='restaurant/Customer_home.html')
@@ -12,3 +12,9 @@ def View_restaurant_detail(request):
 
 def Restaurant_signup(request):
     return render(request,template_name='restaurant/Restaurant_signup.html')
+def Menu(request):
+    return render(request,template_name='restaurant/Menu.html')
+def Edit_menu(request):
+    return render(request,template_name='restaurant/Edit_menu.html')
+def Restaurant_profile(request):
+    return render(request,template_name='restaurant/Restaurant_profile.html')

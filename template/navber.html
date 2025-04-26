@@ -13,14 +13,14 @@
     <div class="collapse navbar-collapse justify-content-end" id="navbarMain">
       <ul class="navbar-nav mb-2 mb-lg-0 align-items-center">
 
-        <!-- Home link -->
+    <!-- Show non-authenticated navbar items -->
         <li class="nav-item">
           <a class="nav-link text-dark" href="{% url 'Home' %}">Home</a>
         </li>
 
         <!-- Reserve Table -->
         <li class="nav-item">
-          <a class="nav-link text-dark" href="{% url 'Table_book' %}">Reserve Table</a>
+          <a class="nav-link text-dark" href="{% url 'Login' %}">Reserve Table</a>
         </li>
 
         <!-- Add Restaurant -->
@@ -35,6 +35,9 @@
         <li class="nav-item">
           <a class="nav-link text-dark" href="{% url 'Customer_signup' %}">Sign Up</a>
         </li>
+
+
+
 
       </ul>
     </div>

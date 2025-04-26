@@ -1,4 +1,64 @@
 {% extends 'base.html' %}
+
 {% block content %}
-<h1>restaurent signup</h1>
+    <div class="login-container">
+        <h2>Register Your Restaurant</h2>
+        <form method="POST">
+            {% csrf_token %}
+            {% if error %}
+                <p class="error">{{ error }}</p>
+            {% endif %}
+
+            <form method="POST">
+    {% csrf_token %}
+
+    <div class="form-group">
+        <label for="restaurant_name">Restaurant Name</label>
+        <input type="text" id="restaurant_name" name="restaurant_name" class="form-control" placeholder="Restaurant Name" value="{{ form.restaurant_name.value }}" required>
+    </div>
+
+    <div class="form-group">
+        <label for="contact_number">Contact Number</label>
+        <input type="text" id="contact_number" name="contact_number" class="form-control" placeholder="Contact Number" value="{{ form.contact_number.value }}" required>
+    </div>
+
+    <div class="form-group">
+        <label for="email">Email</label>
+        <input type="text" id="email" name="email" class="form-control" placeholder="Email" value="{{ form.email.value }}" required>
+    </div>
+
+    <div class="form-group">
+        <label for="city">City</label>
+        <input type="text" id="city" name="city" class="form-control" placeholder="City" value="{{ form.city.value }}" required>
+    </div>
+
+    <div class="form-group">
+        <label for="house_no">House Number</label>
+        <input type="text" id="house_no" name="house_no" class="form-control" placeholder="House Number" value="{{ form.house_no.value }}" required>
+    </div>
+
+    <div class="form-group">
+        <label for="postal_code">Postal Code</label>
+        <input type="text" id="postal_code" name="postal_code" class="form-control" placeholder="Postal Code" value="{{ form.postal_code.value }}" required>
+    </div>
+
+    <div class="form-group">
+        <label for="business_reg_no">Business Registration No</label>
+        <input type="text" id="business_reg_no" name="business_reg_no" class="form-control" placeholder="Business Registration No" value="{{ form.business_reg_no.value }}" required>
+    </div>
+    <!-- Password field -->
+    <div class="form-group">
+        <label for="password">Password</label>
+        <input type="password" id="password" name="password" class="form-control" placeholder="Password" value="{{ form.password }}" required>
+    </div>
+
+    <!-- Confirm Password field -->
+    <div class="form-group">
+        <label for="confirm_password">Confirm Password</label>
+        <input type="password" id="confirm_password" name="confirm_password" class="form-control" placeholder="Confirm Password" value="{{ form.password2 }}" required>
+    </div>
+    <button type="submit" class="btn-primary">Register Restaurant</button>
+</form>
+        </form>
+    </div>
 {% endblock %}
