@@ -34,3 +34,4 @@ def Customer_signup(request):
 def Customer_profile(request):
     return render(request,template_name='account/Customer_profile.html')
 
+
