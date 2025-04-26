@@ -5,6 +5,7 @@ from django.contrib.auth import authenticate,login
 
 # Create your views here.
 def Login(request):
+<<<<<<< HEAD
     if request.method == "POST":
         frm = AuthenticationForm(request=request, data=request.POST)
         if frm.is_valid():
@@ -18,6 +19,21 @@ def Login(request):
     else:
         frm = AuthenticationForm()
         return render(request,'account/Login.html', {'form': frm})
+=======
+    if request.method == "POST" :
+     frm = AuthenticationForm(request=request, data=request.POST)
+     if frm.is_valid():
+        user_name=frm.cleaned_data['username']
+        pass_word=frm.cleaned_data['password']
+        user=authenticate(username=user_name,password=pass_word)
+        if user is not None:
+           login(request,user)
+           return redirect('Customer_home')
+        return render(request, 'account/Login.html', {'form': frm})
+    else:
+       frm=AuthenticationForm()
+       return render(request,'account/Login.html', {'form': frm} )
+>>>>>>> b748376a38106f5eae174857c25d0b88f2056b14
 
 def Customer_signup(request):
     if request.method == "POST" :

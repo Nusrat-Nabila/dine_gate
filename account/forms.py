@@ -1,6 +1,9 @@
 from django import forms
+<<<<<<< HEAD
 
 
+=======
+>>>>>>> b748376a38106f5eae174857c25d0b88f2056b14
 from dataclasses import field
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.models import User
