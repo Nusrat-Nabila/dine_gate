@@ -12,6 +12,9 @@ class Table_list(models.Model):
     start_time=models.IntegerField()
     end_time=models.IntegerField()
 
+    def __str__(self):
+        return (f"Restau_name: {self.restaurant_name} ,item: {self.table_no}")
+
 class TableReservation(models.Model):
     user=models.ForeignKey(User ,on_delete=models.CASCADE)
     restaurant_name=models.ForeignKey(Restaurant ,on_delete=models.CASCADE)
@@ -23,3 +26,6 @@ class TableReservation(models.Model):
         ('cancel','cancel'),
     )
     status=models.CharField(max_length=100,choices=status_choice)
+
+    def __str__(self):
+        return (f"user: {self.user} ,Restau_name: {self.restaurant_name}")
