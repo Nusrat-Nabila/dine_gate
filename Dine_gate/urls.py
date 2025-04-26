@@ -26,13 +26,12 @@ from restaurant import views as r_views
 from reservation import views as rv_views
 
 
-def Home(request):
-    return render(request,template_name='Home.html')
+
 
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('',Home, name='Home'),
+    path('',a_views.Home, name='Home'),
     path('Login/',a_views.Login, name='Login'),
     path('Customer_signup/',a_views.Customer_signup, name='Customer_signup'),
     path('Customer_profile/',a_views.Customer_profile, name='Customer_profile'),

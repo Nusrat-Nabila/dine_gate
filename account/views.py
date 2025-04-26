@@ -2,7 +2,8 @@ from django.shortcuts import render, redirect
 from .forms import CustomerAdd
 from django.contrib.auth.forms import AuthenticationForm
 from django.contrib.auth import authenticate,login
-
+from restaurant.models import Restaurant
+from django.contrib.auth.models import User
 # Create your views here.
 def Login(request):
     if request.method == "POST":
@@ -33,5 +34,11 @@ def Customer_signup(request):
 
 def Customer_profile(request):
     return render(request,template_name='account/Customer_profile.html')
+
+
+def Home(request):
+    total_restaurants = Restaurant.objects.count()
+    total_users = User.objects.count()
+    return render(request, 'home.html', {'total_restaurants': total_restaurants, 'total_users': total_users})
 
 

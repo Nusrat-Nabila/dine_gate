@@ -102,7 +102,7 @@ input, textarea, select {
     color: #8b4513;
     padding: 10px 12px;
     margin-bottom: 15px;
-    border-radius: 0; /* Sharp corner */
+    border-radius: 2px;
 }
 
 input:focus, textarea:focus, select:focus {
@@ -113,12 +113,42 @@ input:focus, textarea:focus, select:focus {
 
 /* === Cards / Boxes === */
 .card {
-    background-color: #FFFDF8;
+    background-color: #fff6c4;
     border: 1px solid #D4A72C;
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.06);
-    border-radius: 10px;
+    border-radius: 30px;
     padding: 20px;
 }
+d-flex.flex-wrap.mt-4 {
+    gap: 5px; /* chhoto gap */
+    margin-top: 15px;
+}
+
+/* Custom card design */
+.card.custom-card {
+    background-color: #fff8dc;
+    border: 2px solid #4c2c1f;
+    border-radius: 20px;
+    padding: 10px 15px;
+    width: 190px;
+    height: 120px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    color: #563320;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
+}
+.row.mt-4 {
+    display: flex;
+    justify-content: space-between;
+     gap: 0px;
+    flex-wrap: nowrap;
+    margin-left: 0;
+    margin-right: 0;
+}
+
 
 /* === Headings & Texts === */
 h1, h2, h3, h4, h5, h6, p, span, li, a {
