@@ -1,21 +1,36 @@
 {% extends 'base.html' %}
+
 {% block content %}
-  <div class="container mt-5">
-    <div class="row align-items-center">
+<div class="container mt-5">
+  <div class="row align-items-start">
 
-      <!-- Left Side: Text + Search -->
-      <div class="col-md-6">
-        <h1><strong>Welcome to DineGate</strong></h1>
-        <h2>Browse restaurants, reserve a table, and enjoy your meal!</h2>
-        <h1><strong>Find the Best Restaurants</strong></h1>
+    <div class="col-md-6">
+      <h1><strong>Welcome to DineGate</strong></h1>
+      <h2>Browse restaurants, reserve a table, and enjoy your meal!</h2>
+      <h1><strong>Find the Best Restaurants</strong></h1>
 
-        <!-- Search Form -->
-        <form class="d-flex mt-4" method="GET" action="#">
-          <input class="form-control me-2" type="text" name="q" placeholder="Search restaurants..." required>
-          <button class="btn btn-dark" type="submit">Search</button>
-        </form>
+      <!-- Search Form -->
+      <form class="d-flex mt-4" method="GET" action="#">
+        <input class="form-control me-2" type="text" name="q" placeholder="Search restaurants..." required>
+        <button class="btn btn-dark" type="submit">Search</button>
+      </form>
+<br>
+      <br>
+      <!-- Cards (directly under search bar) -->
+      <div class="d-flex flex-wrap mt-4" style="gap: 70px;">
+        <div class="card custom-card">
+          <h3>Total Restaurants</h3>
+          <span><h4>{{ total_restaurants }}</h4></span>
+        </div>
+
+        <div class="card custom-card">
+          <h3>Total Users</h3>
+          <span><h4>{{ total_users }}</h4></span>
+        </div>
       </div>
 
     </div>
+
   </div>
+</div>
 {% endblock %}

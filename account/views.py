@@ -2,22 +2,23 @@ from django.shortcuts import render, redirect
 from .forms import CustomerAdd
 from django.contrib.auth.forms import AuthenticationForm
 from django.contrib.auth import authenticate,login
-
+from restaurant.models import Restaurant
+from django.contrib.auth.models import User
 # Create your views here.
 def Login(request):
-    if request.method == "POST" :
-     frm = AuthenticationForm(request=request, data=request.POST)
-     if frm.is_valid():
-        user_name=frm.cleaned_data['username']
-        pass_word=frm.cleaned_data['password']
-        user=authenticate(username=user_name,password=pass_word)
-        if user is not None:
-           login(request,user)
-           return redirect('Customer_home')
-        return render(request, 'account/Login.html', {'form': frm})
+    if request.method == "POST":
+        frm = AuthenticationForm(request=request, data=request.POST)
+        if frm.is_valid():
+            user_name = frm.cleaned_data['username']
+            pass_word = frm.cleaned_data['password']
+            user = authenticate(username=user_name, password=pass_word)
+            if user is not None:
+                login(request, user)
+                return redirect('Customer_home')
+        return render(request,'account/Login.html', {'form': frm})
     else:
-       frm=AuthenticationForm()
-       return render(request,'account/Login.html', {'form': frm} )
+        frm = AuthenticationForm()
+        return render(request,'account/Login.html', {'form': frm})
 
 def Customer_signup(request):
     if request.method == "POST" :
@@ -33,5 +34,15 @@ def Customer_signup(request):
 
 def Customer_profile(request):
     return render(request, 'account/Customer_profile.html', {'user': request.user})
+
+
+
+def Home(request):
+    total_restaurants = Restaurant.objects.count()
+    total_users = User.objects.count()
+    return render(request, 'home.html', {'total_restaurants': total_restaurants, 'total_users': total_users})
+
+def login_home(request):
+    return render(request, template_name='account/login_home.html')
 
 

@@ -26,26 +26,33 @@ from restaurant import views as r_views
 from reservation import views as rv_views
 
 
-def Home(request):
-    return render(request,template_name='Home.html')
+
 
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('',Home, name='Home'),
+    path('',a_views.Home, name='Home'),
     path('Login/',a_views.Login, name='Login'),
     path('Customer_signup/',a_views.Customer_signup, name='Customer_signup'),
     path('Customer_profile/',a_views.Customer_profile, name='Customer_profile'),
+    path('login_home/',a_views.login_home, name='login_home'),
 
 
     path('Customer_home/',r_views.Customer_home,name='Customer_home'),
     path('Restaurant_list/',r_views.Restaurant_list,name='Restaurant_list'),
     path('View_restaurant_detail/',r_views.View_restaurant_detail,name='View_restaurant_detail'),
     path('Restaurant_signup/',r_views.Restaurant_signup,name='Restaurant_signup'),
+    path('Menu/',r_views.Menu,name='Menu'),
+    path('Edit_menu/',r_views.Edit_menu,name='Edit_menu'),
+    path('Restaurant_profile/',r_views.Restaurant_profile,name='Restaurant_profile'),
+    path('restaurant_login/',r_views.restaurant_login,name='restaurant_login'),
+    path('restaurant_dashboard/',r_views.restaurant_dashboard,name='restaurant_dashboard'),
 
     path('Table_book/',rv_views.Table_book,name='Table_book'),
     path('Confo_table_book/',rv_views.Confo_table_book,name='Confo_table_book'),
     path('Book_history/',rv_views.Book_history,name='Book_history'),
+    path('Book_history_for_restaurant/',rv_views.Book_history_for_restaurant,name='Book_history_for_restaurant'),
+    path('Restaurant_recent_book/',rv_views.Restaurant_recent_book,name='Restaurant_recent_book'),
 
 
 ]+static(settings.MEDIA_URL, document_root = settings.MEDIA_ROOT)
