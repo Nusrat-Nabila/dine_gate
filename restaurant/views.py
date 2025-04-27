@@ -1,5 +1,6 @@
 from django.shortcuts import render,redirect
 from .forms import RestaurantAddForm
+
 from .models import Restaurant
 # Create your views here.
 def Customer_home(request):
@@ -51,5 +52,13 @@ def Edit_menu(request):
 def Restaurant_profile(request):
     return render(request,template_name='restaurant/Restaurant_profile.html')
 
+
+from .models import Restaurant
+
 def restaurant_dashboard(request):
-    return render(request,template_name='restaurant/restaurant_dashboard.html')
+    restaurant_id = request.session.get('restaurant_id')
+    if not restaurant_id:
+        return redirect('restaurant_login')  # Not logged in, so redirect to login
+
+    restaurant = Restaurant.objects.get(id=restaurant_id)
+    return render(request, 'restaurant/restaurant_dashboard.html', {'restaurant': restaurant})
