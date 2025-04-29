@@ -1,4 +1,29 @@
 {% extends 'base.html' %}
+
 {% block content %}
-<h1>Restaurant_profile</h1>
+  <div class="container mt-5">
+    <div class="row align-items-center">
+
+      <!-- Left Side: Text + Info -->
+      <div class="col-md-8">
+        <h1><strong>Welcome to  {{ restaurant.restaurant_name }} restaurent!</strong></h1>
+
+        <div class="mt-4" >
+          <h4><strong>Basic Information:</strong></h4>
+          <ul class="list-group mt-3">
+            <li class="list-group-item"><strong>Email:</strong> {{ restaurant.email }}</li>
+            <li class="list-group-item"><strong>Phone:</strong> {{ restaurant.contact_no }}</li>
+            <li class="list-group-item"><strong>City:</strong> {{ restaurant.city }}</li>
+            <li class="list-group-item"><strong>Area:</strong> {{ restaurant.area }}</li>
+            <li class="list-group-item"><strong>Location:</strong> {{ restaurant.location }}</li>
+            <li class="list-group-item"><strong>Business Reg ID:</strong> {{ restaurant.business_reg_id }}</li>
+          </ul>
+
+          <a href="{% url 'Restaurant_profile' %}" class="btn btn-primary mt-4">Edit Profile</a>
+        </div>
+      </div>
+
+    </div>
+  </div>
 {% endblock %}
+

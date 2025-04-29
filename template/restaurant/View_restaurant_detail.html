@@ -1,4 +1,16 @@
 {% extends 'base.html' %}
 {% block content %}
-<h1>viwe restaurent detail</h1>
+<h2>restaurant details</h2>
+ {% if restaurants %}
+ <ul>
+    <li>Restaurant name:{{restaurants.restaurant_name}}</li>
+    <li>price range: {{restaurants.min_price}} - {{restaurants.max_price}}</li>
+    <li>location : {{restaurants.location}}</li>
+    <li>Email Address : {{restaurants.email}}</li>
+    <li> Contact number : {{restaurants.contact_no}}</li>
+    <li><a href ="{% url 'view_menu' restaurants.restaurant_name %}" >Menu</a></li>
+    
+ </ul>
+ 
+ {% endif %}
 {% endblock %}

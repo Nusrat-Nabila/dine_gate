@@ -1,5 +1,17 @@
 {% extends 'base.html' %}
 {% block content %}
-<h1>Restaurant List</h1>
+<h2>restaurant list</h2>
+ {% if result %}
+ <ul>
+    {% for res in result %}
+    <ul>
+    <li>{{res.restaurant_name}}</li>
+    <li>{{res.location}}</li>
+    <li><a href ="{% url 'View_restaurant_detail' res.id %}" > Details</a></li>
+    </ul>
+    {% endfor %}
+ </ul>
+ 
+ {% endif %}
 {% endblock %}
 
