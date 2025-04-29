@@ -1,17 +1,63 @@
 {% extends 'base.html' %}
+{% load static %}
 {% block content %}
-<h2>restaurant list</h2>
- {% if result %}
- <ul>
-    {% for res in result %}
-    <ul>
-    <li>{{res.restaurant_name}}</li>
-    <li>{{res.location}}</li>
-    <li><a href ="{% url 'View_restaurant_detail' res.id %}" > Details</a></li>
-    </ul>
-    {% endfor %}
- </ul>
- 
- {% endif %}
-{% endblock %}
+<br><br>
+<h1 style="text-align: center; margin-bottom: 30px; color: #563320;">
+  View All Restaurants
+</h1>
 
+<div class="container profile-page">
+  <div class="row">
+    {% if restaurants %}
+      {% for restaurant in restaurants %}
+        <div class="col-xl-6 col-lg-7 col-md-12">
+          <div class="card profile-header">
+            <a href="{% url 'View_restaurant_detail' restaurant.id %}">
+            <div class="body">
+              <div class="row">
+                <div class="col-lg-4 col-md-4 col-12">
+                  <div class="profile-image float-md-right">
+                    <img
+                      src="{{ restaurant.image_url }}"
+                      alt="{{ restaurant.restaurant_name }}"
+                      class="logo"
+                    >
+                  </div>
+                </div>
+                <div class="col-lg-8 col-md-8 col-12">
+                  <h4 class="m-t-0 m-b-0">
+                    <strong>{{ restaurant.restaurant_name }}</strong>
+                  </h4>
+
+                  <p class="social-icon">
+                    <i class="fa-solid fa-location-dot"></i>
+                    {{ restaurant.city }}, {{ restaurant.area }}, {{ restaurant.location }}
+                  </p>
+
+                  <p class="social-icon">
+                    <i class="fa-solid fa-phone"></i>
+                    {{ restaurant.contact_no }}
+                  </p>
+
+                  <p class="social-icon">
+                    <i class="fa-solid fa-envelope"></i>
+                    {{ restaurant.email }}
+                  </p>
+
+                  <p class="social-icon">
+                    <i class="fa-solid fa-tags"></i>
+                    Price Range: {{ restaurant.min_price }} - {{ restaurant.max_price }}
+                  </p>
+
+                </div>
+              </div>
+            </div></a>
+          </div>
+        </div>
+      {% endfor %}
+    {% else %}
+      <p style="text-align:center;">No restaurants available.</p>
+    {% endif %}
+  </div>
+</div>
+{% endblock %}

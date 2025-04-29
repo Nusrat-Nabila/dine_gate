@@ -311,3 +311,338 @@ form button[type="submit"]:active {
     border-bottom-left-radius: 8px;
     border-bottom-right-radius: 8px;
 }
+.restaurant-list {
+    padding: 40px 20px;
+    background-color: #f8f9fa;
+}
+
+.restaurant-list h1 {
+    text-align: center;
+    font-size: 2.5rem;
+    margin-bottom: 30px;
+    color: #563320;
+}
+
+.pager-card {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 30px;
+}
+
+.restaurant-card {
+    background: #fff8dc;
+    border-radius: 15px;
+    box-shadow: 0 6px 12px rgba(0,0,0,0.1);
+    padding: 20px;
+    width: 300px;
+    transition: transform 0.3s ease;
+}
+
+.restaurant-card:hover {
+    transform: scale(1.03);
+}
+
+.restaurant-card .logo {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+    border-radius: 12px;
+    margin-bottom: 15px;
+}
+
+.details h3 {
+    color: #C75B39;
+    margin-bottom: 10px;
+    font-size: 1.5rem;
+}
+
+.details p {
+    font-size: 0.95rem;
+    color: #333;
+    margin-bottom: 8px;
+}
+
+.details .icon {
+    margin-right: 5px;
+}
+/* === Profile-Page Container === */
+.container.profile-page {
+  background: transparent !important;
+  box-shadow: none !important;
+  border: none !important;
+  padding: 0;
+}
+
+/* === Centered Page Title === */
+.container.profile-page h1,
+.container.profile-page h2 {
+  text-align: center;
+  color: #563320;
+  margin-bottom: 30px;
+}
+
+/* === Grid Row Override === */
+.container.profile-page .row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 30px;
+  justify-content: center;
+  margin: 0;
+}
+
+/* === Column Sizing for Cards === */
+.container.profile-page .col-xl-6,
+.container.profile-page .col-lg-7,
+.container.profile-page .col-md-12 {
+  flex: 1 1 320px;    /* responsive min-width */
+  max-width: 480px;
+  padding: 0;
+}
+
+/* === Card Styling (Unified) === */
+.card.profile-header {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  background-color: #fff8dc;
+  border: 1px solid #D4A72C;
+  border-radius: 12px;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
+  height: 380px;
+  margin-bottom: 30px;
+  overflow-y: auto;
+  scrollbar-width: thin;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+.card.profile-header:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.12);
+}
+
+/* === Profile Image / Logo === */
+.profile-image .logo {
+  width: 100%;
+  height: 140px;
+  object-fit: cover;
+  border-radius: 50%;
+  border: 3px solid #D4A72C;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  margin: 0 auto 15px; ;
+}
+
+/* === Card Body Flex === */
+.card.profile-header .body {
+  flex-grow: 1;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+   justify-content: flex-start; /* Ensures content starts from the top */
+  align-items: flex-start; /* Ensures content is aligned left */
+  text-align: left;
+}
+/* === Restaurant Name & Meta === */
+.card.profile-header h4 {
+  font-size: 1.4rem;
+  color: #563320;
+   text-align: left;
+  margin-bottom: 8px;
+}
+.job_post {
+  display: inline-block;
+  font-size: 0.95rem;
+  color: #8b4513;
+  margin-right: 6px;
+   text-align: left;
+}
+
+/* === Contact & Price === */
+.card.profile-header p {
+  font-size: 0.9rem;
+  color: #424242;
+  margin: 6px 0;
+   text-align: left;
+}
+.card.profile-header strong {
+  color: #C75B39;
+}
+
+/* === Social / Email Icon Line === */
+.social-icon {
+  display: flex;
+  align-items: center;
+  margin-top: 8px;
+  color: #563320; /* Deep brown for text */
+  font-size: 0.95rem;
+}
+
+.social-icon i {
+  background-color: #563320;
+  color: #fff;/* Unified golden icon color */
+  font-size: 1.1rem;
+  margin-right: 10px;
+  min-width: 20px;        /* Aligns icons nicely */
+  text-align: center;
+  padding: 4px;
+  border-radius: 50%;
+}
+
+.icon-text {
+  flex: 1;
+  word-break: break-word;
+}
+
+
+
+/* === Utility & Resets === */
+.card a {
+    text-decoration: none !important; /* No underline */
+    color: inherit; /* Keeps original text color */
+}
+.m-t-5 {
+  margin-top: 5px;
+}
+
+/* === Responsive Tweaks === */
+@media (max-width: 768px) {
+  .profile-image .logo {
+    height: 120px;
+    width: 120px;
+  }
+  .job_post {
+    display: block;
+    margin-bottom: 4px;
+  }
+}
+/* Restaurant Profile Card - Background Integrated */
+.restaurant-profile-card {
+    display: flex;
+    flex-wrap: wrap;
+    background-color: rgba(255, 248, 220, 0.9); /* Semi-transparent to show bg */
+    border: 2px solid #D4A72C;
+    border-radius: 20px;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+    transition: all 0.3s ease;
+    margin-bottom: 30px;
+    backdrop-filter: blur(2px); /* Soft blur effect */
+    position: relative;
+    z-index: 1;
+}
+
+.restaurant-profile-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: inherit;
+    z-index: -1;
+    border-radius: 18px;
+}
+
+.restaurant-profile-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 12px 32px rgba(0, 0, 0, 0.15);
+    background-color: rgba(255, 248, 220, 0.95); /* Slightly more opaque on hover */
+}
+
+.profile-left {
+    flex: 1;
+    min-width: 300px;
+    padding: 2rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: rgba(255, 246, 196, 0.7);
+    border-right: 2px dashed #D4A72C;
+}
+
+.restaurant-logo {
+    max-width: 100%;
+    max-height: 280px;
+    object-fit: contain;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    border: 1px solid #563320;
+    background-color: white; /* Ensures logo visibility */
+    padding: 5px;
+}
+
+.profile-right {
+    flex: 2;
+    min-width: 300px;
+    padding: 2rem;
+    position: relative;
+}
+
+.restaurant-name {
+    color: #563320;
+    font-size: 2.2rem;
+    margin-bottom: 1rem;
+    font-weight: 700;
+    text-shadow: 1px 1px 2px rgba(0,0,0,0.1); /* Better contrast on bg */
+}
+
+/* ... (keep all other styles from previous version) ... */
+/* Button Styles with Gap */
+.profile-buttons {
+    display: flex;
+    gap: 400px; /* Increased gap between buttons */
+    margin-top: 2rem;
+    flex-wrap: wrap;
+}
+
+/* Updated Button Color */
+.btn-success {
+    background-color: #563320; /* Changed to golden color */
+    color: #ffffff; /* Dark brown text for contrast */
+    padding: 0.8rem 1.8rem;
+    border-radius: 8px;
+    text-decoration: none;
+    font-weight: 600;
+    border: none;
+    transition: all 0.3s ease;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    margin: 5px;
+}
+
+/* Hover State */
+.btn-success:hover {
+    background-color: #563320; /* Lighter gold on hover */
+    color: #fffff;
+}
+
+/* Active State */
+.btn-success:active {
+    background-color: #b38c1f; /* Darker gold when pressed */
+}
+
+/* Responsive adjustments for buttons */
+@media (max-width: 576px) {
+    .profile-buttons {
+        gap: 10px; /* Slightly smaller gap on mobile */
+    }
+    .btn-success {
+        padding: 0.7rem 1.5rem; /* Slightly smaller buttons on mobile */
+        width: 100%; /* Full width buttons on small screens */
+    }
+}
+/* Responsive adjustments with background consideration */
+@media (max-width: 992px) {
+    .profile-left {
+        border-right: none;
+        border-bottom: 2px dashed #D4A72C;
+    }
+}
+
+@media (max-width: 576px) {
+    .restaurant-profile-card {
+        backdrop-filter: none; /* Remove blur on small screens */
+        background-color: #fff8dc; /* Solid color for better performance */
+    }
+}

@@ -19,14 +19,20 @@ def search_restaurant(request):
     return render (request,'restaurant/Restaurant_list.html', {'result': results} )
 
 # to get the list of all the restaurants available in our website
+
 def Restaurant_list(request):
-    results= Restaurant.objects.all()
-    return render(request,'restaurant/Restaurant_list.html',{'result': results})
+    restaurants = Restaurant.objects.all()
+    return render(request, 'restaurant/Restaurant_list.html', {'restaurants': restaurants})
+
 
 # view a restaurant details 
-def View_restaurant_detail(request,id):
-    restaurant= Restaurant.objects.get(pk=id)
-    return render(request,'restaurant/View_restaurant_detail.html',{'restaurants': restaurant} )
+def View_restaurant_detail(request, id):
+    try:
+        restaurant = Restaurant.objects.get(pk=id)
+    except Restaurant.DoesNotExist:
+        return HttpResponse("Restaurant not found", status=404)
+    return render(request, 'restaurant/View_restaurant_detail.html', {'restaurants': restaurant})
+
 
 #signup function for restaurant owner/restaurant
 def Restaurant_signup(request):
