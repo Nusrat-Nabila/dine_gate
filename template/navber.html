@@ -1,8 +1,7 @@
-<nav class="navbar navbar-expand-lg" style="background-color: #fff6c4;">
+<nav class="navbar navbar-expand-lg" style="background-color: #004D40;">
   <div class="container-fluid">
-
     <!-- Logo (Left) -->
-    <a class="navbar-brand" href="#" style="color: #8b4513; font-weight: bold;">DineGate</a> <!-- Change color here -->
+    <a class="navbar-brand" href="#" style="color: #ffffff; font-weight: bold;">DineGate</a>
 
     <!-- Toggler for mobile -->
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarMain">
@@ -12,32 +11,21 @@
     <!-- Right-side menu -->
     <div class="collapse navbar-collapse justify-content-end" id="navbarMain">
       <ul class="navbar-nav mb-2 mb-lg-0 align-items-center">
-
         <li class="nav-item">
-          <a class="nav-link text-dark" href="{% url 'Home' %}">Home</a>
-        </li>
-
-        <!-- Reserve Table -->
-        <li class="nav-item">
-          <a class="nav-link text-dark" href="{% url 'Login' %}">Reserve Table</a>
-        </li>
-
-        <!-- Add Restaurant -->
-        <li class="nav-item">
-          <a class="nav-link text-dark" href="{% url 'Restaurant_signup' %}">Register Your Restaurant</a>
-        </li>
-
-        <!-- Login & Signup -->
-        <li class="nav-item">
-          <a class="nav-link text-dark" href="{% url 'login_home' %}?next={% url 'Table_book' %}">Login</a>
+          <a class="nav-link text-white" href="{% url 'Home' %}">Home</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link text-dark" href="{% url 'Customer_signup' %}">Sign Up</a>
+          <a class="nav-link text-white" href="{% url 'Login' %}">Reserve Table</a>
         </li>
-
-
-
-
+        <li class="nav-item">
+          <a class="nav-link text-white" href="{% url 'Restaurant_signup' %}">Register Your Restaurant</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link text-white" href="{% url 'login_home' %}?next={% url 'Table_book' %}">Login</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link text-white" href="{% url 'Customer_signup' %}">Sign Up</a>
+        </li>
       </ul>
     </div>
   </div>

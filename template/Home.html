@@ -1,36 +1,33 @@
 {% extends 'base.html' %}
-
+{% load static %}
 {% block content %}
 <div class="container mt-5">
-  <div class="row align-items-start">
+  <div class="row d-flex justify-content-center align-items-center">
 
     <div class="col-md-6">
-      <h1><strong>Welcome to DineGate</strong></h1>
-      <h2>Browse restaurants, reserve a table, and enjoy your meal!</h2>
-      <h1><strong>Find the Best Restaurants</strong></h1>
+      <!-- Heading Section -->
+      <h1 class="text-white"><strong>Welcome to <i id="dinegate-logo" class="breathe-logo">DineGate</i>
 
-      <!-- Search Form -->
-      <form class="d-flex mt-4" method="GET" action="#">
-        <input class="form-control me-2" type="text" name="q" placeholder="Search restaurants..." required>
-        <button class="btn btn-dark" type="submit">Search</button>
-      </form>
-<br>
-      <br>
-      <!-- Cards (directly under search bar) -->
-      <div class="d-flex flex-wrap mt-4" style="gap: 70px;">
-        <div class="card custom-card">
-          <h3>Total Restaurants</h3>
-          <span><h4>{{ total_restaurants }}</h4></span>
-        </div>
+</strong></h1>
+      <h2 style="color:#ffffff">Browse restaurants, reserve a table, and enjoy your meal!</h2>
 
-        <div class="card custom-card">
-          <h3>Total Users</h3>
-          <span><h4>{{ total_users }}</h4></span>
-        </div>
+      <div class="mt-5">
+
+        <!-- Search Form -->
+<form class="d-flex mt-4" method="GET" action="{% url 'search_restaurant' %}">
+  <input class="form-control me-2" type="text" name="query" placeholder="Search restaurants..." required>
+  <button class="btn btn-dark" type="submit">Search</button>
+</form>
       </div>
 
+
     </div>
+    <br><br><br><br><br>    <br><br><br><br><br>
+    <br><br><br><br><br><br><br><br>
 
   </div>
+
+<!-- Link your script -->
+<script src="{% static 'js/script.js' %}"></script>
 </div>
 {% endblock %}

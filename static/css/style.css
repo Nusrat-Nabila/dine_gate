@@ -1,33 +1,39 @@
 /* === Base === */
 body {
-    background-color: #F5F0E6; /* Beige */
-    background-image: url('../images/home back.png');
+    background-color: #f5f7f2; /* light gray background */
+    background-image: url('../images/back.jpg');
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
     background-attachment: fixed;
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    color: #8b4513;
+    color: #1e1e1e; /* dark gray text */
     margin: 0;
     padding: 0;
 }
 
 /* === Navbar === */
 .navbar {
-    background-color: #fff8dc !important;
-    padding: 0.8rem 1.5rem;
-    border-bottom: 1px solid #D4A72C;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 2rem;
+  background: rgba(0, 64, 64, 0.7); /* dark teal overlay */
+  color: #fff;
+  position: fixed;
+  width: 100%;
+  top: 0;
 }
 
 .navbar-brand {
     font-weight: bold;
-    color: #563320 !important;
+    color: #ffffff !important;
     font-size: 1.5rem;
 }
 
 .navbar-nav .nav-link {
     position: relative;
-    color: #563320 !important;
+    color: #ffffff !important;
     transition: color 0.3s ease-in-out;
 }
 
@@ -38,7 +44,7 @@ body {
     bottom: 0;
     height: 3px;
     width: 100%;
-    background: linear-gradient(to right, #C75B39, #ffb347);
+    background: linear-gradient(to right, #008080, #33cccc); /* teal gradient */
     transform: scaleX(0);
     transform-origin: left;
     transition: transform 0.4s ease-in-out;
@@ -57,13 +63,127 @@ body {
 }
 
 .navbar-toggler-icon {
-    background-color: #C75B39;
+    background-color: #ffffff;
 }
+/* General body styling */
+body {
+  font-family: Arial, sans-serif;
+  background-color: #f4f7f6; /* Light background color */
+  color: #333; /* Dark text color */
+}
+
+/* Heading styles */
+h1, h2 {
+  color: #008080; /* Teal color for headings */
+  text-align: center;
+}
+
+/* Search form styling */
+form {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  margin-top: 30px;
+}
+
+form input[type="text"] {
+  padding: 10px;
+  border-radius: 5px;
+  border: 2px solid #ccc;
+  width: 80%;
+}
+
+form button {
+  padding: 10px 20px;
+  border-radius: 5px;
+  background-color: #008080;
+  color: white;
+  border: none;
+  cursor: pointer;
+}
+
+form button:hover {
+  background-color: #005f5f;
+}
+.breathe-logo {
+  font-size: 80px;
+  color: white;
+  display: inline-block;
+  animation: breathe 3s ease-in-out infinite;
+  text-shadow: 0 0 10px rgba(255, 255, 255, 0.7);
+}
+
+@keyframes breathe {
+  0% {
+    transform: scale(1);
+    text-shadow: 0 0 10px rgba(255, 255, 255, 0.4);
+  }
+  50% {
+    transform: scale(1.07);
+    text-shadow: 0 0 25px rgba(255, 255, 255, 0.9);
+  }
+  100% {
+    transform: scale(1);
+    text-shadow: 0 0 10px rgba(255, 255, 255, 0.4);
+  }
+}
+
+/* Card section styles */
+.custom-card {
+  background-color: #ffffff;
+  border-radius: 10px;
+  padding: 20px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  text-align: center;
+  width: 200px;
+}
+
+.custom-card h3 {
+  font-size: 1.5rem;
+  color: #008080; /* Teal color for titles */
+}
+
+.custom-card h4 {
+  font-size: 2rem;
+  font-weight: bold;
+  color: #333;
+}
+
+/* Flexbox layout for cards */
+.d-flex {
+  display: flex;
+  justify-content: space-around;
+  gap: 20px;
+  margin-top: 30px;
+  flex-wrap: wrap;
+}
+
+/* Container and row alignment */
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 40px;
+}
+
+.row {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+
+.mt-5 {
+  margin-top: 50px;
+}
+
+.mt-4 {
+  margin-top: 20px;
+}
+
 
 /* === Buttons === */
 .btn-primary {
-    background-color: #C75B39;
-    border-color: #C75B39;
+    background-color: #008080; /* teal */
+    border-color: #004d4d;
     color: white;
     padding: 10px 20px;
     border-radius: 6px;
@@ -73,33 +193,33 @@ body {
 }
 
 .btn-primary:hover {
-    background-color: #F2B8A0;
-    border-color: #F2B8A0;
-    color: #4B3A2F;
+    background-color: #006666;
+    border-color: #006666;
+    color: #ffffff;
 }
 
 .btn-primary:active {
-    background-color: #3b1f13;
-    border-color: #3b1f13;
+    background-color: #004d4d;
+    border-color: #003333;
     color: white;
 }
 
 .btn-secondary {
-    background-color: #6B7D3B;
-    border-color: #6B7D3B;
-    color: white;
+    background-color: #cccccc;
+    border-color: #666666;
+    color: #1e1e1e;
 }
 
 .btn-secondary:hover {
-    background-color: #8E9E57;
-    border-color: #8E9E57;
+    background-color: #bbbbbb;
+    border-color: #555555;
 }
 
 /* === Forms / Inputs === */
 input, textarea, select {
-    background-color: #FFFDF8;
-    border: 1px solid #D4A72C;
-    color: #8b4513;
+    background-color: #ffffff;
+    border: 1px solid #cccccc;
+    color: #004d4d;
     padding: 10px 12px;
     margin-bottom: 15px;
     border-radius: 2px;
@@ -107,27 +227,29 @@ input, textarea, select {
 
 input:focus, textarea:focus, select:focus {
     outline: none;
-    border-color: #8b4513;
-    box-shadow: 0 0 4px #C75B39;
+    border-color: #33cccc;
+    box-shadow: 0 0 4px #33cccc;
 }
+
 
 /* === Cards / Boxes === */
 .card {
-    background-color: #fff6c4;
-    border: 1px solid #D4A72C;
+    background-color: #ffffff;
+    border: 1px solid #33cccc; /* teal border */
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.06);
     border-radius: 30px;
     padding: 20px;
 }
-d-flex.flex-wrap.mt-4 {
-    gap: 5px; /* chhoto gap */
+
+.d-flex.flex-wrap.mt-4 {
+    gap: 5px; /* small gap */
     margin-top: 15px;
 }
 
 /* Custom card design */
 .card.custom-card {
-    background-color: #fff8dc;
-    border: 2px solid #4c2c1f;
+    background-color: #ffffff;
+    border: 2px solid #004d4d; /* dark teal border */
     border-radius: 20px;
     padding: 10px 15px;
     width: 190px;
@@ -137,67 +259,67 @@ d-flex.flex-wrap.mt-4 {
     justify-content: center;
     align-items: center;
     text-align: center;
-    color: #563320;
+    color: #004d4d; /* dark teal text */
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
 }
+
 .row.mt-4 {
     display: flex;
     justify-content: space-between;
-     gap: 0px;
+    gap: 0px;
     flex-wrap: nowrap;
     margin-left: 0;
     margin-right: 0;
 }
 
-
 /* === Headings & Texts === */
 h1, h2, h3, h4, h5, h6, p, span, li, a {
-    color: #563320;
+    color: #1e1e1e; /* dark gray text */
 }
 
 /* === Links === */
 a {
-    color: #C75B39;
+    color: #008080; /* teal color */
     text-decoration: none;
 }
 
 a:hover {
-    color: #A54626;
+    color: #006666; /* dark teal on hover */
     text-decoration: underline;
 }
 
 /* === Home Page Styles === */
 .container.mt-5 {
-    color: #563320;
+    color: #1e1e1e; /* dark gray text */
 }
 
 h1, h2 {
-    color: #563320;
+    color: #1e1e1e; /* dark gray text */
 }
 
 /* === Search Input and Button === */
 form input[type="text"] {
-    background-color: #fff8dc;
-    color: #8b4513;
-    border: 2px solid #563320;
+    background-color: #ffffff;
+    color: #004D40; /* dark teal text */
+    border: 2px solid #004D40; /* dark teal border */
     border-radius: 0;
 }
 
 form button[type="submit"] {
-    background-color: #563320;
-    border-color: #563320;
+    background-color: #004D40; /* dark teal button */
+    border-color: #004D40;
     color: white;
     transition: background-color 0.2s ease, border-color 0.2s ease;
 }
 
 form button[type="submit"]:hover {
-    background-color: #4c2c1f;
-    border-color: #4c2c1f;
+    background-color: #006666; /* dark teal hover */
+    border-color: #006666;
 }
 
 form button[type="submit"]:active {
-    background-color: #3b1f13;
-    border-color: #3b1f13;
+    background-color: #003333; /* very dark teal on click */
+    border-color: #003333;
 }
 
 /* === Login and Sign-Up Pages === */
@@ -205,21 +327,39 @@ form button[type="submit"]:active {
     max-width: 420px;
     margin: 70px auto;
     padding: 30px;
-    background-color: #fff8dc;
-    border: 1px solid #D4A72C;
+    background-color: #E3E4E3; /* light teal background */
+    border: 1px solid #004D40; /* dark teal border */
     border-radius: 12px;
     box-shadow: 0 8px 16px rgba(0, 0, 0, 0.08);
 }
 
 .login-container h2, .signup-container h2 {
     text-align: center;
-    color: #563320;
+    color: #004D40; /* dark teal text */
     margin-bottom: 20px;
 }
 
 .login-container form, .signup-container form {
     display: flex;
     flex-direction: column;
+}
+.login-container input.form-control,
+.signup-container input.form-control {
+    width: 100%;
+    padding: 10px 12px;
+    background-color: #ffffff;
+    border: 1.5px solid #004D40;
+    border-radius: 0;
+    color: #004D40;
+    font-size: 16px;
+    box-sizing: border-box; /* ensures padding doesn't break the width */
+}
+
+.login-container input.form-control:focus,
+.signup-container input.form-control:focus {
+    border-color: #00796B;
+    box-shadow: 0 0 4px #00796B;
+    outline: none;
 }
 
 .login-container input[type="text"],
@@ -228,12 +368,12 @@ form button[type="submit"]:active {
 .signup-container input[type="text"],
 .signup-container input[type="password"],
 .signup-container input[type="email"] {
-    background-color: #FFFDF8;
-    border: 1px solid #D4A72C;
+    background-color: #ffffff;
+    border: 1px solid #004D40; /* dark teal border */
     padding: 10px 12px;
     margin-bottom: 15px;
     border-radius: 0;
-    color: #8b4513;
+    color: #004D40; /* dark teal text */
 }
 
 .login-container input[type="text"]:focus,
@@ -243,13 +383,13 @@ form button[type="submit"]:active {
 .signup-container input[type="password"]:focus,
 .signup-container input[type="email"]:focus {
     outline: none;
-    border-color: #8b4513;
-    box-shadow: 0 0 4px #C75B39;
+    border-color: #00796B; /* lighter teal on focus */
+    box-shadow: 0 0 4px #00796B; /* teal glow */
 }
 
 .login-container .btn-primary,
 .signup-container .btn-primary {
-    background-color: #563320;
+    background-color: #004D40; /* dark teal */
     color: white;
     padding: 10px 20px;
     border-radius: 6px;
@@ -259,8 +399,8 @@ form button[type="submit"]:active {
 
 .login-container .btn-primary:hover,
 .signup-container .btn-primary:hover {
-    background-color: #F2B8A0;
-    color: #4B3A2F;
+    background-color: #00796B; /* lighter teal on hover */
+    color: #004D40;
 }
 
 .login-container .error {
@@ -269,20 +409,33 @@ form button[type="submit"]:active {
     text-align: center;
     margin-bottom: 10px;
 }
+/* Ensure all inputs have same width */
+.login-container input,
+.signup-container input {
+    width: 100%;
+    box-sizing: border-box;
+    height: 45px;
+    padding: 10px 12px;
+    border: 1px solid #004D40;
+    border-radius: 0;
+    background-color: #ffffff;
+    color: #004D40;
+    font-size: 16px;
+}
 
 /* === List Group Styles === */
 .list-group {
     margin-top: 15px;
     padding: 0;
     list-style: none;
-    background-color: #F2E2C4; /* Light warm beige for the list container */
-    border-radius: 8px; /* Optional: rounded corners for the container */
+    background-color: #E0F7FA; /* light teal background */
+    border-radius: 8px;
 }
 
 .list-group-item {
-    background-color: #fff8dc; /* Soft beige for individual items */
-    color: #563320; /* Dark brown text */
-    border: 1px solid #D4A72C; /* Subtle border with golden hue */
+    background-color: #ffffff; /* white background for items */
+    color: #004D40; /* dark teal text */
+    border: 1px solid #004D40; /* dark teal border */
     padding: 10px 20px;
     border-radius: 8px;
     margin-bottom: 10px;
@@ -291,13 +444,13 @@ form button[type="submit"]:active {
 }
 
 .list-group-item:hover {
-    background-color: #C75B39;
+    background-color: #00796B; /* teal hover */
     color: white;
     transform: translateY(-3px);
 }
 
 .list-group-item:active {
-    background-color: #3b1f13;
+    background-color: #004D40; /* dark teal on active */
     color: white;
     transform: translateY(1px);
 }
@@ -311,16 +464,18 @@ form button[type="submit"]:active {
     border-bottom-left-radius: 8px;
     border-bottom-right-radius: 8px;
 }
+
+/* === Restaurant List Styles === */
 .restaurant-list {
     padding: 40px 20px;
-    background-color: #f8f9fa;
+    background-color: #f0f4f4; /* very light teal */
 }
 
 .restaurant-list h1 {
     text-align: center;
     font-size: 2.5rem;
     margin-bottom: 30px;
-    color: #563320;
+    color: #004D40; /* dark teal */
 }
 
 .pager-card {
@@ -331,7 +486,7 @@ form button[type="submit"]:active {
 }
 
 .restaurant-card {
-    background: #fff8dc;
+    background: #ffffff;
     border-radius: 15px;
     box-shadow: 0 6px 12px rgba(0,0,0,0.1);
     padding: 20px;
@@ -352,7 +507,7 @@ form button[type="submit"]:active {
 }
 
 .details h3 {
-    color: #C75B39;
+    color: #004D40; /* dark teal */
     margin-bottom: 10px;
     font-size: 1.5rem;
 }
@@ -366,6 +521,7 @@ form button[type="submit"]:active {
 .details .icon {
     margin-right: 5px;
 }
+
 /* === Profile-Page Container === */
 .container.profile-page {
   background: transparent !important;
@@ -405,8 +561,8 @@ form button[type="submit"]:active {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  background-color: #fff8dc;
-  border: 1px solid #D4A72C;
+  background-color: #E3E4E3;
+  border: 2px solid #004D40;
   border-radius: 12px;
   box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
   height: 380px;
@@ -426,7 +582,7 @@ form button[type="submit"]:active {
   height: 140px;
   object-fit: cover;
   border-radius: 50%;
-  border: 3px solid #D4A72C;
+  border: 3px solid #004D40;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
   margin: 0 auto 15px; ;
 }
@@ -444,14 +600,14 @@ form button[type="submit"]:active {
 /* === Restaurant Name & Meta === */
 .card.profile-header h4 {
   font-size: 1.4rem;
-  color: #563320;
+  color: #004D40;
    text-align: left;
   margin-bottom: 8px;
 }
 .job_post {
   display: inline-block;
   font-size: 0.95rem;
-  color: #8b4513;
+  color: #004D40;
   margin-right: 6px;
    text-align: left;
 }
@@ -464,7 +620,7 @@ form button[type="submit"]:active {
    text-align: left;
 }
 .card.profile-header strong {
-  color: #C75B39;
+  color: #004D40;
 }
 
 /* === Social / Email Icon Line === */
@@ -472,12 +628,12 @@ form button[type="submit"]:active {
   display: flex;
   align-items: center;
   margin-top: 8px;
-  color: #563320; /* Deep brown for text */
+  color: #004D40; /* Deep brown for text */
   font-size: 0.95rem;
 }
 
 .social-icon i {
-  background-color: #563320;
+  background-color: #004D40;
   color: #fff;/* Unified golden icon color */
   font-size: 1.1rem;
   margin-right: 10px;
@@ -518,8 +674,8 @@ form button[type="submit"]:active {
 .restaurant-profile-card {
     display: flex;
     flex-wrap: wrap;
-    background-color: rgba(255, 248, 220, 0.9); /* Semi-transparent to show bg */
-    border: 2px solid #D4A72C;
+    background-color: #E3E4E3; /* Semi-transparent to show bg */
+    border: 3px solid #004D40;
     border-radius: 20px;
     box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
     overflow: hidden;
@@ -545,7 +701,7 @@ form button[type="submit"]:active {
 .restaurant-profile-card:hover {
     transform: translateY(-5px);
     box-shadow: 0 12px 32px rgba(0, 0, 0, 0.15);
-    background-color: rgba(255, 248, 220, 0.95); /* Slightly more opaque on hover */
+    background-color: #E3E4E3; /* Slightly more opaque on hover */
 }
 
 .profile-left {
@@ -555,8 +711,8 @@ form button[type="submit"]:active {
     display: flex;
     align-items: center;
     justify-content: center;
-    background-color: rgba(255, 246, 196, 0.7);
-    border-right: 2px dashed #D4A72C;
+    background-color: #E3E4E3;
+    border-right: 2px dashed #004D40;
 }
 
 .restaurant-logo {
@@ -565,7 +721,7 @@ form button[type="submit"]:active {
     object-fit: contain;
     border-radius: 12px;
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-    border: 1px solid #563320;
+    border: 1px solid #004D40;
     background-color: white; /* Ensures logo visibility */
     padding: 5px;
 }
@@ -578,7 +734,7 @@ form button[type="submit"]:active {
 }
 
 .restaurant-name {
-    color: #563320;
+    color: #004D40;
     font-size: 2.2rem;
     margin-bottom: 1rem;
     font-weight: 700;
@@ -596,7 +752,7 @@ form button[type="submit"]:active {
 
 /* Updated Button Color */
 .btn-success {
-    background-color: #563320; /* Changed to golden color */
+    background-color: #004D40; /* Changed to golden color */
     color: #ffffff; /* Dark brown text for contrast */
     padding: 0.8rem 1.8rem;
     border-radius: 8px;
@@ -613,7 +769,7 @@ form button[type="submit"]:active {
 
 /* Hover State */
 .btn-success:hover {
-    background-color: #563320; /* Lighter gold on hover */
+    background-color: #004D40; /* Lighter gold on hover */
     color: #fffff;
 }
 
@@ -636,7 +792,7 @@ form button[type="submit"]:active {
 @media (max-width: 992px) {
     .profile-left {
         border-right: none;
-        border-bottom: 2px dashed #D4A72C;
+        border-bottom: 2px dashed #004D40;
     }
 }
 
@@ -645,4 +801,69 @@ form button[type="submit"]:active {
         backdrop-filter: none; /* Remove blur on small screens */
         background-color: #fff8dc; /* Solid color for better performance */
     }
+}
+/* Footer Styling */
+.site-footer {
+    background-color: #004D40;
+    padding: 40px 0;
+    margin-top: 100px; /* This adds space above the footer */
+}
+
+.site-footer .footer-content {
+    display: flex;
+    justify-content: space-between;
+    gap: 30px;
+}
+
+/* Ensure that the body and html cover the full height of the page */
+html, body {
+    height: 100%;
+    margin: 0;
+}
+
+/* Main content area should be short and leave room for the footer */
+.main-content {
+    min-height: 100vh; /* The content will be short but take 80% of the screen height */
+    padding-bottom: 50px; /* Space for the footer */
+}
+
+/* Footer Section Styling */
+.site-footer .footer-section {
+    width: 30%;
+}
+.site-footer .footer-section p {
+    color: #fff; /* Text color for paragraph content */
+    margin-bottom: 10px;
+}
+.site-footer .footer-section h3 {
+    font-size: 1.2rem;
+    margin-bottom: 15px;
+    color: #fff; /* Text color for section titles */
+}
+
+.site-footer .footer-section ul {
+    list-style: none;
+    padding: 0;
+}
+
+.site-footer .footer-section ul li {
+    margin-bottom: 8px;
+}
+
+.site-footer .footer-section ul li a {
+    text-decoration: none;
+    color: #fff; /* Links color */
+    transition: color 0.3s ease-in-out;
+}
+
+.site-footer .footer-section ul li a:hover {
+    color: #F5A623; /* Link color on hover */
+}
+
+/* Footer Bottom Styling */
+.site-footer .footer-bottom {
+    text-align: center;
+    padding-top: 20px;
+    font-size: 0.9rem;
+    color: #fff; /* Text color for bottom section */
 }

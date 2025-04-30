@@ -2,6 +2,7 @@ from django.shortcuts import render,redirect,get_object_or_404
 from .forms import RestaurantAddForm
 from .models import Restaurant
 from .models import Menu
+from django.db.models import Q
 # Create your views here.
 
 #Customer dashboard page view
@@ -10,13 +11,17 @@ def Customer_home(request):
 
 # function or method for search restaurants
 def search_restaurant(request):
-    if request.method == "GET":
-        querys= request.GET.get('query')
-        if querys:
-            results=Restaurant.objects.filter(restaurant_name__icontains = querys)| Restaurant.objects.filter(city__icontains = querys)|Restaurant.objects.filter(area__icontains = querys)
-        else:
-            results= Restaurant.objects.none()
-    return render (request,'restaurant/Restaurant_list.html', {'result': results} )
+    query = request.GET.get('query', '')
+    if query:
+        restaurants = Restaurant.objects.filter(
+            Q(restaurant_name__icontains=query) |
+            Q(city__icontains=query) |
+            Q(area__icontains=query)
+        )
+    else:
+        restaurants = Restaurant.objects.none()
+    return render(request, 'restaurant/Restaurant_list.html', {'restaurants': restaurants})
+
 
 # to get the list of all the restaurants available in our website
 
@@ -69,9 +74,10 @@ def restaurant_login(request):
 #menu page for customer
 
 def view_menu(request, restaurant_name):
-    restaurant = get_object_or_404(Restaurant, name=restaurant_name)
+    restaurant = get_object_or_404(Restaurant, restaurant_name=restaurant_name)
     menu_items = Menu.objects.filter(restaurant_name=restaurant)
     return render(request, 'restaurant/Menu.html', {'menu': menu_items, 'restaurant': restaurant})
+
 
 
 #menu page for restaurant where they can see their own restaurant's menu

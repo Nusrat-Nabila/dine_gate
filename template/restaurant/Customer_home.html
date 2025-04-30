@@ -1,22 +1,32 @@
-
 {% extends 'base.html' %}
+{% load static %}
 {% block content %}
-  <div class="container mt-5">
-    <div class="row align-items-center">
+<div class="container mt-5">
+  <div class="row d-flex justify-content-center align-items-center">
+    <div class="col-md-6">
+      <!-- Heading Section -->
+      <h1 class="text-white"><strong>Hi! {{user.username}}  welcome to <i id="dinegate-logo" class="breathe-logo">DineGate</i>
 
-      <!-- Left Side: Text + Search -->
-      <div class="col-md-6">
-        <h1><strong>Hello, {{ user.username }}!</strong></h1>
-        <h2>Wanna go outside to enjoy your meal!!!</h2>
-        <h1><strong>Find the Best Restaurants</strong></h1>
+</strong></h1>
+      <h2 style="color:#ffffff">Wanna go outside and enjoy your meal!</h2>
+
+      <div class="mt-5">
 
         <!-- Search Form -->
-        <form class="d-flex mt-4" method="GET" action="{% url 'search_restaurant' %}">
-          <input class="form-control me-2" type="text" name="query" placeholder="Search restaurants..." required>
-          <button class="btn btn-dark" type="submit">Search</button>
-        </form>
+<form class="d-flex mt-4" method="GET" action="{% url 'search_restaurant' %}">
+  <input class="form-control me-2" type="text" name="query" placeholder="Search restaurants..." required>
+  <button class="btn btn-dark" type="submit">Search</button>
+</form>
       </div>
 
+
     </div>
+    <br><br><br><br><br>    <br><br><br><br><br>
+    <br><br><br><br><br><br><br><br>
+
   </div>
+
+<!-- Link your script -->
+<script src="{% static 'js/script.js' %}"></script>
+</div>
 {% endblock %}

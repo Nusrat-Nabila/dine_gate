@@ -40,16 +40,16 @@
         <input type="text" id="business_reg_id" name="business_reg_id" class="form-control" placeholder="Business Registration No" value="{{ form.business_reg_id.value|default:'' }}" required>
     </div>
     <!-- Password field -->
-    <div class="form-group">
-        <label for="password">Password</label>
-        {{ form.password }}
-    </div>
+<div class="form-group">
+    <label for="password">Password</label>
+    <input type="password" id="password" name="password" class="form-control" placeholder="Enter Password" value="{{ form.password.value|default_if_none:'' }}">
+</div>
 
-    <!-- Confirm Password field -->
-    <div class="form-group">
-       <label for="confirm_password">Confirm Password</label>
-        {{ form.confirm_password }}
-    </div>
+<div class="form-group">
+    <label for="confirm_password">Confirm Password</label>
+    <input type="password" id="confirm_password" name="confirm_password" class="form-control" placeholder="Confirm Password" value="{{ form.confirm_password.value|default_if_none:'' }}">
+</div>
+
     <button type="submit" class="btn btn-primary">Register Restaurant</button>
 </form>
     </div>
