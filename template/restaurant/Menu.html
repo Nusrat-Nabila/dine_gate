@@ -1,4 +1,5 @@
 {% extends 'base.html' %}
+
 {% block content %}
 <div class="container mt-5">
   <h2 class="text-center" style="color: #ffffff;">Menu</h2>
@@ -6,15 +7,13 @@
 
   {% if menu %}
     <div class="menu-wrapper">
-      <ul class="list-group" >
-        {% for item in menu %}
-          <li class="list-group-item"style="background-color: #e3e4e3;">
-            <h5 class="card-title">{{ item.item_name }}</h5>
-            <p class="card-text"><strong>Cuisine:</strong> {{ item.cuisine }}</p>
-            <p class="card-text"><strong>Price:</strong> {{ item.price }}</p>
-          </li>
-        {% endfor %}
-      </ul>
+      {% for item in menu %}
+        <div class="menu-item" style="background-color:#e3e4e3">
+          <h5 class="card-title">{{ item.item_name }}</h5>
+          <p class="card-text"><strong>Cuisine:</strong> {{ item.cuisine }}</p>
+          <p class="card-text"><strong>Price:</strong> {{ item.price }}</p>
+        </div>
+      {% endfor %}
     </div>
   {% else %}
     <p class="text-center" style="color:#ffffff">No menu items available for this restaurant.</p>

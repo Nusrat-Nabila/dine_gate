@@ -503,12 +503,53 @@ form button[type="submit"]:active {
     gap: 30px;
 }
 .menu-wrapper {
-    max-width: 600px; /* adjust this value as needed */
-    margin: 0 auto;
-    background-color: #e3e4e3 !important;
+    display: flex;
+    flex-wrap: wrap;
+     justify-content: center;
+    gap: 40px; /* Smaller space between items */
+    margin-top: 20px;
+}
+
+.menu-item {
+    background-color: #ffffff;
+    color: #004D40;
+    border: 1px solid #004D40;
+    padding: 15px;
+    border-radius: 8px;
+    width: 220px; /* Slightly smaller width */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+    transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+.menu-item:hover {
+    background-color: #004D40;
+    color: #004D40;
+    transform: translateY(-2px);
+}
+
+.menu-item:active {
+    background-color: #E0F7FA;
+    color: #004D40;
+    transform: translateY(1px);
 }
 
 
+/* Title styling inside each menu item */
+.menu-item h5 {
+    font-size: 1.2rem;
+    margin-bottom: 10px;
+}
+
+/* Text styling for cuisine and price */
+.menu-item p {
+    font-size: 1rem;
+    margin-bottom: 5px;
+}
+
+
+.list-group-item + .list-group-item {
+    border-top: 2px solid #004D40;  /* Creates a line between items */
+}
 .restaurant-card {
     background: #ffffff;
     border-radius: 15px;
