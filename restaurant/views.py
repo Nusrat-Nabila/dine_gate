@@ -31,7 +31,6 @@ def search_restaurant(request):
     return render (request,'restaurant/Restaurant_list.html', {'result': results} )
 
 # to get the list of all the restaurants available in our website
-
 def Restaurant_list(request):
     restaurants = Restaurant.objects.all()
     return render(request, 'restaurant/Restaurant_list.html', {'restaurants': restaurants})
@@ -58,9 +57,6 @@ def Restaurant_signup(request):
     else:
        frm = RestaurantAddForm()
     return render(request,'restaurant/Restaurant_signup.html',{'form':frm})
-
-# login for restaurant owner /restaurant
-
 
 #menu page for customer
 def view_menu(request, restaurant_name):

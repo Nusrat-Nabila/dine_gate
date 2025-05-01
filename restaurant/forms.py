@@ -22,3 +22,9 @@ class RestaurantAddForm(forms.ModelForm):
 
          
           
+
+         
+          
+
+         
+          
