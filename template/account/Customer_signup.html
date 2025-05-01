@@ -2,7 +2,7 @@
 
 {% block content %}
 <div class="login-container">
-    <h2>Sign Up</h2>
+    <h2>Sign Up as Customer</h2>
 
     <form method="POST">
         {% csrf_token %}
@@ -23,32 +23,34 @@
         {% endif %}
 
         <div class="form-group">
-            <label for="id_username">Username</label>
-            <input type="text" name="username" id="id_username" class="form-control" placeholder="Username" value="{{ form.username.value|default:'' }}">
+            <label for="user_name">Username</label>
+            <input type="text" name="user_name" id="user_name" class="form-control" placeholder="user_name" value="{{ form.user_name.value|default:'' }}">
         </div>
 
         <div class="form-group">
-            <label for="id_email">Email</label>
-            <input type="text" name="email" id="id_email" class="form-control" placeholder="Email" value="{{ form.email.value|default:'' }}">
+            <label for="user_email">Email</label>
+            <input type="text" name="user_email" id="user_email" class="form-control" placeholder="user_email" value="{{ form.user_email.value|default:'' }}">
         </div>
 
 
         <div class="form-group">
-            <label for="id_password1">Password</label>
-            <input type="password" name="password1" id="id_password1" class="form-control" placeholder="Password">
+            <label for="user_password">Password</label>
+            <input type="password" name="user_password" id="user_password" class="form-control" placeholder="user_password" value="{{ form.user_password.value|default:'' }}">
         </div>
 
+
         <div class="form-group">
-            <label for="id_password2">Confirm Password</label>
-            <input type="password" name="password2" id="id_password2" class="form-control" placeholder="Confirm Password">
+            <label for="confirm_passsword">Confirm Password</label>
+            <input type="password" name="confirm_password" id="confirm_password" class="form-control" placeholder="Confirm Password" value="{{ form.confirm_password.value|default:'' }}">
         </div>
+
 
         <button type="submit" class="btn btn-primary">Sign Up</button>
     </form>
 
     <div class="text-center mt-3">
         <p>Already have an account?</p>
-        <a href="{% url 'Login' %}" class="btn btn-primary">Login</a>
+        <a href="{% url 'login' %}" class="btn btn-primary">Login</a>
     </div>
 </div>
 {% endblock %}

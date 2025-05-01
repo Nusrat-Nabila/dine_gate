@@ -6,13 +6,13 @@
 
       <!-- Left Side: Text + Search -->
       <div class="col-md-6">
-        <h1><strong>Hello, {{ user.username }}!</strong></h1>
+        <h1><strong>Hello, {{ customer.user_name }}!</strong></h1>
         <h2>Wanna go outside to enjoy your meal!!!</h2>
         <h1><strong>Find the Best Restaurants</strong></h1>
 
         <!-- Search Form -->
-        <form class="d-flex mt-4" method="GET" action="#">
-          <input class="form-control me-2" type="text" name="q" placeholder="Search restaurants..." required>
+        <form class="d-flex mt-4" method="GET" action="{% url 'search_restaurant' %}">
+          <input class="form-control me-2" type="text" name="query" placeholder="Search restaurants..." required>
           <button class="btn btn-dark" type="submit">Search</button>
         </form>
       </div>

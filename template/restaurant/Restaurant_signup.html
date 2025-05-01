@@ -51,6 +51,12 @@
         {{ form.confirm_password }}
     </div>
     <button type="submit" class="btn btn-primary">Register Restaurant</button>
+
+    <div class="text-center mt-3">
+        <p>Already have an account?</p>
+        <a href="{% url 'login' %}" class="btn btn-primary">Login</a>
+    </div>
+</div>
 </form>
     </div>
 {% endblock %}

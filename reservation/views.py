@@ -16,4 +16,3 @@ def Book_history_for_restaurant(request):
 def Restaurant_recent_book(request):
     return render(request,template_name='reservation/Restaurant_recent_book.html')
 
-

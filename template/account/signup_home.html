@@ -1,0 +1,12 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <div class="login-container">
+        <div class="text-center mt-3">
+            <h2>Signup As<br></h2>
+            <a href="{% url 'Customer_signup' %}" class="btn btn-primary">Customer</a>
+            <h4>or<br></h4>
+            <a href="{% url 'Restaurant_signup' %}" class="btn btn-primary">Restaurant</a> <!-- Changed to Restaurant -->
+        </div>
+    </div>
+{% endblock %}

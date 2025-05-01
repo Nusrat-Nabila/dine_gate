@@ -12,14 +12,14 @@
     <!-- Right-side menu -->
     <div class="collapse navbar-collapse justify-content-end" id="navbarMain">
       <ul class="navbar-nav mb-2 mb-lg-0 align-items-center">
-          
+
         <li class="nav-item">
           <a class="nav-link text-dark" href="{% url 'Home' %}">Home</a>
         </li>
 
         <!-- Reserve Table -->
         <li class="nav-item">
-          <a class="nav-link text-dark" href="{% url 'Login' %}">Reserve Table</a>
+          <a class="nav-link text-dark" href="{% url 'login' %}">Reserve Table</a>
         </li>
 
         <!-- Add Restaurant -->
@@ -29,13 +29,11 @@
 
         <!-- Login & Signup -->
         <li class="nav-item">
-          <a class="nav-link text-dark" href="{% url 'login_home' %}?next={% url 'Table_book' %}">Login</a>
+          <a class="nav-link text-dark" href="{% url 'login' %}?next={% url 'Table_book' %}">Login</a>
         </li>
         <li class="nav-item">
           <a class="nav-link text-dark" href="{% url 'Customer_signup' %}">Sign Up</a>
         </li>
-
-
 
 
       </ul>
