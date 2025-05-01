@@ -1,41 +1,86 @@
-<nav class="navbar navbar-expand-lg" style="background-color: #fff6c4;">
+{% load static %}
+
+<nav class="navbar navbar-expand-lg" style="background-color: #004D40;">
   <div class="container-fluid">
-
-    <!-- Logo (Left) -->
-    <a class="navbar-brand" href="#" style="color: #8b4513; font-weight: bold;">DineGate</a> <!-- Change color here -->
-
-    <!-- Toggler for mobile -->
+    <a class="navbar-brand text-white" href="{% url 'Home' %}">DineGate</a>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarMain">
       <span class="navbar-toggler-icon"></span>
     </button>
 
-    <!-- Right-side menu -->
     <div class="collapse navbar-collapse justify-content-end" id="navbarMain">
       <ul class="navbar-nav mb-2 mb-lg-0 align-items-center">
+        {% if logged_role == 'customer' %}
+          <!-- Customer View -->
+          <li class="nav-item">
+            <a class="nav-link text-white" href="{% url 'Customer_home' %}">Home</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link text-white" href="{% url 'Table_book' %}">Reserve Table</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link text-white" href="{% url 'Book_history' %}">My Bookings</a>
+          </li>
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle text-white" href="#" id="profileDropdown" role="button" data-bs-toggle="dropdown">
+              {% if customer.user_image %}
+                <img src="{{ customer.user_image.url }}" class="rounded-circle" width="40" height="40" alt="profile">
+              {% else %}
+                <img src="/static/images/dp2.jpg" class="rounded-circle" width="40" height="40" alt="default profile">
+              {% endif %}
+            </a>
+            <ul class="dropdown-menu dropdown-menu-end">
+              <li><a class="dropdown-item" href="{% url 'Customer_profile' %}">Profile</a></li>
+              <li><a class="dropdown-item" href="#">Edit Profile</a></li>
+              <li><hr class="dropdown-divider"></li>
+              <li><a class="dropdown-item text-danger" href="{% url 'logout' %}">Logout</a></li>
+            </ul>
+          </li>
 
-        <li class="nav-item">
-          <a class="nav-link text-dark" href="{% url 'Home' %}">Home</a>
-        </li>
+        {% elif logged_role == 'restaurant' %}
+          <!-- Restaurant View -->
+          <li class="nav-item">
+            <a class="nav-link text-white" href="{% url 'restaurant_dashboard' %}">Home</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link text-white" href="{% url 'Book_history_for_restaurant' %}">Book History</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link text-white" href="{% url 'Restaurant_recent_book' %}">Recent Book</a>
+          </li>
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle text-white" href="#" id="profileDropdown" role="button" data-bs-toggle="dropdown">
+              {% if restaurant.logo %}
+                <img src="{{ restaurant.logo.url }}" class="rounded-circle" width="40" height="40" alt="restaurant logo">
+              {% else %}
+                <img src="{% static 'images/dp2.jpg' %}" class="rounded-circle" width="40" height="40" alt="default restaurant logo">
+              {% endif %}
+            </a>
+            <ul class="dropdown-menu dropdown-menu-end">
+              <li><a class="dropdown-item" href="{% url 'Restaurant_profile' %}">Profile</a></li>
+              <li><a class="dropdown-item" href="#">Edit Menu</a></li>
+              <li><hr class="dropdown-divider"></li>
+              <li><a class="dropdown-item text-danger" href="{% url 'logout' %}">Logout</a></li>
+            </ul>
+          </li>
 
-        <!-- Reserve Table -->
-        <li class="nav-item">
-          <a class="nav-link text-dark" href="{% url 'login' %}">Reserve Table</a>
-        </li>
-
-        <!-- Add Restaurant -->
-        <li class="nav-item">
-          <a class="nav-link text-dark" href="{% url 'Restaurant_signup' %}">Register Your Restaurant</a>
-        </li>
-
-        <!-- Login & Signup -->
-        <li class="nav-item">
-          <a class="nav-link text-dark" href="{% url 'login' %}?next={% url 'Table_book' %}">Login</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link text-dark" href="{% url 'Customer_signup' %}">Sign Up</a>
-        </li>
-
-
+        {% else %}
+          <!-- Guest View -->
+          <li class="nav-item">
+            <a class="nav-link text-white" href="{% url 'Home' %}">Home</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link text-white" onclick="alert('Please login to reserve the table.')">Reserve Table</a>
+          </li>
+          <li class="nav-item">
+            <a class="btn btn-outline-light mx-2" href="{% url 'Restaurant_signup' %}">Register Restaurant</a>
+          </li>
+          <li class="nav-item">
+            <a class="btn btn-outline-light mx-2" href="{% url 'Customer_signup' %}">Sign Up</a>
+          </li>
+          <li class="nav-item">
+            <a class="btn btn-light text-dark mx-2" href="{% url 'login' %}">Login</a>
+          </li>
+        {% endif %}
       </ul>
     </div>
   </div>

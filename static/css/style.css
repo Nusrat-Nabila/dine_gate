@@ -332,6 +332,23 @@ form button[type="submit"]:active {
     border-radius: 12px;
     box-shadow: 0 8px 16px rgba(0, 0, 0, 0.08);
 }
+/* When the dropdown is focused (clicked) */
+.navbar .profile-dropdown:focus,
+.navbar .profile-dropdown:active {
+    color: #F5A623;  /* Change text color */
+    background-color: #003a33;  /* Change background color */
+}
+
+/* Optionally, you can change the icon color on active */
+.navbar .profile-dropdown:focus i,
+.navbar .profile-dropdown:active i {
+    color: #F5A623;  /* Change icon color */
+}
+
+/* If you want to change the background color when hovering */
+.navbar .profile-dropdown:hover {
+    background-color: #003a33;  /* Change background color on hover */
+}
 
 .login-container h2, .signup-container h2 {
     text-align: center;
@@ -428,32 +445,33 @@ form button[type="submit"]:active {
     margin-top: 15px;
     padding: 0;
     list-style: none;
-    background-color: #E0F7FA; /* light teal background */
+    background-color: #e3e4e3; /* light teal background */
     border-radius: 8px;
 }
-
-.list-group-item {
-    background-color: #ffffff; /* white background for items */
-    color: #004D40; /* dark teal text */
-    border: 1px solid #004D40; /* dark teal border */
+  .list-group-item {
+    background-color: #e3e4e3;
+    color: #004D40;
+    border: 1px solid #004D40;
     padding: 10px 20px;
     border-radius: 8px;
     margin-bottom: 10px;
     transition: background-color 0.3s ease, transform 0.3s ease;
     font-size: 1.1rem;
-}
+    cursor: pointer;
+  }
 
-.list-group-item:hover {
-    background-color: #00796B; /* teal hover */
-    color: white;
-    transform: translateY(-3px);
-}
+  .list-group-item:hover {
+    background-color: #00796B !important;
+    color: white !important;
+    transform: translateY(-3px) !important;
+  }
 
-.list-group-item:active {
-    background-color: #004D40; /* dark teal on active */
-    color: white;
-    transform: translateY(1px);
-}
+  .list-group-item:active {
+    background-color: #e3e4e3 !important;
+    color: white !important;
+    transform: translateY(1px) !important;
+  }
+
 
 .list-group-item:first-child {
     border-top-left-radius: 8px;
@@ -484,6 +502,12 @@ form button[type="submit"]:active {
     justify-content: center;
     gap: 30px;
 }
+.menu-wrapper {
+    max-width: 600px; /* adjust this value as needed */
+    margin: 0 auto;
+    background-color: #e3e4e3 !important;
+}
+
 
 .restaurant-card {
     background: #ffffff;
@@ -527,14 +551,16 @@ form button[type="submit"]:active {
   background: transparent !important;
   box-shadow: none !important;
   border: none !important;
-  padding: 0;
+  padding: 0 15px;  /* Added some padding to avoid touching edges */
+  max-width: 1600px;  /* Set a maximum width to limit how wide the container can be */
+  margin: 0 auto;  /* Center the container horizontally */
 }
 
 /* === Centered Page Title === */
 .container.profile-page h1,
 .container.profile-page h2 {
   text-align: center;
-  color: #563320;
+  color: #E3E4E3;
   margin-bottom: 30px;
 }
 
@@ -703,7 +729,80 @@ form button[type="submit"]:active {
     box-shadow: 0 12px 32px rgba(0, 0, 0, 0.15);
     background-color: #E3E4E3; /* Slightly more opaque on hover */
 }
+/* === Profile Card === */
+.profile-card {
+  background-color: #E3E4E3;
+  border: 2px solid #004D40;
+  border-radius: 15px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+  margin-bottom: 30px;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
 
+.profile-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.15);
+}
+
+.profile-card-body {
+  display: flex;
+  padding: 20px;
+}
+
+.profile-card-left {
+  flex: 0 0 120px;
+  margin-right: 20px;
+}
+
+.profile-card-right {
+  flex: 1;
+}
+
+.profile-image .logo {
+  width: 100%;
+  height: 100px;
+  object-fit: cover;
+  border-radius: 50%;
+  border: 3px solid #004D40;
+}
+
+.profile-card-right h4 {
+  font-size: 1.4rem;
+  color: #004D40;
+  margin-bottom: 15px;
+}
+
+.profile-info p {
+  font-size: 0.9rem;
+  color: #424242;
+  margin: 6px 0;
+}
+
+.profile-info i {
+  margin-right: 8px;
+  color: #004D40;
+}
+
+.profile-info p strong {
+  color: #004D40;
+}
+
+/* === Responsive Adjustments === */
+@media (max-width: 768px) {
+  .profile-card-body {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .profile-card-left {
+    margin-bottom: 15px;
+  }
+}
+.card-link {
+  display: block; /* Makes the link behave like a block element */
+  text-decoration: none; /* Removes the underline from the link */
+  color: inherit; /* Inherit color from parent elements */
+}
 .profile-left {
     flex: 1;
     min-width: 300px;
@@ -724,6 +823,14 @@ form button[type="submit"]:active {
     border: 1px solid #004D40;
     background-color: white; /* Ensures logo visibility */
     padding: 5px;
+}
+.logo {
+  width: 140px;
+  height: 200px;
+  object-fit: cover;
+  border-radius: 50%;
+  border: 3px solid #004D40;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
 }
 
 .profile-right {

@@ -36,7 +36,7 @@ urlpatterns = [
     path('Customer_signup/',a_views.Customer_signup, name='Customer_signup'),
     path('Customer_profile/',a_views.Customer_profile, name='Customer_profile'),
     path('signup_home/',a_views.signup_home, name='signup_home'),
-
+    path('logout/', a_views.logout_view, name='logout'),
 
     path('Customer_home/',r_views.Customer_home,name='Customer_home'),
     path('Restaurant_list/',r_views.Restaurant_list,name='Restaurant_list'),

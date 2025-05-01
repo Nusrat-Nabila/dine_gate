@@ -42,6 +42,9 @@ def login(request):
         
     return render(request, 'account/login.html', {'error': error})
 
+def logout_view(request):
+    request.session.flush()  # session clear
+    return redirect('Home')
 
 def Customer_signup(request):
     if request.method == "POST" :

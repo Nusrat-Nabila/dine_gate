@@ -1,13 +1,12 @@
 document.addEventListener("DOMContentLoaded", () => {
-  const logo = document.getElementById("dinegate-logo");
+  // Profile Dropdown color change on click
+  var dropdownToggle = document.querySelector('.profile-dropdown');
 
-  if (logo) {
-    logo.addEventListener("mouseenter", () => {
-      logo.style.opacity = "0.85";
-    });
-
-    logo.addEventListener("mouseleave", () => {
-      logo.style.opacity = "1";
+  if (dropdownToggle) {
+    dropdownToggle.addEventListener('click', function() {
+      this.classList.toggle('active'); // Toggle active class on click
     });
   }
-});
+
+
+

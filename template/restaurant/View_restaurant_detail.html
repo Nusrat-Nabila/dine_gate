@@ -3,18 +3,18 @@
 
 {% block content %}
 <br>
-<h1 style="text-align: center; margin-bottom: 30px; color: #563320;">
+<h1 style="text-align: center; margin-bottom: 30px; color: #ffffff;">
   Details
 </h1>
 <div class="container mt-4">
   {% if restaurants %}
   <div class="restaurant-profile-card mb-4">
     <div class="profile-left">
-      {% if restaurants.logo %}
-        <img src="{{ restaurants.logo.url }}" alt="Restaurant Logo">
-      {% else %}
-         <img src="{% static 'default_logo.png' %}" alt="Default Logo">
-       {% endif %}
+     {% if restaurant.logo %}
+                <img src="{{ restaurant.logo.url }}" class="rounded-circle" width="300" height="300" alt="restaurant logo">
+              {% else %}
+                <img src="{% static 'images/dp2.jpg' %}" class="rounded-circle" width="300" height="300" alt="default restaurant logo">
+              {% endif %}
     </div>
     <div class="profile-right">
       <h2 class="restaurant-name">{{ restaurants.restaurant_name }}</h2>
@@ -24,8 +24,8 @@
       <p><strong>Contact:</strong> {{ restaurants.contact_number }}</p>
       <p><strong>Email:</strong> {{ restaurants.email }}</p>
       <div class="profile-buttons">
-        <a href="{% url 'view_menu' restaurants.slug %}" class="btn btn-success">View Menu</a>
-        <a href="#" class="btn btn-success">Book Now</a>
+        <a href="{% url 'view_menu' restaurants.slug %}" class="btn btn-success" style="background-color:#004D40">View Menu</a>
+        <a href="#" class="btn btn-success" style="background-color:#004D40">Book Now</a>
       </div>
     </div>
   </div>

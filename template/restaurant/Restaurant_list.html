@@ -2,7 +2,7 @@
 {% load static %}
 {% block content %}
 <br><br>
-<h1 style="text-align: center; margin-bottom: 30px; color: #563320;">
+<h1 style="text-align: center; margin-bottom: 30px; color: #ffffff;">
   View All Restaurants
 </h1>
 
@@ -11,50 +11,31 @@
     {% if restaurants %}
       {% for restaurant in restaurants %}
         <div class="col-xl-6 col-lg-7 col-md-12">
-          <div class="card profile-header">
-            <a href="{% url 'View_restaurant_detail' restaurant.id %}">
-            <div class="body">
-              <div class="row">
-                <div class="col-lg-4 col-md-4 col-12">
-                  <div class="profile-image float-md-right">
-                    <img
-                      src="{{ restaurant.image_url }}"
-                      alt="{{ restaurant.restaurant_name }}"
-                      class="logo"
-                    >
+          <div class="profile-card">
+            <a href="{% url 'View_restaurant_detail' restaurant.id %}" class="card-link">
+              <div class="profile-card-body">
+                <div class="profile-card-left">
+                  <div class="profile-image">
+  {% if restaurant.logo %}
+    <img src="{{ restaurant.logo.url }}" alt="Restaurant Logo" class="logo">
+  {% else %}
+    <img src="{% static 'images/dp2.jpg' %}" alt="Default Logo" class="logo">
+  {% endif %}
+</div>
+
+                </div>
+                <div class="profile-card-right">
+                  <h4>{{ restaurant.restaurant_name }}</h4>
+
+                  <div class="profile-info">
+                    <p><i class="fa-solid fa-location-dot"></i> {{ restaurant.city }}, {{ restaurant.area }}, {{ restaurant.location }}</p>
+                    <p><i class="fa-solid fa-phone"></i> {{ restaurant.contact_no }}</p>
+                    <p><i class="fa-solid fa-envelope"></i> {{ restaurant.email }}</p>
+                    <p><i class="fa-solid fa-tags"></i> Price Range: {{ restaurant.min_price }} - {{ restaurant.max_price }}</p>
                   </div>
                 </div>
-                <div class="col-lg-8 col-md-8 col-12">
-                  <h4 class="m-t-0 m-b-0">
-                    <strong>{{ restaurant.restaurant_name }}</strong>
-                  </h4>
-
-                  <p class="social-icon">
-                    <i class="fa-solid fa-tags"></i>
-                     {{ restaurant.s_time}} - {{ restaurant.e_time }}
-                  </p>
-
-                  <p class="social-icon">
-                    <i class="fa-solid fa-location-dot"></i>
-                     {{ restaurant.location }}
-                  </p>
-
-                  <p class="social-icon">
-                    <i class="fa-solid fa-phone"></i>
-                    {{ restaurant.contact_no }}
-                  </p>
-
-                  <p class="social-icon">
-                    <i class="fa-solid fa-envelope"></i>
-                    {{ restaurant.email }}
-                  </p>
-                 <p><div class="profile-buttons">
-                  <a href="{% url 'View_restaurant_detail' restaurant.id %}" class="btn btn-success">View details</a>
-                </div>
-              </p> 
-                </div>
               </div>
-            </div></a>
+            </a>
           </div>
         </div>
       {% endfor %}
@@ -63,4 +44,5 @@
     {% endif %}
   </div>
 </div>
+
 {% endblock %}
