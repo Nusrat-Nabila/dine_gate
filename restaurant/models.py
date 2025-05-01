@@ -1,4 +1,5 @@
 from django.db import models
+from django.utils.text import slugify
 
 # Create your models here.
 class Restaurant(models.Model):
@@ -16,6 +17,13 @@ class Restaurant(models.Model):
     password = models.CharField(max_length=128,blank=True,null=True)
     logo=models.ImageField(blank=True,null=True)
     role = models.CharField(max_length=20, default='restaurant')
+    slug = models.SlugField(unique=True, blank=True,null=True)
+
+
+    def save(self, *args, **kwargs):
+        if not self.slug:
+            self.slug = slugify(self.restaurant_name)
+        super(Restaurant, self).save(*args, **kwargs)
 
     def __str__(self):
         return self.restaurant_name

@@ -55,8 +55,9 @@ def Customer_signup(request):
        frm = CustomerAdd()
     return render(request,'account/Customer_signup.html', {'form': frm})
 
-def Customer_profile(request):
-    return render(request, 'account/Customer_profile.html', {'user': request.user})
+def Customer_profile(request,id):
+    customer = CustomerUser.objects.get(pk=id)
+    return render(request, 'account/Customer_profile.html', {'customer': customer})
 
 
 

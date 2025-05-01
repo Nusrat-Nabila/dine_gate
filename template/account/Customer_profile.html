@@ -1,10 +1,9 @@
 {% extends 'base.html' %}
 {% block content %}
 <h1>Customer Profile</h1>
-
-<p><strong>Username:</strong> {{ user.username }}</p>
-<p><strong>First Name:</strong> {{ user.first_name }}</p>
-<p><strong>Last Name:</strong> {{ user.last_name }}</p>
-<p><strong>Email:</strong> {{ user.email }}</p>
-
+<p><strong>{{customer.user_email}}</p>
+<p><strong>Username:</strong> {{customer.user_name}}</p>
+<p><strong>Email:</strong> {{customer.user_email}}</p>
+<p><strong>Contect Number:</strong> {{ customer.user_contect_number }}</p>
+<p><strong>Address:</strong> {{customer.user_address}}</p>
 {% endblock %}

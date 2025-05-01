@@ -30,8 +30,13 @@
                   </h4>
 
                   <p class="social-icon">
+                    <i class="fa-solid fa-tags"></i>
+                     {{ restaurant.s_time}} - {{ restaurant.e_time }}
+                  </p>
+
+                  <p class="social-icon">
                     <i class="fa-solid fa-location-dot"></i>
-                    {{ restaurant.city }}, {{ restaurant.area }}, {{ restaurant.location }}
+                     {{ restaurant.location }}
                   </p>
 
                   <p class="social-icon">
@@ -43,12 +48,10 @@
                     <i class="fa-solid fa-envelope"></i>
                     {{ restaurant.email }}
                   </p>
-
-                  <p class="social-icon">
-                    <i class="fa-solid fa-tags"></i>
-                    Price Range: {{ restaurant.min_price }} - {{ restaurant.max_price }}
-                  </p>
-
+                 <p><div class="profile-buttons">
+                  <a href="{% url 'View_restaurant_detail' restaurant.id %}" class="btn btn-success">View details</a>
+                </div>
+              </p> 
                 </div>
               </div>
             </div></a>
