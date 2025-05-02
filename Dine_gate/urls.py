@@ -51,7 +51,7 @@ urlpatterns = [
     path('Book_history/',rv_views.Book_history,name='Book_history'),
     path('Book_history_for_restaurant/',rv_views.Book_history_for_restaurant,name='Book_history_for_restaurant'),
     path('search_table/<int:id>/',rv_views.search_table,name='search_table'),
-    path('confirm_booking/<str:table_no>/',rv_views.confirm_booking,name='confirm_booking'),
+    path('confirm_booking/<str:table_no>/<str:date>/<str:start_time>/<str:end_time>/', rv_views.confirm_booking, name='confirm_booking'),
     path('cancel_book/<str:reservation_id>/',rv_views.cancel_book,name='cancel_book'),
   
 

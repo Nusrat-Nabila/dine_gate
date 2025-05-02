@@ -7,7 +7,7 @@
       <h5>{{ booking.restaurant.restaurant_name }} - Table {{ booking.table.table_no }}</h5>
       <p>Date: {{ booking.reserve_date }}</p>
       <p>Time: {{ booking.start_time }} - {{ booking.end_time }}</p>
-      <form method="post" action="{% url 'cancel_' booking.id %}">
+      <form method="post" action="{% url 'cancel_book' booking.id %}">
         {% csrf_token %}
         <button class="btn btn-danger">Cancel</button>
       </form>

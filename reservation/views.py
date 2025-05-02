@@ -1,10 +1,13 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404,HttpResponse
 from django.utils import timezone
 from .forms import SearchTableForm
 from account.models import CustomerUser
 from restaurant.models import Restaurant
-from .models import Table_list, TableReservation
 from django.db.models import Q
+from datetime import datetime
+from django.http import HttpResponseBadRequest
+from .models import Table_list, TableReservation
+from datetime import datetime
 
 def search_table(request, id):
     restaurant = Restaurant.objects.get(pk=id)
@@ -32,34 +35,46 @@ def search_table(request, id):
 
     return render(request, 'reservation/search_table.html', {'form': form,'restaurant': restaurant,})
 
-def confirm_booking(request, table_no):
-    customer_id = request.session.get('user_id')  # custom session key
+
+
+def confirm_booking(request, table_no, date, start_time, end_time):
+    customer_id = request.session.get('user_id')
 
     if not customer_id:
-        return redirect('login')  # Not logged in
-    
+        return redirect('login')
+
     try:
         customer = CustomerUser.objects.get(id=customer_id)
     except CustomerUser.DoesNotExist:
         return redirect('login')
 
-    table = Table_list.objects.get(table_no=table_no, is_available=True)
+    # Parse date and time from strings
+    reserve_date = datetime.strptime(date, '%Y-%m-%d').date()
+    start_time = datetime.strptime(start_time, '%H:%M:%S').time()
+    end_time = datetime.strptime(end_time, '%H:%M:%S').time()
+
+
+    try:
+        table = Table_list.objects.get(table_no=table_no, date=reserve_date, start_time=start_time, end_time=end_time, is_available=True)
+    except Table_list.DoesNotExist:
+        return HttpResponse("Table not available", status=404)
 
     if request.method == 'POST':
         TableReservation.objects.create(
             user=customer,
             restaurant=table.restaurant,
             table=table,
-            reserve_date=table.date,
-            start_time=table.start_time,
-            end_time=table.end_time,
+            reserve_date=reserve_date,
+            start_time=start_time,
+            end_time=end_time,
             status='confirm'
         )
 
         table.is_available = False
         table.save()
-
         return redirect('Book_history')
+
+
 
 def Book_history(request):
     customer_id = request.session.get('user_id')  # custom session key
