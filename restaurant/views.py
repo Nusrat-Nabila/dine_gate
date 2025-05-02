@@ -1,4 +1,4 @@
-from django.shortcuts import render,redirect,get_object_or_404,HttpResponse
+from django.shortcuts import render,redirect,HttpResponse
 from .forms import RestaurantAddForm
 from account.models import CustomerUser
 from .models import Restaurant
@@ -60,8 +60,8 @@ def Restaurant_signup(request):
     return render(request,'restaurant/Restaurant_signup.html',{'form':frm})
 
 #menu page for customer
-def view_menu(request,slug):
-    restaurant = get_object_or_404(Restaurant,slug=slug)
+def view_menu(request,id):
+    restaurant = Restaurant.objects.get(pk=id)
     menu_items = Menu.objects.filter(restaurant=restaurant)
     return render(request, 'restaurant/Menu.html', {'menu': menu_items, 'restaurants': restaurant})
 

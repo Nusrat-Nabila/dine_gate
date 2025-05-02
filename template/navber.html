@@ -15,7 +15,7 @@
             <a class="nav-link text-white" href="{% url 'Customer_home' %}">Home</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link text-white" href="{% url 'Table_book' %}">Reserve Table</a>
+            <a class="nav-link text-white" href="{% url 'Restaurant_list' %}">Reserve Table</a>
           </li>
           <li class="nav-item">
             <a class="nav-link text-white" href="{% url 'Book_history' %}">My Bookings</a>
@@ -29,8 +29,8 @@
               {% endif %}
             </a>
             <ul class="dropdown-menu dropdown-menu-end">
-              <li><a class="dropdown-item" href="{% url 'Customer_profile' %}">Profile</a></li>
-              <li><a class="dropdown-item" href="#">Edit Profile</a></li>
+              <li><a class="dropdown-item" href="{% url 'Customer_profile' logged_user.id %}">Profile</a></li>
+              <li><a class="dropdown-item" href="{% url 'Edit_customer_profile' logged_user.id %}">Edit Profile</a></li>
               <li><hr class="dropdown-divider"></li>
               <li><a class="dropdown-item text-danger" href="{% url 'logout' %}">Logout</a></li>
             </ul>

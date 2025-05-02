@@ -1,4 +1,31 @@
 {% extends 'base.html' %}
 {% block content %}
-<h1>Book History</h1>
+<div class="container mt-4">
+  <h3>Upcoming Bookings</h3>
+  {% for booking in upcoming %}
+    <div class="card mb-3 p-3">
+      <h5>{{ booking.restaurant.restaurant_name }} - Table {{ booking.table.table_no }}</h5>
+      <p>Date: {{ booking.reserve_date }}</p>
+      <p>Time: {{ booking.start_time }} - {{ booking.end_time }}</p>
+      <form method="post" action="{% url 'cancel_' booking.id %}">
+        {% csrf_token %}
+        <button class="btn btn-danger">Cancel</button>
+      </form>
+    </div>
+  {% empty %}
+    <p>No upcoming bookings.</p>
+  {% endfor %}
+
+  <h3 class="mt-5">Past Bookings</h3>
+  {% for booking in past %}
+    <div class="card mb-3 p-3">
+      <h5>{{ booking.restaurant.restaurant_name }} - Table {{ booking.table.table_no }}</h5>
+      <p>Date: {{ booking.reserve_date }}</p>
+      <p>Time: {{ booking.start_time }} - {{ booking.end_time }}</p>
+      <p>Status: {{ booking.status }}</p>
+    </div>
+  {% empty %}
+    <p>No past bookings.</p>
+  {% endfor %}
+</div>
 {% endblock %}

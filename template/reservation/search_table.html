@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="container mt-4">
+  <h3>Book a Table at {{ restaurant.restaurant_name }}</h3>
+  <form method="GET" action="{% url 'search_table' restaurant.id %}">
+    <p>{{ form.date.label_tag }} {{ form.date }}</p>
+    <p>{{ form.start_time.label_tag }} {{ form.start_time }}</p>
+    <p>{{ form.end_time.label_tag }} {{ form.end_time }}</p>
+    <p>{{ form.no_of_people.label_tag }} {{ form.no_of_people }}</p>
+    <p><button class="btn btn-primary" type="submit">Search Available Tables</button></p>
+  </form>
+</div>
+{% endblock %}
+

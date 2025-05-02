@@ -1,0 +1,7 @@
+{% extends 'base.html' %}
+{% block content %}
+{% csrf_token %}
+<p> Are you sure?</p>
+<input type ="submit" value ="Delete">
+<a href="{% url 'Book_history' %}">cancel</a>
+{% endblock %}

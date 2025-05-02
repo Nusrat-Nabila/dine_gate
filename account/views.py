@@ -1,7 +1,5 @@
 from django.shortcuts import render, redirect
 from .forms import CustomerAdd
-from django.contrib.auth.forms import AuthenticationForm
-from django.contrib.auth import authenticate,login
 from restaurant.models import Restaurant
 from .models import CustomerUser
 # Create your views here.
@@ -62,6 +60,17 @@ def Customer_profile(request,id):
     customer = CustomerUser.objects.get(pk=id)
     return render(request, 'account/Customer_profile.html', {'customer': customer})
 
+def Edit_customer_profile(request,id):
+    customer = CustomerUser.objects.get(pk=id)
+    form=CustomerAdd(instance=customer)
+
+    if request.method=="POST":
+        form=CustomerAdd(request.POST,request.FILES,instance=customer)
+        if form.is_valid():
+           form.save()
+           return redirect('Customer_profile',id=customer.id)
+        return render(request,'account/Customer_signup.html', {'form': form})
+        
 
 
 def Home(request):

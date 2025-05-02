@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="container mt-4">
+  <h3>Available Tables for {{ restaurant.restaurant_name }}</h3>
+  {% if tables %}
+    {% for t in tables %}
+      <div class="card mb-3 p-3">
+        <h5>Table No: {{ t.table_no }}</h5>
+        <p>Time Slot: {{ t.start_time }} - {{ t.end_time }}</p>
+        <p>Capacity: {{ t.no_of_people }}</p>
+        <form method="post" action="{% url 'confirm_booking' t.table_no %}">
+          {% csrf_token %}
+          <button class="btn btn-success">Confirm Booking</button>
+        </form>
+      </div>
+    {% endfor %}
+  {% else %}
+    <p>No tables available for the selected time and criteria.</p>
+  {% endif %}
+</div>
+{% endblock %}

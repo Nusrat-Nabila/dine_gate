@@ -1,16 +1,15 @@
 from django.db import models
-
-# Create your models here.
-
 from account.models import CustomerUser
 from restaurant.models import Restaurant
 # Create your models here.
 class Table_list(models.Model):
     restaurant=models.ForeignKey(Restaurant ,on_delete=models.CASCADE)
-    table_no=models.CharField(max_length=100)
-    date=models.DateField()
-    start_time=models.TimeField()
-    end_time=models.TimeField()
+    table_no=models.CharField(max_length=100,blank=True,null=True)
+    date=models.DateField(blank=True,null=True)
+    start_time=models.TimeField(blank=True,null=True)
+    end_time=models.TimeField(blank=True,null=True)
+    no_of_people=models.IntegerField(blank=True,null=True)
+    is_available = models.BooleanField(default=True)
 
     def __str__(self):
         return (f"Restau_name: {self.restaurant.restaurant_name} ,item: {self.table_no}")

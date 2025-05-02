@@ -24,8 +24,8 @@
       <p><strong>Contact:</strong> {{ restaurants.contact_number }}</p>
       <p><strong>Email:</strong> {{ restaurants.email }}</p>
       <div class="profile-buttons">
-        <a href="{% url 'view_menu' restaurants.slug %}" class="btn btn-success" style="background-color:#004D40">View Menu</a>
-        <a href="#" class="btn btn-success" style="background-color:#004D40">Book Now</a>
+        <a href="{% url 'view_menu' restaurants.id %}" class="btn btn-success" style="background-color:#004D40">View Menu</a>
+        <a href="{% url 'search_table' restaurants.id %}" class="btn btn-success" style="background-color:#004D40">Book Now</a>
       </div>
     </div>
   </div>
