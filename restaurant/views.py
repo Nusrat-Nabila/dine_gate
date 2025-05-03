@@ -1,5 +1,5 @@
-from django.shortcuts import render,redirect,HttpResponse
-from .forms import RestaurantAddForm
+from django.shortcuts import render,redirect,HttpResponse,get_object_or_404
+from .forms import RestaurantAddForm,MenuAddForm
 from account.models import CustomerUser
 from .models import Restaurant
 from .models import Menu
@@ -65,9 +65,53 @@ def view_menu(request,id):
     menu_items = Menu.objects.filter(restaurant=restaurant)
     return render(request, 'restaurant/Menu.html', {'menu': menu_items, 'restaurants': restaurant})
 
-#menu page for restaurant where they can see their own restaurant's menu
-def Edit_menu(request):
-    return render(request,template_name='restaurant/Edit_menu.html')
+#menu page for restaurant owner/restaurant
+def view_menu_for_restaurant_owner(request,id):
+    restaurant = Restaurant.objects.get(pk=id)
+    menu_items = Menu.objects.filter(restaurant=restaurant)
+    return render(request, 'restaurant/view_menu_for_restaurant_owner.html', {'menu': menu_items, 'restaurant': restaurant})
+
+#menu addded by restaurant owner
+def add_menu_for_restaurant_owner(request, id):
+    restaurant = Restaurant.objects.get(pk=id)
+    if request.method == "POST":
+        form = MenuAddForm(request.POST)
+        if form.is_valid():
+            menu_item = form.save(commit=False)
+            menu_item.restaurant = restaurant  
+            menu_item.save()
+            return redirect('view_menu_for_restaurant_owner', id=restaurant.id)
+    else:
+        form = MenuAddForm()
+    return render(request, 'restaurant/add_menu_for_restaurant_owner.html', {'form': form})
+
+
+#menu item update by restaurant owner
+def edit_menu_for_restaurant_owner(request,id):
+    menu_item=Menu.objects.get(pk=id)
+    form=MenuAddForm(instance=menu_item)
+    if request.method == "POST":
+        form=MenuAddForm(request.POST,request.FILES,instance=menu_item)
+        if form.is_valid():
+            form.save()
+            return redirect('view_menu_for_restaurant_owner', id=menu_item.id)
+    return render(request, 'restaurant/add_menu_for_restaurant_owner.html', {'form': form})
+
+#delete menu item for restaurant owner /restaurant
+
+def delete_menu_for_restaurant_owner(request, id):
+    item = get_object_or_404(Menu, pk=id)  # safer lookup
+    restaurant = item.restaurant
+
+    if request.method == "POST":
+        item.delete()
+        return redirect('view_menu_for_restaurant_owner', id=restaurant.id)
+
+    return render(request, 'restaurant/delete_menu_for_restaurant_owner.html', {
+        'item': item,
+        'restaurant': restaurant
+    })
+
 
 #restaurant profile for restaurant/restaurant owner
 def Restaurant_profile(request):
@@ -79,4 +123,6 @@ def Restaurant_profile(request):
 
 #restaurant owner dashboard
 def restaurant_dashboard(request):
-    return render(request, 'restaurant/restaurant_dashboard.html')
+    restaurant_id = request.session.get('restaurant_id')
+    restaurant = Restaurant.objects.get(id=restaurant_id)
+    return render(request, 'restaurant/restaurant_dashboard.html',{'restaurant': restaurant})

@@ -38,21 +38,32 @@ urlpatterns = [
     path('signup_home/',a_views.signup_home, name='signup_home'),
     path('logout/', a_views.logout_view, name='logout'),
 
+
     path('Customer_home/',r_views.Customer_home,name='Customer_home'),
     path('Restaurant_list/',r_views.Restaurant_list,name='Restaurant_list'),
     path('View_restaurant_detail/<int:id>/', r_views.View_restaurant_detail, name='View_restaurant_detail'),
     path('Restaurant_signup/',r_views.Restaurant_signup,name='Restaurant_signup'),
     path('view_menu/<int:id>/',r_views.view_menu,name='view_menu'),
-    path('Edit_menu/',r_views.Edit_menu,name='Edit_menu'),
     path('Restaurant_profile/',r_views.Restaurant_profile,name='Restaurant_profile'),
     path('restaurant_dashboard/',r_views.restaurant_dashboard,name='restaurant_dashboard'),
     path('search_restaurant/',r_views.search_restaurant,name='search_restaurant'),
+    path('add_menu_for_restaurant_owner/<str:id>/',r_views.add_menu_for_restaurant_owner,name='add_menu_for_restaurant_owner'),
+    path('view_menu_for_restaurant_owner/<str:id>/',r_views.view_menu_for_restaurant_owner,name='view_menu_for_restaurant_owner'),
+    path('edit_menu_for_restaurant_owner/<str:id>/',r_views.edit_menu_for_restaurant_owner,name='edit_menu_for_restaurant_owner'),
+    path('delete_menu_for_restaurant_owner/<str:id>/',r_views.delete_menu_for_restaurant_owner,name='delete_menu_for_restaurant_owner'),
+
 
     path('Book_history/',rv_views.Book_history,name='Book_history'),
-    path('Book_history_for_restaurant/',rv_views.Book_history_for_restaurant,name='Book_history_for_restaurant'),
+    path('recent_book_history_for_restaurant/<str:id>/',rv_views.recent_book_history_for_restaurant,name='recent_book_history_for_restaurant'),
+    path('previous_book_history_for_restaurant/<str:id>/',rv_views.previous_book_history_for_restaurant,name='previous_book_history_for_restaurant'),
     path('search_table/<int:id>/',rv_views.search_table,name='search_table'),
     path('confirm_booking/<str:table_no>/<str:date>/<str:start_time>/<str:end_time>/', rv_views.confirm_booking, name='confirm_booking'),
     path('cancel_book/<str:reservation_id>/',rv_views.cancel_book,name='cancel_book'),
+    path('add_table_list_for_restaurant_owner/<str:id>/',rv_views.add_table_list_for_restaurant_owner,name='add_table_list_for_restaurant_owner'),
+    path('view_table_list_for_restaurant_owner/<str:id>/',rv_views.view_table_list_for_restaurant_owner,name='view_table_list_for_restaurant_owner'),
+    path('edit_table_list_for_restaurant_owner/<str:id>/',rv_views.edit_table_list_for_restaurant_owner,name='edit_table_list_for_restaurant_owner'),
+    path('delete_table_list_for_restaurant_owner/<str:id>/',rv_views.delete_table_list_for_restaurant_owner,name='delete_table_list_for_restaurant_owner'),
+    
   
 
 ]+static(settings.MEDIA_URL, document_root = settings.MEDIA_ROOT)

@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="container mt-5" style="width: 90%; margin: 0 auto;">
+    <h3 class="text-center" style="color: #ffffff"><b><u>Upcoming Bookings</b></u></h3>
+  <br>
+    {% if upcoming %}
+      <div class="menu-wrapper">
+        {% for booking in upcoming %}
+          <div class="menu-item" style="background-color: #e3e4e3;width:20%">
+            <h5 class="card-title">{{ booking.user.user_name }} - Table {{ booking.table.table_no }}</h5>
+            <p class="card-text"><strong>Date:</strong> {{ booking.reserve_date }}</p>
+            <p class="card-text"><strong>Time:</strong> {{ booking.start_time }} - {{ booking.end_time }}</p>
+            <p class="card-text"><strong>status:</strong> {{booking.status}}</p>
+          </div>
+        {% endfor %}
+      </div>
+    {% else %}
+      <p class="text-center" style="color: #ffffff">No upcoming bookings.</p>
+    {% endif %}
+{% endblock %}

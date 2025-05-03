@@ -1,5 +1,5 @@
 from django import forms
-from .models import Restaurant
+from .models import Restaurant,Menu
 
 class RestaurantAddForm(forms.ModelForm):
     password = forms.CharField(widget=forms.PasswordInput)
@@ -17,6 +17,12 @@ class RestaurantAddForm(forms.ModelForm):
         if password and confirm_password :
           if password != confirm_password:
             raise forms.ValidationError("Passwords do not match")
+
+class MenuAddForm(forms.ModelForm):
+      class Meta:
+          model=Menu
+          fields=['item_name','cuisine','price']
+   
          
           
 

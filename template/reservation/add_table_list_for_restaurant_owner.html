@@ -1,0 +1,12 @@
+{% extends 'base.html' %}
+{% block content %}
+<form method="POST">
+{% csrf_token %}
+<p>table no:{{form.table_no}}</p>
+<p>date:{{form.date}}</p>
+<p>start time::{{form.start_time}}</p>
+<p>end time:{{form.end_time}}</p>
+<p>Capacity:{{form.no_of_people}}</p>
+<button type="submit">submit</button>
+</form>
+{% endblock %}

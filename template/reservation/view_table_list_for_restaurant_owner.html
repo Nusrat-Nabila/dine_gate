@@ -1,0 +1,19 @@
+{% extends 'base.html' %}
+{% block content %}
+{% if restaurant %}
+   {% if table %}
+      {% for t in table %}
+       <h5>Table no:{{t.table_no}}</h5>
+       <h5>Date:{{t.date}}</h5>
+       <h5>start time:{{t.start_time}}</h5>
+       <h5>end time:{{t.end_time}}</h5>
+       <h5>Capacity:{{t.no_of_people}}</h5>
+       <a href ="{% url 'edit_table_list_for_restaurant_owner' t.id %}">edit table info</a>
+       <a href ="{% url 'delete_table_list_for_restaurant_owner' t.id %}">delete table</a>
+      {% endfor %}
+   {% else %}
+     <p> no table are available</p>
+   {% endif %}
+ <p><a href="{%url 'add_table_list_for_restaurant_owner' restaurant.id %}"> Add table </a></p>
+{% endif %}
+{% endblock %}

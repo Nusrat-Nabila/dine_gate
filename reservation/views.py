@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect, get_object_or_404,HttpResponse
 from django.utils import timezone
-from .forms import SearchTableForm
+from .forms import SearchTableForm,TableAddForm
 from account.models import CustomerUser
 from restaurant.models import Restaurant
 from django.db.models import Q
@@ -9,7 +9,7 @@ from django.http import HttpResponseBadRequest
 from .models import Table_list, TableReservation
 from datetime import datetime
 
-
+#search table list for customer
 def search_table(request, id):
     restaurant = Restaurant.objects.get(pk=id)
    
@@ -21,9 +21,14 @@ def search_table(request, id):
             e_t = form.cleaned_data['end_time']
             no_of_people = form.cleaned_data['no_of_people']
 
-            tables = Table_list.objects.filter(
+            now = timezone.now()
+            today = now.date()
+            current_time = now.time()
+
+            if d > today or (d == today and s_t >= current_time):
+                tables = Table_list.objects.filter(
                   restaurant=restaurant,
-                  date=d,
+                   date=d,
                    start_time__lte=s_t,
                    end_time__gte=e_t,
                    no_of_people__gte=no_of_people,
@@ -36,8 +41,8 @@ def search_table(request, id):
 
     return render(request, 'reservation/search_table.html', {'form': form,'restaurant': restaurant,})
 
-  # adjust if your models are elsewhere
 
+#confirm booking for customer
 def confirm_booking(request, table_no, date, start_time, end_time):
     customer_id = request.session.get('user_id')
 
@@ -86,16 +91,16 @@ def confirm_booking(request, table_no, date, start_time, end_time):
         table.is_available = False
         table.save()
 
-        return redirect('Book_history')  # or render a booking success page
+        return redirect('Book_history') 
 
     return HttpResponse("Only POST requests are allowed for booking.", status=405)
 
-
+#book hsitory of customer
 def Book_history(request):
-    customer_id = request.session.get('user_id')  # custom session key
+    customer_id = request.session.get('user_id') 
 
     if not customer_id:
-        return redirect('login')  # Not logged in
+        return redirect('login')  
     
     try:
         customer = CustomerUser.objects.get(id=customer_id)
@@ -119,11 +124,12 @@ def Book_history(request):
 
     return render(request,'reservation/Book_history.html' ,{'upcoming': upcoming,'past': past})
 
+#cancel booking of customer
 def cancel_book(request,reservation_id):
-    customer_id = request.session.get('user_id')  # custom session key
+    customer_id = request.session.get('user_id') 
 
     if not customer_id:
-        return redirect('login')  # Not logged in
+        return redirect('login') 
     
     try:
         customer = CustomerUser.objects.get(id=customer_id)
@@ -142,6 +148,81 @@ def cancel_book(request,reservation_id):
         return redirect('Book_history')
     return render(request,template_name='reservation/cancel_book.html')
 
-def Book_history_for_restaurant(request):
-    return render(request,template_name='reservation/Book_history_for_restaurant.html')
+#booking history of restaurant owner
+def previous_book_history_for_restaurant(request,id):
+    restaurant = Restaurant.objects.get(pk=id)
+    now = timezone.now()
+    today = now.date()
+    current_time = now.time()
+
+    bookings = TableReservation.objects.filter(restaurant=restaurant).order_by('-reserve_date')
+
+    previous = []
+
+    for b in bookings:
+        if b.reserve_date < today or (b.reserve_date == today and ((b.start_time <= current_time and (b.end_time>=current_time or b.end_time<=current_time)))):
+            previous.append(b)
+    return render(request,'reservation/previous_book_history_for_restaurant.html',{'previous': previous})
+
+#booking history of restaurant owner
+def recent_book_history_for_restaurant(request,id):
+    restaurant = Restaurant.objects.get(pk=id)
+    now = timezone.now()
+    today = now.date()
+    current_time = now.time()
+
+    bookings = TableReservation.objects.filter(restaurant=restaurant).order_by('-reserve_date')
+
+    upcoming = []
+
+    for b in bookings:
+        if b.reserve_date > today or (b.reserve_date == today and b.start_time >= current_time):
+            upcoming.append(b)
+    return render(request,'reservation/recent_book_history_for_restaurant.html',{'upcoming': upcoming})
+
+#view table list for restaurant owner
+def view_table_list_for_restaurant_owner(request,id):
+     restaurant = Restaurant.objects.get(pk=id)
+     table = Table_list.objects.filter(restaurant=restaurant)
+     return render(request, 'reservation/view_table_list_for_restaurant_owner.html', {'table': table, 'restaurant': restaurant})
+
+#table added by restaurant owner
+def add_table_list_for_restaurant_owner(request, id):
+    restaurant = Restaurant.objects.get(pk=id)
+    if request.method == "POST":
+        form = TableAddForm(request.POST)
+        if form.is_valid():
+            table = form.save(commit=False)
+            table.restaurant = restaurant  
+            table.save()
+            return redirect('view_table_list_for_restaurant_owner', id=restaurant.id)
+    else:
+        form = TableAddForm()
+    return render(request, 'reservation/add_table_list_for_restaurant_owner.html', {'form': form})
+
+#menu table info update by restaurant owner
+def edit_table_list_for_restaurant_owner(request,id):
+    table=Table_list.objects.get(pk=id)
+    form=TableAddForm(instance=table)
+    if request.method == "POST":
+        form=TableAddForm(request.POST,request.FILES,instance=table)
+        if form.is_valid():
+            form.save()
+            return redirect('view_table_list_for_restaurant_owner', id=table.id)
+    return render(request, 'reservation/add_table_list_for_restaurant_owner.html', {'form': form})
+
+#delete table info for restaurant owner /restaurant
+
+def delete_table_list_for_restaurant_owner(request, id):
+    table = get_object_or_404(Table_list, pk=id)
+    restaurant = table.restaurant
+
+    if request.method == "POST":
+        table.delete()
+        return redirect('view_table_list_for_restaurant_owner', id=restaurant.id)
+
+    return render(request, 'reservation/delete_table_list_for_restaurant_owner.html', {
+        'table': table,
+        'restaurant': restaurant
+    })
 

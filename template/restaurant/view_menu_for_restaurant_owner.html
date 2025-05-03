@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="container mt-5">
+  <h2 class="text-center" style="color: #ffffff;">Menu</h2>
+  <hr>
+  {% if restaurant %}
+   {% if menu %}
+    <div class="menu-wrapper">
+      {% for item in menu %}
+        <div class="menu-item" style="background-color:#e3e4e3">
+          <h5 class="card-title">{{ item.item_name }}</h5>
+          <p class="card-text"><strong>Cuisine:</strong> {{ item.cuisine }}</p>
+          <p class="card-text"><strong>Price:</strong> {{ item.price }}</p>
+          <a href ="{% url 'edit_menu_for_restaurant_owner' item.id %}">edit menu</a>
+          <a href ="{% url 'delete_menu_for_restaurant_owner' item.id %}">delete menu</a>
+        </div>
+      {% endfor %}
+    </div>
+   {% else %}
+    <p class="text-center" style="color:#ffffff">No menu items available for this restaurant.</p>
+   {% endif %}
+
+   <a href="{%url 'add_menu_for_restaurant_owner' restaurant.id %}"> Add menu items </a>
+   {% endif %}
+</div>
+{% endblock %}
+

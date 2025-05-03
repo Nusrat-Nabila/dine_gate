@@ -1,4 +1,8 @@
 {% extends 'base.html' %}
 {% block content %}
-<h1>restaurant dashboard</h1>
+  {% if restaurant %}
+    <p><a href="{% url 'view_menu_for_restaurant_owner' restaurant.id %}">View Menu</a></p>
+    <p><a href="{% url 'view_table_list_for_restaurant_owner' restaurant.id %}">View Table List</a></p>
+    <p><a href="{% url 'recent_book_history_for_restaurant' restaurant.id %}">Recent book list</a></p>
+  {% endif %}
 {% endblock %}

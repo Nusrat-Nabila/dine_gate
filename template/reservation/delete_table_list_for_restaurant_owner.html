@@ -1,0 +1,11 @@
+{% extends 'base.html' %}
+{% block content %}
+<h1>Delete Menu Item</h1>
+<p>Are you sure that you want to delete"{{table.table_no}}"?"</p>
+<form method ="POST">
+{% csrf_token %}
+<button type="submit"> Confirm Delete </button>
+ <p> Or</p>
+ <a href ="{% url 'view_table_list_for_restaurant_owner' restaurant.id %}">Cancel</a>
+</form>
+{% endblock %}
