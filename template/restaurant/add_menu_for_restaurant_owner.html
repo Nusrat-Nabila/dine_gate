@@ -1,10 +1,41 @@
 {% extends 'base.html' %}
 {% block content %}
-<form method="POST">
-{% csrf_token %}
-<p>item name:{{form.item_name}}</p>
-<p>cuisine:{{form.cuisine}}</p>
-<p>price:{{form.price}}</p>
-<button type="submit">submit</button>
-</form>
+<div class="profile-card-wrapper">
+  <h2>Add Or Edit Menu Item</h2>
+
+  <form method="POST">
+    {% csrf_token %}
+    <div class="profile-info-block">
+
+      <!-- Item Name -->
+      <label for="id_item_name" style="font-weight: 600; color: #004D40; display: block; margin-bottom: 6px;">
+        <i class="fas fa-hamburger"></i> Item Name
+      </label>
+      <input type="text" name="item_name" id="id_item_name" placeholder="Enter item name"
+             style="width: 100%; padding: 10px 15px; border: 1px solid #004D40; border-radius: 6px; margin-bottom: 18px; font-size: 1rem; color: #004D40; background-color: #e3e4e3; box-sizing: border-box;">
+
+      <!-- Cuisine -->
+      <label for="id_cuisine" style="font-weight: 600; color: #004D40; display: block; margin-bottom: 6px;">
+        <i class="fas fa-globe-asia"></i> Cuisine
+      </label>
+      <input type="text" name="cuisine" id="id_cuisine" placeholder="e.g., Italian, Chinese"
+             style="width: 100%; padding: 10px 15px; border: 1px solid #004D40; border-radius: 6px; margin-bottom: 18px; font-size: 1rem; color: #004D40; background-color: #e3e4e3; box-sizing: border-box;">
+
+      <!-- Price -->
+      <label for="id_price" style="font-weight: 600; color: #004D40; display: block; margin-bottom: 6px;">
+        <i class="fas fa-dollar-sign"></i> Price
+      </label>
+      <input type="number" name="price" id="id_price" placeholder="Enter price in BDT"
+             style="width: 100%; padding: 10px 15px; border: 1px solid #004D40; border-radius: 6px; margin-bottom: 18px; font-size: 1rem; color: #004D40; background-color: #e3e4e3; box-sizing: border-box;">
+
+      <!-- Submit Button -->
+      <div class="profile-action-btns" style="display: flex; justify-content: center; margin-top: 30px;">
+        <button type="submit" style="background-color: #004D40; color: white; padding: 12px 25px; border: none; border-radius: 8px; font-size: 1rem; cursor: pointer; transition: background-color 0.3s ease;">
+          Submit
+        </button>
+      </div>
+
+    </div>
+  </form>
+</div>
 {% endblock %}

@@ -1,8 +1,24 @@
 {% extends 'base.html' %}
+
 {% block content %}
   {% if restaurant %}
-    <p><a href="{% url 'view_menu_for_restaurant_owner' restaurant.id %}">View Menu</a></p>
-    <p><a href="{% url 'view_table_list_for_restaurant_owner' restaurant.id %}">View Table List</a></p>
-    <p><a href="{% url 'recent_book_history_for_restaurant' restaurant.id %}">Recent book list</a></p>
+<br><br>
+    <div class="restaurant-dashboard-container">
+      <div class="restaurant-dashboard-card">
+        <h2 class="text-white"><strong>Hello! <b>{{ restaurant.restaurant_name }}</b> <br> <br>Welcome to <i><u>DineGate</u></i></h2>
+        <div class="restaurant-dashboard-links">
+          <a href="{% url 'view_menu_for_restaurant_owner' restaurant.id %}" class="restaurant-dashboard-link">
+            <i class="fas fa-utensils icon-left"></i> View Menu
+          </a>
+          <a href="{% url 'view_table_list_for_restaurant_owner' restaurant.id %}" class="restaurant-dashboard-link">
+            <i class="fas fa-chair icon-left"></i> View Table List
+          </a>
+          <a href="{% url 'recent_book_history_for_restaurant' restaurant.id %}" class="restaurant-dashboard-link">
+            <i class="fas fa-calendar-alt icon-left"></i> Recent Bookings
+          </a>
+        </div>
+      </div>
+    </div>
   {% endif %}
 {% endblock %}
+

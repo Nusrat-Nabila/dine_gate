@@ -12,7 +12,8 @@ from datetime import datetime
 #search table list for customer
 def search_table(request, id):
     restaurant = Restaurant.objects.get(pk=id)
-   
+    tables = []  # Default to empty list to avoid UnboundLocalError
+
     if request.method == 'GET':
         form = SearchTableForm(request.GET)
         if form.is_valid():
@@ -27,19 +28,27 @@ def search_table(request, id):
 
             if d > today or (d == today and s_t >= current_time):
                 tables = Table_list.objects.filter(
-                  restaurant=restaurant,
-                   date=d,
-                   start_time__lte=s_t,
-                   end_time__gte=e_t,
-                   no_of_people__gte=no_of_people,
-                   is_available=True
-                   )
+                    restaurant=restaurant,
+                    date=d,
+                    start_time__lte=s_t,
+                    end_time__gte=e_t,
+                    no_of_people__gte=no_of_people,
+                    is_available=True
+                )
+            # Even if no tables found, still render with empty list
+            return render(request, 'reservation/table_list.html', {
+                'tables': tables,
+                'restaurant': restaurant,
+                'form_data': form.cleaned_data
+            })
+    else:
+        form = SearchTableForm()
 
-            return render(request, 'reservation/table_list.html', {'tables': tables,'restaurant': restaurant,'form_data': form.cleaned_data,})
-        else:
-          form = SearchTableForm()
+    return render(request, 'reservation/search_table.html', {
+        'form': form,
+        'restaurant': restaurant
+    })
 
-    return render(request, 'reservation/search_table.html', {'form': form,'restaurant': restaurant,})
 
 
 #confirm booking for customer
@@ -208,7 +217,7 @@ def edit_table_list_for_restaurant_owner(request,id):
         form=TableAddForm(request.POST,request.FILES,instance=table)
         if form.is_valid():
             form.save()
-            return redirect('view_table_list_for_restaurant_owner', id=table.id)
+            return redirect('view_table_list_for_restaurant_owner', id=table.restaurant.id)
     return render(request, 'reservation/add_table_list_for_restaurant_owner.html', {'form': form})
 
 #delete table info for restaurant owner /restaurant

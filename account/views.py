@@ -81,4 +81,9 @@ def Home(request):
 def signup_home(request):
     return render(request, template_name='account/signup_home.html')
 
-
+def about_us(request):
+    return render(request, template_name='account/about_us.html')
+def our_service(request):
+    return render(request, template_name='account/our_service.html')
+def contact_us(request):
+    return render(request, template_name='account/contact_us.html')

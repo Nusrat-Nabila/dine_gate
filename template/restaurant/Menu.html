@@ -2,21 +2,21 @@
 
 {% block content %}
 <div class="container mt-5">
-  <h2 class="text-center" style="color: #ffffff;">Menu</h2>
+  <h1 class="text-center" style="color: #ffffff;"><u><b>Menu</b></u> </h1>
   <hr>
 
   {% if menu %}
     <div class="menu-wrapper">
       {% for item in menu %}
-        <div class="menu-item" style="background-color:#e3e4e3">
-          <h5 class="card-title">{{ item.item_name }}</h5>
-          <p class="card-text"><strong>Cuisine:</strong> {{ item.cuisine }}</p>
-          <p class="card-text"><strong>Price:</strong> {{ item.price }}</p>
+        <div class="menu-item-detail" style="background-color:#e3e4e3; padding: 20px; margin-bottom: 20px; border-radius: 8px;">
+          <h5 class="menu-item-detail" style="color: #004D40;"><i class="fas fa-hamburger"></i> {{ item.item_name }}</h5>
+          <p class="menu-item-detail"><i class="fas fa-globe-asia"></i> <strong>Cuisine:</strong> {{ item.cuisine }}</p>
+          <p class="menu-item-detail"><i class="fas fa-dollar-sign"></i> <strong>Price:</strong> {{ item.price }}</p>
         </div>
       {% endfor %}
     </div>
   {% else %}
-    <p class="text-center" style="color:#ffffff">No menu items available for this restaurant.</p>
+    <p class="text-center" style="color:#ffffff"><i class="fas fa-exclamation-circle"></i> No menu items available for this restaurant.</p>
   {% endif %}
 </div>
 {% endblock %}

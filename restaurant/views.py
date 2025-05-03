@@ -87,16 +87,17 @@ def add_menu_for_restaurant_owner(request, id):
 
 
 #menu item update by restaurant owner
-def edit_menu_for_restaurant_owner(request,id):
-    menu_item=Menu.objects.get(pk=id)
-    form=MenuAddForm(instance=menu_item)
+def edit_menu_for_restaurant_owner(request, id):
+    menu_item = Menu.objects.get(pk=id)
+    form = MenuAddForm(instance=menu_item)
+
     if request.method == "POST":
-        form=MenuAddForm(request.POST,request.FILES,instance=menu_item)
+        form = MenuAddForm(request.POST, request.FILES, instance=menu_item)
         if form.is_valid():
             form.save()
-            return redirect('view_menu_for_restaurant_owner', id=menu_item.id)
-    return render(request, 'restaurant/add_menu_for_restaurant_owner.html', {'form': form})
+            return redirect('view_menu_for_restaurant_owner', id=menu_item.restaurant.id)
 
+    return render(request, 'restaurant/add_menu_for_restaurant_owner.html', {'form': form})
 #delete menu item for restaurant owner /restaurant
 
 def delete_menu_for_restaurant_owner(request, id):

@@ -6,11 +6,23 @@
     {% if upcoming %}
       <div class="menu-wrapper">
         {% for booking in upcoming %}
-          <div class="menu-item" style="background-color: #e3e4e3;width:20%">
-            <h5 class="card-title">{{ booking.user.user_name }} - Table {{ booking.table.table_no }}</h5>
-            <p class="card-text"><strong>Date:</strong> {{ booking.reserve_date }}</p>
-            <p class="card-text"><strong>Time:</strong> {{ booking.start_time }} - {{ booking.end_time }}</p>
-            <p class="card-text"><strong>status:</strong> {{booking.status}}</p>
+          <div class="menu-item" style="background-color: #e3e4e3;width:15%">
+            <h5 class="card-title" style="text-align:center">
+              <i class="fas fa-user"></i> {{ booking.user.user_name }}</h5>
+              <p class="card-title">
+              <i class="fas fa-chair"></i> {{ booking.table.table_no }}
+            </p>
+
+
+            <p class="card-title">
+              <i class="fas fa-calendar-day"></i> {{ booking.reserve_date }}
+            </p>
+            <p class="card-title">
+              <i class="fas fa-clock"></i>  {{ booking.start_time }} - {{ booking.end_time }}
+            </p>
+            <p class="card-title">
+              <i class="fas fa-info-circle"></i>  {{ booking.status }}
+            </p>
           </div>
         {% endfor %}
       </div>

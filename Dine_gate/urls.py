@@ -37,6 +37,9 @@ urlpatterns = [
     path('Edit_customer_profile/<str:id>/',a_views.Edit_customer_profile, name='Edit_customer_profile'),
     path('signup_home/',a_views.signup_home, name='signup_home'),
     path('logout/', a_views.logout_view, name='logout'),
+    path('about_us/', a_views.about_us, name='about_us'),
+    path('our_service/', a_views.our_service, name='our_service'),
+    path('contact_us/', a_views.contact_us, name='contact_us'),
 
 
     path('Customer_home/',r_views.Customer_home,name='Customer_home'),

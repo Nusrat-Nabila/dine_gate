@@ -1000,12 +1000,12 @@ html, body {
 
 .site-footer .footer-section ul li a {
     text-decoration: none;
-    color: #fff; /* Links color */
+    color: #ffffff; /* Links color */
     transition: color 0.3s ease-in-out;
 }
 
 .site-footer .footer-section ul li a:hover {
-    color: #F5A623; /* Link color on hover */
+    color: #ffffff; /* Link color on hover */
 }
 
 /* Footer Bottom Styling */
@@ -1013,7 +1013,7 @@ html, body {
     text-align: center;
     padding-top: 20px;
     font-size: 0.9rem;
-    color: #fff; /* Text color for bottom section */
+    color: #ffffff; /* Text color for bottom section */
 }
 .profile-card-wrapper {
   max-width: 400px; /* Reduced for a tighter container */
@@ -1153,4 +1153,156 @@ html, body {
   color: #004D40;
   text-align: center;
 
+}
+.restaurant-dashboard-links {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 25px; /* space between buttons */
+  margin-top: 30px;
+}
+
+.restaurant-dashboard-link {
+  background-color: #e3e4e3;
+  color: #004D40;
+  text-decoration: none;
+  padding: 14px 30px;
+  border-radius: 12px;
+  font-size: 1.1rem;
+  font-weight: 600;
+  width: 100%;
+  max-width: 320px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 6px 14px rgba(0, 0, 0, 0.15);
+  transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.restaurant-dashboard-link:hover {
+  background-color: #004D40;
+  transform: translateY(-4px);
+  color: #e3e4e3;
+}
+
+.icon-left {
+  margin-right: 12px;
+  font-size: 1.3rem;
+}
+/* Menu Container */
+.menu-container {
+  padding: 30px;
+  width: 100%;
+  max-width: 1200px;  /* Set a max-width for better readability */
+  margin: 0 auto;  /* Center the container */
+}
+
+/* Menu Heading */
+.menu-heading {
+  color: #004d40;
+  font-size: 2rem;
+  margin-bottom: 20px;
+  text-align: center;  /* Center the heading */
+}
+
+/* Grid Layout for Menu Cards */
+.menu-grid {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center; /* This ensures that cards are centered horizontally */
+  gap: 30px;
+  margin-top: 30px;
+  width: 100%;
+}
+
+/* Individual Menu Card */
+.menu-card {
+  background-color: #e3e4e3;
+  border-radius: 12px;
+  padding: 20px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  width: 250px; /* Set fixed width for the cards */
+  box-sizing: border-box;
+}
+
+.menu-card:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+}
+
+/* Menu Item Name */
+.menu-item-name {
+  color: #004040;
+  font-size: 1.4rem;
+  margin-bottom: 10px;
+}
+
+/* Item Details */
+.menu-item-detail {
+  font-size: 1rem;
+  color: #444;
+  margin: 5px 0;
+  color: #004040;
+}
+
+/* Action Links for Edit/Delete */
+.menu-actions {
+  display: flex;
+  gap: 10px;
+  margin-top: 15px;
+}
+
+.menu-action {
+  padding: 8px 16px;
+  border-radius: 8px;
+  font-weight: 500;
+  text-decoration: none;
+  transition: background-color 0.3s ease;
+}
+
+.menu-action.edit {
+  background-color: #00796b;
+  color: #fff;
+}
+
+.menu-action.edit:hover {
+  background-color: #004d40;
+}
+
+.menu-action.delete {
+  background-color: #c75b39;
+  color: #fff;
+}
+
+.menu-action.delete:hover {
+  background-color: #a84327;
+}
+
+/* Add Menu Button */
+.add-menu-button {
+  display: block;
+  margin: 30px auto;
+  background-color: #e3e4e3;
+  color: #004D40;
+  padding: 12px 20px;
+  width: 200px;  /* Set a fixed width for the button */
+  text-align: center;
+  font-weight: bold;
+  text-decoration: none;
+  border-radius: 8px;
+  transition: background-color 0.3s ease;
+  text-transform: uppercase;
+}
+
+.add-menu-button:hover {
+  background-color: #004D40;
+  color: #fff;
+}
+
+/* No Menu Available Text */
+.no-menu {
+  color: #ffffff;
+  font-size: 1.2rem;
+  text-align: center;
 }

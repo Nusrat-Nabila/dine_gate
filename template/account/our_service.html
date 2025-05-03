@@ -1,0 +1,45 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="container my-5 animate__animated animate__fadeIn">
+  <div class="p-5 rounded shadow-lg" style="background-color: #e3e4e3; border-left: 6px solid #004D40;">
+    <h2 class="text-center mb-4" style="color: #004D40; font-weight: bold;">
+      <i class="fas fa-cogs"></i> Our Services
+    </h2>
+
+    <div class="row text-center">
+      <!-- For Diners -->
+      <div class="col-md-6 mb-4">
+        <div class="card border-0 shadow-sm h-100 animate__animated animate__fadeInLeft" style="background-color: #F5F0E6;">
+          <div class="card-body">
+            <i class="fas fa-utensils fa-3x mb-3" style="color: #004D40;"></i>
+            <h5 class="card-title" style="color: #004D40;">For Diners</h5>
+            <p class="card-text" style="color: #008080;">Browse, book, and breathe easy with real-time availability and smart filters — built for comfort and clarity.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- For Restaurants -->
+      <div class="col-md-6 mb-4">
+        <div class="card border-0 shadow-sm h-100 animate__animated animate__fadeInRight" style="background-color: #F5F0E6;">
+          <div class="card-body">
+            <i class="fas fa-store-alt fa-3x mb-3" style="color: #004D40;"></i>
+            <h5 class="card-title" style="color: #004D40;">For Restaurants</h5>
+            <p class="card-text" style="color: #008080;">Manage tables effortlessly, minimize chaos, and create experiences your guests won’t forget.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="mt-5">
+      <h4 class="text-center" style="color: #004D40; font-style: italic;">
+        Why Choose DineGate?
+      </h4>
+      <ul class="list-unstyled text-center" style="color: #008080;">
+        <li style="color: #008080;><i class="fas fa-check-circle"></i> **Reliability**: A trusted platform used by thousands to simplify their dining experience.</li>
+        <li style="color: #008080;><i class="fas fa-check-circle"></i> **Innovation**: We continuously update and enhance our features to offer you the best in tech-driven hospitality.</li>
+        <li style="color: #008080;><i class="fas fa-check-circle"></i> **Support**: Our customer service team is always here to assist you with any inquiries or issues.</li>
+      </ul>
+    </div>
+  </div>
+</div>
+{% endblock %}
