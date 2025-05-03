@@ -1,9 +1,23 @@
 {% extends 'base.html' %}
+{% load static %}
 {% block content %}
-<h1>Customer Profile</h1>
-<p><strong>{{customer.user_email}}</p>
-<p><strong>Username:</strong> {{customer.user_name}}</p>
-<p><strong>Email:</strong> {{customer.user_email}}</p>
-<p><strong>Contect Number:</strong> {{ customer.user_contect_number }}</p>
-<p><strong>Address:</strong> {{customer.user_address}}</p>
+<div class="profile-card-wrapper">
+  <div class="profile-card-header">
+    {% if customer.user_image %}
+      <img src="{{ customer.user_image.url }}" alt="User Avatar" class="profile-avatar-img">
+    {% else %}
+      <img src="{% static 'images/dp2.jpg' %}" alt="Default Avatar" class="profile-avatar-img">
+    {% endif %}
+
+    <div class="profile-card-user">
+      <h2>{{ customer.user_name }}</h2>
+    </div>
+  </div>
+
+  <div class="profile-info-block" style="text-align: center;">
+    <p><i class="fas fa-map-marker-alt"></i> <b><i> {{ customer.user_address }}</b></i></p>
+    <p><i class="fas fa-phone"></i> <b><i>{{ customer.user_contect_number }}</b></i></p>
+    <p><i class="fas fa-envelope"></i><b><i> {{ customer.user_email }}</b></i></p>
+  </div>
+</div>
 {% endblock %}

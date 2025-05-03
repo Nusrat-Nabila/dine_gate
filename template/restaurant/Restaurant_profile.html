@@ -1,29 +1,30 @@
 {% extends 'base.html' %}
+{% load static %}
 
 {% block content %}
-  <div class="container mt-5">
-    <div class="row align-items-center">
+<br>
 
-      <!-- Left Side: Text + Info -->
-      <div class="col-md-8">
-        <h1><strong>Welcome to  {{ restaurant.restaurant_name }} restaurent!</strong></h1>
+<div class="profile-card-wrapper">
+  <div class="profile-card-header">
+    {% if restaurant.logo %}
+      <img src="{{ restaurant.logo.url }}" class="profile-avatar-img" alt="Restaurant Logo">
+    {% else %}
+      <img src="{% static 'images/dp2.jpg' %}" class="profile-avatar-img" alt="Default Restaurant Logo">
+    {% endif %}
 
-        <div class="mt-4" >
-          <h4><strong>Basic Information:</strong></h4>
-          <ul class="list-group mt-3">
-            <li class="list-group-item"><strong>Email:</strong> {{ restaurant.email }}</li>
-            <li class="list-group-item"><strong>Phone:</strong> {{ restaurant.contact_no }}</li>
-            <li class="list-group-item"><strong>City:</strong> {{ restaurant.city }}</li>
-            <li class="list-group-item"><strong>Area:</strong> {{ restaurant.area }}</li>
-            <li class="list-group-item"><strong>Location:</strong> {{ restaurant.location }}</li>
-            <li class="list-group-item"><strong>Business Reg ID:</strong> {{ restaurant.business_reg_id }}</li>
-          </ul>
-
-          <a href="{% url 'Restaurant_profile' %}" class="btn btn-primary mt-4">Edit Profile</a>
-        </div>
-      </div>
-
+    <div class="profile-card-user">
+      <h2>{{ restaurant.restaurant_name }}</h2>
     </div>
   </div>
-{% endblock %}
 
+  <div class="profile-info-block" style="text-align: center;">
+    <p><i class="fa fa-clock"></i> <b><i> {{ restaurant.s_time }} - {{ restaurant.e_time }}</b></i></p>
+    <p><i class="fa fa-money"></i> <b><i>{{ restaurant.min_price }} to {{ restaurant.max_price }}</b></i></p>
+    <p><i class="fa fa-map-marker"></i> <b><i> {{ restaurant.location }}</b></i></p>
+    <p><i class="fa fa-phone"></i> <b><i> {{ restaurant.contact_no }}</b></i></p>
+    <p><i class="fa fa-envelope"></i> <b><i> {{ restaurant.email }}</b></i></p>
+
+
+  </div>
+</div>
+{% endblock %}

@@ -1015,3 +1015,142 @@ html, body {
     font-size: 0.9rem;
     color: #fff; /* Text color for bottom section */
 }
+.profile-card-wrapper {
+  max-width: 400px; /* Reduced for a tighter container */
+  margin: 60px auto;
+  padding: 24px;
+  background-color: #e3e4e3;
+  border: 1px solid #00796B;
+  border-radius: 14px;
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.08);
+  text-align: center;
+}
+
+.profile-card-header {
+  display: block; /* Stack content vertically */
+  margin-bottom: 30px;
+}
+
+.profile-avatar-img {
+  width: 222px;  /* Increased size */
+  height: 222px;
+  border-radius: 50%;
+  border: 4px solid #00796B;
+  object-fit: cover;
+  margin-bottom: 16px;
+}
+
+.profile-card-user {
+  color: #004D40;
+}
+
+.profile-card-user h2 {
+  margin-bottom: 4px;
+  font-size: 2rem;
+}
+
+.profile-card-user p {
+  font-size: 1.1rem;
+  color: #666;
+}
+
+.profile-info-block {
+  margin-top: 25px;
+  text-align: center; /* Keeps info readable and aligned */
+}
+
+.profile-info-block p {
+  margin-bottom: 12px;
+  font-size: 1rem;
+  color: #004D40;
+}
+
+.profile-action-btns {
+  margin-top: 30px;
+  display: flex;
+  justify-content: flex-end;
+  gap: 12px;
+}
+
+.profile-btn-save {
+  background-color: #004D40;
+  color: white;
+  padding: 10px 24px;
+  border-radius: 6px;
+  border: none;
+  cursor: pointer;
+  font-size: 1rem;
+}
+
+.profile-btn-save:hover {
+  background-color: #004D40;
+}
+
+.profile-btn-cancel {
+  background-color: #CFD8DC;
+  color: #37474F;
+  padding: 10px 20px;
+  border-radius: 6px;
+  border: none;
+  cursor: pointer;
+  font-size: 1rem;
+}
+
+.profile-btn-cancel:hover {
+  background-color: #B0BEC5;
+}
+
+.profile-card-wrapper h2 {
+  color: #004D40;
+  margin-bottom: 30px;
+  text-align: center;
+}
+
+.profile-info-block {
+  text-align: left;
+}
+
+.profile-info-block label {
+  font-weight: 600;
+  color: #004D40;
+  display: block;
+  margin-bottom: 6px;
+}
+
+.profile-info-block input,
+.profile-info-block select {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #004D40;
+  border-radius: 6px;
+  margin-bottom: 18px;
+  font-size: 1rem;
+  color: #004D40;
+  background-color: #e3e4e3;
+}
+
+.profile-action-btns {
+  display: flex;
+  justify-content: center;
+  margin-top: 30px;
+}
+
+.profile-btn-save {
+  background-color: #00897B;
+  color: white;
+  padding: 10px 24px;
+  border-radius: 6px;
+  border: none;
+  cursor: pointer;
+}
+
+.profile-btn-save:hover {
+  background-color: #00695C;
+}
+
+/* Icon Color */
+.profile-info-block i {
+  color: #004D40;
+  text-align: center;
+
+}

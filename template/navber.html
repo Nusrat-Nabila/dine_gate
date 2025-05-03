@@ -22,8 +22,8 @@
           </li>
           <li class="nav-item dropdown">
             <a class="nav-link dropdown-toggle text-white" href="#" id="profileDropdown" role="button" data-bs-toggle="dropdown">
-              {% if customer.user_image %}
-                <img src="{{ customer.user_image.url }}" class="rounded-circle" width="40" height="40" alt="profile">
+              {% if logged_user.user_image %}
+                <img src="{{ logged_user.user_image.url }}" class="rounded-circle" width="40" height="40" alt="profile">
               {% else %}
                 <img src="/static/images/dp2.jpg" class="rounded-circle" width="40" height="40" alt="default profile">
               {% endif %}
@@ -44,19 +44,17 @@
           <li class="nav-item">
             <a class="nav-link text-white" href="{% url 'Book_history_for_restaurant' %}">Book History</a>
           </li>
-          <li class="nav-item">
-            <a class="nav-link text-white" href="{% url 'Restaurant_recent_book' %}">Recent Book</a>
-          </li>
           <li class="nav-item dropdown">
             <a class="nav-link dropdown-toggle text-white" href="#" id="profileDropdown" role="button" data-bs-toggle="dropdown">
-              {% if restaurant.logo %}
-                <img src="{{ restaurant.logo.url }}" class="rounded-circle" width="40" height="40" alt="restaurant logo">
+              {% if logged_user.logo %}
+                <img src="{{ logged_user.logo.url }}" class="rounded-circle" width="40" height="40" alt="restaurant logo">
               {% else %}
                 <img src="{% static 'images/dp2.jpg' %}" class="rounded-circle" width="40" height="40" alt="default restaurant logo">
               {% endif %}
             </a>
             <ul class="dropdown-menu dropdown-menu-end">
               <li><a class="dropdown-item" href="{% url 'Restaurant_profile' %}">Profile</a></li>
+              <li><a class="dropdown-item" href="#">Edit Profile</a></li>
               <li><a class="dropdown-item" href="#">Edit Menu</a></li>
               <li><hr class="dropdown-divider"></li>
               <li><a class="dropdown-item text-danger" href="{% url 'logout' %}">Logout</a></li>

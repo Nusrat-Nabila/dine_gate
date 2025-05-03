@@ -1,21 +1,26 @@
 {% extends 'base.html' %}
+
 {% block content %}
-<div class="container mt-4">
-  <h3>Available Tables for {{ restaurant.restaurant_name }}</h3>
+<div class="container mt-5">
+  <h2 class="text-center" style="color: #ffffff;">Available Tables at {{ restaurant.restaurant_name }}</h2>
+  <hr style="border-color: #004D40;">
+
   {% if tables %}
-    {% for t in tables %}
-      <div class="card mb-3 p-3">
-        <h5>Table No: {{ t.table_no }}</h5>
-        <p>Time Slot: {{ t.start_time }} - {{ t.end_time }}</p>
-        <p>Capacity: {{ t.no_of_people }}</p>
-        <form method="post" action="{% url 'confirm_booking' t.table_no t.date|date:'Y-m-d' t.start_time|time:'Hi' t.end_time|time:'Hi' %}">
-          {% csrf_token %}
-          <button class="btn btn-success">Confirm Booking</button>
-        </form>
-      </div>
-    {% endfor %}
+    <div class="menu-wrapper" >
+      {% for t in tables %}
+        <div class="menu-item" style="background-color:#e3e4e3">
+          <h5><i class="fa fa-chair"></i> Table No: {{ t.table_no }}</h5>
+          <p><i class="fa fa-clock"></i>  {{ t.start_time }} - {{ t.end_time }}</p>
+          <p><i class="fa fa-users"></i>  {{ t.no_of_people }} People</p>
+          <form method="post" action="{% url 'confirm_booking' t.table_no t.date|date:'Y-m-d' t.start_time|time:'Hi' t.end_time|time:'Hi' %}">
+            {% csrf_token %}
+            <button class="profile-btn-save" style="background-color:#004D40">Confirm Booking</button>
+          </form>
+        </div>
+      {% endfor %}
+    </div>
   {% else %}
-    <p>No tables available for the selected time and criteria.</p>
+    <p class="text-center text-danger"><i class="fa fa-exclamation-circle"></i> No tables available for the selected time and criteria.</p>
   {% endif %}
 </div>
 {% endblock %}

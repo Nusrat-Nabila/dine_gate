@@ -10,8 +10,8 @@
   {% if restaurants %}
   <div class="restaurant-profile-card mb-4">
     <div class="profile-left">
-     {% if restaurant.logo %}
-                <img src="{{ restaurant.logo.url }}" class="rounded-circle" width="300" height="300" alt="restaurant logo">
+     {% if restaurants.logo %}
+                <img src="{{ restaurants.logo.url }}" class="rounded-circle" width="300" height="300" alt="restaurant logo">
               {% else %}
                 <img src="{% static 'images/dp2.jpg' %}" class="rounded-circle" width="300" height="300" alt="default restaurant logo">
               {% endif %}

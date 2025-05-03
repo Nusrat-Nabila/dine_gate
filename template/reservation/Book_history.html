@@ -1,31 +1,42 @@
 {% extends 'base.html' %}
-{% block content %}
-<div class="container mt-4">
-  <h3>Upcoming Bookings</h3>
-  {% for booking in upcoming %}
-    <div class="card mb-3 p-3">
-      <h5>{{ booking.restaurant.restaurant_name }} - Table {{ booking.table.table_no }}</h5>
-      <p>Date: {{ booking.reserve_date }}</p>
-      <p>Time: {{ booking.start_time }} - {{ booking.end_time }}</p>
-      <form method="post" action="{% url 'cancel_book' booking.id %}">
-        {% csrf_token %}
-        <button class="btn btn-danger">Cancel</button>
-      </form>
-    </div>
-  {% empty %}
-    <p>No upcoming bookings.</p>
-  {% endfor %}
 
-  <h3 class="mt-5">Past Bookings</h3>
-  {% for booking in past %}
-    <div class="card mb-3 p-3">
-      <h5>{{ booking.restaurant.restaurant_name }} - Table {{ booking.table.table_no }}</h5>
-      <p>Date: {{ booking.reserve_date }}</p>
-      <p>Time: {{ booking.start_time }} - {{ booking.end_time }}</p>
-      <p>Status: {{ booking.status }}</p>
+{% block content %}
+<div class="container mt-5" style="width: 90%; margin: 0 auto;">
+  <h3 class="text-center" style="color: #ffffff"><b><u>Upcoming Bookings</b></u></h3>
+<br>
+  {% if upcoming %}
+    <div class="menu-wrapper">
+      {% for booking in upcoming %}
+        <div class="menu-item" style="background-color: #e3e4e3;width:20%">
+          <h5 class="card-title">{{ booking.restaurant.restaurant_name }} - Table {{ booking.table.table_no }}</h5>
+          <p class="card-text"><strong>Date:</strong> {{ booking.reserve_date }}</p>
+          <p class="card-text"><strong>Time:</strong> {{ booking.start_time }} - {{ booking.end_time }}</p>
+          <form method="post" action="{% url 'cancel_book' booking.id %}">
+            {% csrf_token %}
+            <button class="btn btn-danger"><a href="{% url 'cancel_book' booking.id %}" class="card-link"> Cancel</a></button>
+          </form>
+        </div>
+      {% endfor %}
     </div>
-  {% empty %}
-    <p>No past bookings.</p>
-  {% endfor %}
+  {% else %}
+    <p class="text-center" style="color: #ffffff">No upcoming bookings.</p>
+  {% endif %}
+<br><br>
+  <h3 class="text-center" style="color: #ffffff"><b><u>Past Bookings</b></u></h3>
+<br>
+  {% if past %}
+    <div class="menu-wrapper">
+      {% for booking in past %}
+        <div class="menu-item" style="background-color: #e3e4e3;width:20%">
+          <h5 class="card-title">{{ booking.restaurant.restaurant_name }} - Table {{ booking.table.table_no }}</h5>
+          <p class="card-text"><strong>Date:</strong> {{ booking.reserve_date }}</p>
+          <p class="card-text"><strong>Time:</strong> {{ booking.start_time }} - {{ booking.end_time }}</p>
+          <p class="card-text"><strong>Status:</strong> {{ booking.status }}</p>
+        </div>
+      {% endfor %}
+    </div>
+  {% else %}
+    <p class="text-center" style="color: #004D40"><strong>No past bookings</strong></p>
+  {% endif %}
 </div>
 {% endblock %}

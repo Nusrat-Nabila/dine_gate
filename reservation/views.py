@@ -9,6 +9,7 @@ from django.http import HttpResponseBadRequest
 from .models import Table_list, TableReservation
 from datetime import datetime
 
+
 def search_table(request, id):
     restaurant = Restaurant.objects.get(pk=id)
    
@@ -35,7 +36,7 @@ def search_table(request, id):
 
     return render(request, 'reservation/search_table.html', {'form': form,'restaurant': restaurant,})
 
-
+  # adjust if your models are elsewhere
 
 def confirm_booking(request, table_no, date, start_time, end_time):
     customer_id = request.session.get('user_id')
@@ -48,14 +49,26 @@ def confirm_booking(request, table_no, date, start_time, end_time):
     except CustomerUser.DoesNotExist:
         return redirect('login')
 
-    # Parse date and time from strings
-    reserve_date = datetime.strptime(date, '%Y-%m-%d').date()
-    start_time = datetime.strptime(start_time, '%H:%M:%S').time()
-    end_time = datetime.strptime(end_time, '%H:%M:%S').time()
+    # Parse date and time from strings (HHMM format for time)
+    try:
+        reserve_date = datetime.strptime(date, '%Y-%m-%d').date()
+        start_time = datetime.strptime(start_time, '%H%M').time()
+        end_time = datetime.strptime(end_time, '%H%M').time()
+    except ValueError:
+        return HttpResponseBadRequest("Invalid date or time format.")
 
+    # Ensure end_time is after start_time
+    if start_time >= end_time:
+        return HttpResponseBadRequest("End time must be after start time.")
 
     try:
-        table = Table_list.objects.get(table_no=table_no, date=reserve_date, start_time=start_time, end_time=end_time, is_available=True)
+        table = Table_list.objects.get(
+            table_no=table_no,
+            date=reserve_date,
+            start_time=start_time,
+            end_time=end_time,
+            is_available=True
+        )
     except Table_list.DoesNotExist:
         return HttpResponse("Table not available", status=404)
 
@@ -72,8 +85,10 @@ def confirm_booking(request, table_no, date, start_time, end_time):
 
         table.is_available = False
         table.save()
-        return redirect('Book_history')
 
+        return redirect('Book_history')  # or render a booking success page
+
+    return HttpResponse("Only POST requests are allowed for booking.", status=405)
 
 
 def Book_history(request):

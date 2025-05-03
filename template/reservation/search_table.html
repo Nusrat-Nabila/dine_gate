@@ -1,14 +1,32 @@
 {% extends 'base.html' %}
 {% block content %}
-<div class="container mt-4">
-  <h3>Book a Table at {{ restaurant.restaurant_name }}</h3>
+<div class="profile-card-wrapper">
+  <h2>Book a Table at {{ restaurant.restaurant_name }}</h2>
+
   <form method="GET" action="{% url 'search_table' restaurant.id %}">
-    <p>{{ form.date.label_tag }} {{ form.date }}</p>
-    <p>{{ form.start_time.label_tag }} {{ form.start_time }}</p>
-    <p>{{ form.end_time.label_tag }} {{ form.end_time }}</p>
-    <p>{{ form.no_of_people.label_tag }} {{ form.no_of_people }}</p>
-    <p><button class="btn btn-primary" type="submit">Search Available Tables</button></p>
+    <div class="profile-info-block">
+      <label for="id_date"><i class="fa fa-calendar"></i> Date</label>
+      <input type="date" id="id_date" name="date" required><br>
+
+      <label for="id_start_time"><i class="fa fa-clock"></i> Start Time</label>
+      <input type="time" id="id_start_time" name="start_time" required><br>
+
+      <label for="id_end_time"><i class="fa fa-clock"></i> End Time</label>
+      <input type="time" id="id_end_time" name="end_time" required><br>
+
+      <label for="id_no_of_people"><i class="fa fa-users"></i> Number of People</label>
+      <select id="id_no_of_people" name="no_of_people" required>
+        <option value="" disabled selected>Select</option>
+        <option value="2">2 People</option>
+        <option value="4">4 People</option>
+        <option value="6">6 People</option>
+        <option value="8">8 People</option>
+      </select>
+
+      <div class="profile-action-btns">
+        <button class="profile-btn-save" type="submit">Search Available Tables</button>
+      </div>
+    </div>
   </form>
 </div>
 {% endblock %}
-
