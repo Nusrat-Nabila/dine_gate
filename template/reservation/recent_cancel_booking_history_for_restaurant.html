@@ -1,7 +1,11 @@
 {% extends 'base.html' %}
 {% block content %}
 <div class="container mt-5" style="width: 90%; margin: 0 auto;">
-    <h3 class="text-center" style="color: #ffffff"><b><u>Cancel Bookings list </b></u></h3>
+   <div class="content-container">
+  <div class="content-header">
+    <h1 class="content-title" style="font-size:24px">Cancel Book List</h1>
+  </div>
+</div>
   <br>
     {% if recent_cancel %}
       <div class="menu-wrapper">
@@ -26,5 +30,7 @@
           </div>
         {% endfor %}
       </div>
+  {% else %}
+      <p class="text-center" style="color: #ffffff"><b>No booking canceled.</b></p>
     {% endif %}
 {% endblock %}

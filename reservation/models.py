@@ -12,7 +12,7 @@ class Table_list(models.Model):
     is_available = models.BooleanField(default=True)
 
     class Meta:
-        unique_together = ('restaurant', 'table_no', 'date', 'start_time', 'end_time','no_of_people')
+        unique_together = ('restaurant', 'table_no', 'date', 'start_time', 'end_time')
 
     def __str__(self):
         return (f"Restau_name: {self.restaurant.restaurant_name} ,item: {self.table_no}")

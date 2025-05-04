@@ -2,7 +2,12 @@
 
 {% block content %}
 <div class="container mt-5">
-  <h2 class="text-center" style="color: #ffffff;">Available Tables at {{ restaurant.restaurant_name }}</h2>
+
+      <div class="content-container">
+  <div class="content-header">
+    <h1 class="content-title" style="font-size:28px">Available Tables at {{ restaurant.restaurant_name }}</h1>
+  </div>
+</div>
   <hr style="border-color: #004D40;">
 
   {% if tables %}

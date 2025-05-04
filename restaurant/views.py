@@ -115,7 +115,7 @@ def delete_menu_for_restaurant_owner(request, id):
 
 
 #restaurant profile for restaurant/restaurant owner
-def Restaurant_profile(request):
+def Restaurant_profile(request,id):
     restaurant_id = request.session.get('restaurant_id')
     if not restaurant_id:
         return redirect('login') 
@@ -135,7 +135,7 @@ def edit_restaurant_profile(request,id):
         form = RestaurantEditForm(request.POST, request.FILES, instance=restaurant)
         if form.is_valid():
             form.save()
-            return redirect('Customer_profile',id=restaurant.id)  # Redirect to profile page
+            return redirect('Restaurant_profile',id=restaurant.id)  # Redirect to profile page
     else:
         form = RestaurantEditForm(instance=restaurant)
 

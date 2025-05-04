@@ -53,7 +53,7 @@
               {% endif %}
             </a>
             <ul class="dropdown-menu dropdown-menu-end">
-              <li><a class="dropdown-item" href="{% url 'Restaurant_profile' %}">Profile</a></li>
+              <li><a class="dropdown-item" href="{% url 'Restaurant_profile' logged_user.id %}">Profile</a></li>
               <li><a class="dropdown-item" href="{% url 'edit_restaurant_profile' logged_user.id %}">Edit Profile</a></li>
               <li><hr class="dropdown-divider"></li>
               <li><a class="dropdown-item text-danger" href="{% url 'logout' %}">Logout</a></li>

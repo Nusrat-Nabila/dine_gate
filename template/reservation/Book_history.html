@@ -2,7 +2,11 @@
 
 {% block content %}
 <div class="container mt-5" style="width: 90%; margin: 0 auto;">
-  <h3 class="text-center" style="color: #ffffff"><b><u>Upcoming Bookings</b></u></h3>
+  <div class="content-container">
+  <div class="content-header">
+    <h1 class="content-title" style="font-size:24px">Upcoming Bookings</h1>
+  </div>
+</div>
 <br>
   {% if upcoming %}
     <div class="menu-wrapper">
@@ -20,10 +24,14 @@
       {% endfor %}
     </div>
   {% else %}
-    <p class="text-center" style="color: #ffffff">No upcoming bookings.</p>
+    <p class="text-center" style="color: #ffffff"><strong>No upcoming bookings.</strong></p>
   {% endif %}
 <br><br>
-  <h3 class="text-center" style="color: #ffffff"><b><u>Past Bookings</b></u></h3>
+  <div class="content-container">
+  <div class="content-header">
+    <h1 class="content-title" style="font-size:24px">Past Bookings</h1>
+  </div>
+</div>
 <br>
   {% if past %}
     <div class="menu-wrapper">
@@ -37,7 +45,7 @@
       {% endfor %}
     </div>
   {% else %}
-    <p class="text-center" style="color: #004D40"><strong>No past bookings</strong></p>
+    <p class="text-center" style="color: #ffffff"><strong>No past bookings</strong></p>
   {% endif %}
 </div>
 {% endblock %}

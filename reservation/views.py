@@ -157,7 +157,7 @@ def cancel_book(request,reservation_id):
     booking = TableReservation.objects.get(pk=reservation_id, user=customer)
     if request.method == 'POST':
         booking.status = 'cancel'
-        booking.save()
+        booking.delete()
 
         booking.table.is_available = True
         booking.table.save()

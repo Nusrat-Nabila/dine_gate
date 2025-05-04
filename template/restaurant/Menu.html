@@ -2,9 +2,11 @@
 
 {% block content %}
 <div class="container mt-5">
-  <h1 class="text-center" style="color: #ffffff;"><u><b>Menu</b></u> </h1>
-  <hr>
-
+ <div class="content-container">
+  <div class="content-header">
+    <h1 class="content-title" style="font-size:34px">Menu</h1>
+  </div>
+</div>
   {% if menu %}
     <div class="menu-wrapper">
       {% for item in menu %}

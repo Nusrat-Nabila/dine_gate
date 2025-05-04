@@ -3,9 +3,12 @@
 
 {% block content %}
 <br>
-<h1 style="text-align: center; margin-bottom: 30px; color: #ffffff;">
-  Details
-</h1>
+<div class="content-container">
+  <div class="content-header">
+    <h1 class="content-title" style="font-size:34px">Details</h1>
+  </div>
+</div>
+
 <div class="container mt-4">
   {% if restaurants %}
   <div class="restaurant-profile-card mb-4">
@@ -21,7 +24,7 @@
       <p><strong>Opening and closing time:</strong> {{ restaurants.s_time }} - {{ restaurants.e_time }}</p>
       <p><strong>Price:</strong> {{ restaurants.min_price }} to {{ restaurants.max_price }} </p>
       <p><strong>Address:</strong> {{ restaurants.location }}</p>
-      <p><strong>Contact:</strong> {{ restaurants.contact_number }}</p>
+      <p><strong>Contact:</strong> {{ restaurants.contact_no }}</p>
       <p><strong>Email:</strong> {{ restaurants.email }}</p>
       <div class="profile-buttons">
         <a href="{% url 'view_menu' restaurants.id %}" class="btn btn-success" style="background-color:#004D40">View Menu</a>
