@@ -16,3 +16,7 @@ class CustomerAdd(forms.ModelForm):
             if password != confirm_password:
                 raise forms.ValidationError("Passwords do not match")
 
+class CustomerEditForm(forms.ModelForm):
+    class Meta:
+        model = CustomerUser
+        fields = ["user_name", "user_email", "user_contect_number", "user_address", "user_image"]

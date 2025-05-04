@@ -11,9 +11,18 @@ from datetime import datetime
 
 #search table list for customer
 def search_table(request, id):
-    restaurant = Restaurant.objects.get(pk=id)
-    tables = []  # Default to empty list to avoid UnboundLocalError
+    customer_id = request.session.get('user_id')
 
+    if not customer_id:
+        return redirect('login')
+
+    try:
+        customer = CustomerUser.objects.get(id=customer_id)
+    except CustomerUser.DoesNotExist:
+        return redirect('login')
+    
+    restaurant = Restaurant.objects.get(pk=id)
+    tables = []  
     if request.method == 'GET':
         form = SearchTableForm(request.GET)
         if form.is_valid():
@@ -139,10 +148,10 @@ def cancel_book(request,reservation_id):
 
     if not customer_id:
         return redirect('login') 
-    
-    try:
+    else:
+     try:
         customer = CustomerUser.objects.get(id=customer_id)
-    except CustomerUser.DoesNotExist:
+     except CustomerUser.DoesNotExist:
         return redirect('login')
 
     booking = TableReservation.objects.get(pk=reservation_id, user=customer)
@@ -152,7 +161,6 @@ def cancel_book(request,reservation_id):
 
         booking.table.is_available = True
         booking.table.save()
-        booking.delete()
 
         return redirect('Book_history')
     return render(request,template_name='reservation/cancel_book.html')
@@ -173,7 +181,7 @@ def previous_book_history_for_restaurant(request,id):
             previous.append(b)
     return render(request,'reservation/previous_book_history_for_restaurant.html',{'previous': previous})
 
-#booking history of restaurant owner
+# recent booking history of restaurant owner
 def recent_book_history_for_restaurant(request,id):
     restaurant = Restaurant.objects.get(pk=id)
     now = timezone.now()
@@ -186,14 +194,50 @@ def recent_book_history_for_restaurant(request,id):
 
     for b in bookings:
         if b.reserve_date > today or (b.reserve_date == today and b.start_time >= current_time):
-            upcoming.append(b)
+            if b.status=='confirm':
+              upcoming.append(b)
     return render(request,'reservation/recent_book_history_for_restaurant.html',{'upcoming': upcoming})
 
+# recent  cancel booking history of restaurant owner
+def recent_cancel_booking_history_for_restaurant(request,id):
+    restaurant = Restaurant.objects.get(pk=id)
+    now = timezone.now()
+    today = now.date()
+    current_time = now.time()
+
+    bookings = TableReservation.objects.filter(restaurant=restaurant).order_by('-reserve_date')
+
+    recent_cancel=[]
+
+    for b in bookings:
+        if b.reserve_date > today or (b.reserve_date == today and b.start_time >= current_time):
+            if b.status=='cancel':
+              recent_cancel.append(b)
+    return render(request,'reservation/recent_cancel_booking_history_for_restaurant.html',{'recent_cancel': recent_cancel })
+
 #view table list for restaurant owner
-def view_table_list_for_restaurant_owner(request,id):
-     restaurant = Restaurant.objects.get(pk=id)
-     table = Table_list.objects.filter(restaurant=restaurant)
-     return render(request, 'reservation/view_table_list_for_restaurant_owner.html', {'table': table, 'restaurant': restaurant})
+def view_table_list_for_restaurant_owner(request, id):
+    restaurant = Restaurant.objects.get(pk=id)
+    tables = Table_list.objects.filter(restaurant=restaurant)
+    
+    now = timezone.now()
+    today = now.date()
+    current_time = now.time()
+
+    print(f"Today: {today}, Current Time: {current_time}")
+
+    future_tables = []
+    for t in tables:
+        print(f"Checking table {t.table_no}: date={t.date}, start={t.start_time}, end={t.end_time}")
+        if t.date > today:
+            future_tables.append(t)
+        elif t.date == today and t.end_time > current_time:
+            future_tables.append(t)
+    
+    return render(request, 'reservation/view_table_list_for_restaurant_owner.html', {
+        'table': future_tables,
+        'restaurant': restaurant
+    })
 
 #table added by restaurant owner
 def add_table_list_for_restaurant_owner(request, id):
@@ -234,4 +278,3 @@ def delete_table_list_for_restaurant_owner(request, id):
         'table': table,
         'restaurant': restaurant
     })
-

@@ -1,5 +1,5 @@
 from django.shortcuts import render, redirect
-from .forms import CustomerAdd
+from .forms import CustomerAdd,CustomerEditForm
 from restaurant.models import Restaurant
 from .models import CustomerUser
 # Create your views here.
@@ -60,19 +60,19 @@ def Customer_profile(request,id):
     customer = CustomerUser.objects.get(pk=id)
     return render(request, 'account/Customer_profile.html', {'customer': customer})
 
-def Edit_customer_profile(request,id):
-    customer = CustomerUser.objects.get(pk=id)
-    form=CustomerAdd(instance=customer)
+def edit_customer_profile(request, user_id):
+    customer = CustomerUser.objects.get(pk=user_id)
 
-    if request.method=="POST":
-        form=CustomerAdd(request.POST,request.FILES,instance=customer)
+    if request.method == "POST":
+        form = CustomerEditForm(request.POST, request.FILES, instance=customer)
         if form.is_valid():
-           form.save()
-           return redirect('Customer_profile',id=customer.id)
-        return render(request,'account/Customer_signup.html', {'form': form})
+            form.save()
+            return redirect('Customer_profile',id=customer.id)  # Redirect to profile page
+    else:
+        form = CustomerEditForm(instance=customer)
+
+    return render(request, 'account/edit_customer_profile.html', {'form': form})
         
-
-
 def Home(request):
     total_restaurants = Restaurant.objects.count()
     total_users = CustomerUser.objects.count()

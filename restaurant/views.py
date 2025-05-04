@@ -1,5 +1,5 @@
 from django.shortcuts import render,redirect,HttpResponse,get_object_or_404
-from .forms import RestaurantAddForm,MenuAddForm
+from .forms import RestaurantAddForm,MenuAddForm,RestaurantEditForm
 from account.models import CustomerUser
 from .models import Restaurant
 from .models import Menu
@@ -127,3 +127,16 @@ def restaurant_dashboard(request):
     restaurant_id = request.session.get('restaurant_id')
     restaurant = Restaurant.objects.get(id=restaurant_id)
     return render(request, 'restaurant/restaurant_dashboard.html',{'restaurant': restaurant})
+
+def edit_restaurant_profile(request,id):
+    restaurant = Restaurant.objects.get(pk=id)
+
+    if request.method == "POST":
+        form = RestaurantEditForm(request.POST, request.FILES, instance=restaurant)
+        if form.is_valid():
+            form.save()
+            return redirect('Customer_profile',id=restaurant.id)  # Redirect to profile page
+    else:
+        form = RestaurantEditForm(instance=restaurant)
+
+    return render(request, 'restaurant/edit_restaurant_profile.html', {'form': form})

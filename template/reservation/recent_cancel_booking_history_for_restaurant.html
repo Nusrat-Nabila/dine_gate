@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="container mt-5" style="width: 90%; margin: 0 auto;">
+    <h3 class="text-center" style="color: #ffffff"><b><u>Cancel Bookings list </b></u></h3>
+  <br>
+    {% if recent_cancel %}
+      <div class="menu-wrapper">
+        {% for r in recent_cancel %}
+          <div class="menu-item" style="background-color: #e3e4e3;width:15%">
+            <h5 class="card-title" style="text-align:center">
+              <i class="fas fa-user"></i> {{ r.user.user_name }}</h5>
+              <p class="card-title">
+              <i class="fas fa-chair"></i> {{ r.table.table_no }}
+            </p>
+
+
+            <p class="card-title">
+              <i class="fas fa-calendar-day"></i> {{ r.reserve_date }}
+            </p>
+            <p class="card-title">
+              <i class="fas fa-clock"></i>  {{ r.start_time }} - {{ r.end_time }}
+            </p>
+            <p class="card-title">
+              <i class="fas fa-info-circle"></i>  {{ r.status }}
+            </p>
+          </div>
+        {% endfor %}
+      </div>
+    {% endif %}
+{% endblock %}

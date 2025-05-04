@@ -30,7 +30,7 @@
             </a>
             <ul class="dropdown-menu dropdown-menu-end">
               <li><a class="dropdown-item" href="{% url 'Customer_profile' logged_user.id %}">Profile</a></li>
-              <li><a class="dropdown-item" href="{% url 'Edit_customer_profile' logged_user.id %}">Edit Profile</a></li>
+              <li><a class="dropdown-item" href="{% url 'edit_customer_profile' logged_user.id %}">Edit Profile</a></li>
               <li><hr class="dropdown-divider"></li>
               <li><a class="dropdown-item text-danger" href="{% url 'logout' %}">Logout</a></li>
             </ul>
@@ -54,7 +54,7 @@
             </a>
             <ul class="dropdown-menu dropdown-menu-end">
               <li><a class="dropdown-item" href="{% url 'Restaurant_profile' %}">Profile</a></li>
-              <li><a class="dropdown-item" href="#">Edit Profile</a></li>
+              <li><a class="dropdown-item" href="{% url 'edit_restaurant_profile' logged_user.id %}">Edit Profile</a></li>
               <li><hr class="dropdown-divider"></li>
               <li><a class="dropdown-item text-danger" href="{% url 'logout' %}">Logout</a></li>
             </ul>

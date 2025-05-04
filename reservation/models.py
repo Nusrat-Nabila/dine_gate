@@ -11,6 +11,9 @@ class Table_list(models.Model):
     no_of_people=models.IntegerField(blank=True,null=True)
     is_available = models.BooleanField(default=True)
 
+    class Meta:
+        unique_together = ('restaurant', 'table_no', 'date', 'start_time', 'end_time','no_of_people')
+
     def __str__(self):
         return (f"Restau_name: {self.restaurant.restaurant_name} ,item: {self.table_no}")
 
@@ -26,6 +29,9 @@ class TableReservation(models.Model):
         ('cancel','cancel'),
     )
     status=models.CharField(max_length=100,choices=status_choice)
+
+    class Meta:
+        unique_together = ('user', 'table', 'reserve_date', 'start_time', 'end_time')
 
     def __str__(self):
         return (f"user: {self.user.user_name} ,Restau_name: {self.restaurant.restaurant_name}")

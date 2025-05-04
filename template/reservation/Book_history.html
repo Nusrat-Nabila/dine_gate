@@ -11,6 +11,7 @@
           <h5 class="card-title">{{ booking.restaurant.restaurant_name }} - Table {{ booking.table.table_no }}</h5>
           <p class="card-text"><strong>Date:</strong> {{ booking.reserve_date }}</p>
           <p class="card-text"><strong>Time:</strong> {{ booking.start_time }} - {{ booking.end_time }}</p>
+          <p class="card-text"><strong>status:</strong> {{ booking.status }}</p>
           <form method="post" action="{% url 'cancel_book' booking.id %}">
             {% csrf_token %}
             <button class="btn btn-danger"><a href="{% url 'cancel_book' booking.id %}" class="card-link"> Cancel</a></button>

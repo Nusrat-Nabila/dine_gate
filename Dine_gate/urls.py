@@ -34,13 +34,13 @@ urlpatterns = [
     path('login/',a_views.login, name='login'),
     path('Customer_signup/',a_views.Customer_signup, name='Customer_signup'),
     path('Customer_profile/<str:id>/',a_views.Customer_profile, name='Customer_profile'),
-    path('Edit_customer_profile/<str:id>/',a_views.Edit_customer_profile, name='Edit_customer_profile'),
     path('signup_home/',a_views.signup_home, name='signup_home'),
     path('logout/', a_views.logout_view, name='logout'),
     path('about_us/', a_views.about_us, name='about_us'),
     path('our_service/', a_views.our_service, name='our_service'),
     path('contact_us/', a_views.contact_us, name='contact_us'),
-
+    path('edit_customer_profile/<int:user_id>/', a_views.edit_customer_profile, name='edit_customer_profile'),
+   
 
     path('Customer_home/',r_views.Customer_home,name='Customer_home'),
     path('Restaurant_list/',r_views.Restaurant_list,name='Restaurant_list'),
@@ -54,9 +54,10 @@ urlpatterns = [
     path('view_menu_for_restaurant_owner/<str:id>/',r_views.view_menu_for_restaurant_owner,name='view_menu_for_restaurant_owner'),
     path('edit_menu_for_restaurant_owner/<str:id>/',r_views.edit_menu_for_restaurant_owner,name='edit_menu_for_restaurant_owner'),
     path('delete_menu_for_restaurant_owner/<str:id>/',r_views.delete_menu_for_restaurant_owner,name='delete_menu_for_restaurant_owner'),
-
+    path('edit_restaurant_profile/<str:id>/', r_views.edit_restaurant_profile, name='edit_restaurant_profile'),
 
     path('Book_history/',rv_views.Book_history,name='Book_history'),
+    path('recent_cancel_booking_history_for_restaurant/<str:id>/',rv_views.recent_cancel_booking_history_for_restaurant,name='recent_cancel_booking_history_for_restaurant'),
     path('recent_book_history_for_restaurant/<str:id>/',rv_views.recent_book_history_for_restaurant,name='recent_book_history_for_restaurant'),
     path('previous_book_history_for_restaurant/<str:id>/',rv_views.previous_book_history_for_restaurant,name='previous_book_history_for_restaurant'),
     path('search_table/<int:id>/',rv_views.search_table,name='search_table'),

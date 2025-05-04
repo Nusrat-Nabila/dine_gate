@@ -4,7 +4,7 @@ from django.db import models
 class CustomerUser(models.Model):
     user_name=models.CharField(max_length=100)
     user_email=models.EmailField(max_length=100,blank=True,null=True)
-    user_contect_number=models.IntegerField(blank=True,null=True)
+    user_contect_number=models.CharField(max_length=15,blank=True,null=True)
     user_address=models.CharField(max_length=200,blank=True,null=True)
     user_image=models.ImageField(blank=True,null=True)
     user_password=models.CharField(max_length=200,blank=True,null=True)
