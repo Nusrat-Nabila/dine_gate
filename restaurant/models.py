@@ -34,7 +34,7 @@ class Menu(models.Model):
     item_name=models.CharField(max_length=200)
     cuisine=models.CharField(max_length=100,blank=True,null=True)
     price=models.IntegerField()
-
+    food_pic=models.ImageField(blank=True,null=True)
     def __str__(self):
         return (f"Restau_name: {self.restaurant.restaurant_name} ,item: {self.item_name}")
 

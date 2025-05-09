@@ -63,11 +63,11 @@ urlpatterns = [
     path('search_table/<int:id>/',rv_views.search_table,name='search_table'),
     path('confirm_booking/<str:table_no>/<str:date>/<str:start_time>/<str:end_time>/', rv_views.confirm_booking, name='confirm_booking'),
     path('cancel_book/<str:reservation_id>/',rv_views.cancel_book,name='cancel_book'),
-    path('add_table_list_for_restaurant_owner/<str:id>/',rv_views.add_table_list_for_restaurant_owner,name='add_table_list_for_restaurant_owner'),
-    path('view_table_list_for_restaurant_owner/<str:id>/',rv_views.view_table_list_for_restaurant_owner,name='view_table_list_for_restaurant_owner'),
-    path('edit_table_list_for_restaurant_owner/<str:id>/',rv_views.edit_table_list_for_restaurant_owner,name='edit_table_list_for_restaurant_owner'),
-    path('delete_table_list_for_restaurant_owner/<str:id>/',rv_views.delete_table_list_for_restaurant_owner,name='delete_table_list_for_restaurant_owner'),
-    
+    path('add_table_list_for_restaurant_owner/<int:id>/',rv_views.add_table_list_for_restaurant_owner,name='add_table_list_for_restaurant_owner'),
+    path('view_table_list_for_restaurant_owner/<int:id>/',rv_views.view_table_list_for_restaurant_owner,name='view_table_list_for_restaurant_owner'),
+    path('edit_table_list_for_restaurant_owner/<int:id>/',rv_views.edit_table_list_for_restaurant_owner,name='edit_table_list_for_restaurant_owner'),
+    path('delete_table_list_for_restaurant_owner/<int:id>/',rv_views.delete_table_list_for_restaurant_owner,name='delete_table_list_for_restaurant_owner'),
+    path('delete_table_confirm/<int:id>/', rv_views.confirm_delete_table, name='confirm_delete_table'),
   
 
 ]+static(settings.MEDIA_URL, document_root = settings.MEDIA_ROOT)

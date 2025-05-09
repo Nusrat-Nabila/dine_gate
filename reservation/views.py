@@ -8,6 +8,8 @@ from datetime import datetime
 from django.http import HttpResponseBadRequest
 from .models import Table_list, TableReservation
 from datetime import datetime
+from django.db import IntegrityError
+from django.contrib import messages
 
 #search table list for customer
 def search_table(request, id):
@@ -136,7 +138,7 @@ def Book_history(request):
 
     for b in bookings:
         if b.reserve_date > today or (b.reserve_date == today and b.start_time >= current_time):
-            upcoming.append(b)
+             upcoming.append(b)
         else:
             past.append(b)
 
@@ -153,16 +155,19 @@ def cancel_book(request,reservation_id):
         customer = CustomerUser.objects.get(id=customer_id)
      except CustomerUser.DoesNotExist:
         return redirect('login')
-
+     
     booking = TableReservation.objects.get(pk=reservation_id, user=customer)
     if request.method == 'POST':
         booking.status = 'cancel'
-        booking.delete()
 
         booking.table.is_available = True
         booking.table.save()
+        booking.save()
+  
 
         return redirect('Book_history')
+
+    
     return render(request,template_name='reservation/cancel_book.html')
 
 #booking history of restaurant owner
@@ -193,7 +198,7 @@ def recent_book_history_for_restaurant(request,id):
     upcoming = []
 
     for b in bookings:
-        if b.reserve_date > today or (b.reserve_date == today and b.start_time >= current_time):
+        if b.reserve_date > today or (b.reserve_date == today and b.end_time >= current_time):
             if b.status=='confirm':
               upcoming.append(b)
     return render(request,'reservation/recent_book_history_for_restaurant.html',{'upcoming': upcoming})
@@ -210,7 +215,7 @@ def recent_cancel_booking_history_for_restaurant(request,id):
     recent_cancel=[]
 
     for b in bookings:
-        if b.reserve_date > today or (b.reserve_date == today and b.start_time >= current_time):
+        if b.reserve_date > today or (b.reserve_date == today and b.end_time >= current_time):
             if b.status=='cancel':
               recent_cancel.append(b)
     return render(request,'reservation/recent_cancel_booking_history_for_restaurant.html',{'recent_cancel': recent_cancel })
@@ -241,16 +246,17 @@ def view_table_list_for_restaurant_owner(request, id):
 
 #table added by restaurant owner
 def add_table_list_for_restaurant_owner(request, id):
-    restaurant = Restaurant.objects.get(pk=id)
+    restaurant = get_object_or_404(Restaurant, pk=id)
     if request.method == "POST":
-        form = TableAddForm(request.POST)
+        form = TableAddForm(request.POST, restaurant=restaurant)
         if form.is_valid():
             table = form.save(commit=False)
-            table.restaurant = restaurant  
+            table.restaurant = restaurant
             table.save()
+            messages.success(request, "Table added successfully.")
             return redirect('view_table_list_for_restaurant_owner', id=restaurant.id)
     else:
-        form = TableAddForm()
+        form = TableAddForm(restaurant=restaurant)
     return render(request, 'reservation/add_table_list_for_restaurant_owner.html', {'form': form})
 
 #menu table info update by restaurant owner
@@ -264,17 +270,19 @@ def edit_table_list_for_restaurant_owner(request,id):
             return redirect('view_table_list_for_restaurant_owner', id=table.restaurant.id)
     return render(request, 'reservation/add_table_list_for_restaurant_owner.html', {'form': form})
 
-#delete table info for restaurant owner /restaurant
-
-def delete_table_list_for_restaurant_owner(request, id):
+def confirm_delete_table(request, id):
     table = get_object_or_404(Table_list, pk=id)
     restaurant = table.restaurant
+    return render(request, 'reservation/delete_table_list_for_restaurant_owner.html', {'table': table, 'restaurant': restaurant})
 
-    if request.method == "POST":
+#delete table info for restaurant owner /restaurant
+def delete_table_list_for_restaurant_owner(request, id):
+    try:
+        table = get_object_or_404(Table_list,pk=id)
+        restaurant_id = table.restaurant.id
         table.delete()
-        return redirect('view_table_list_for_restaurant_owner', id=restaurant.id)
-
-    return render(request, 'reservation/delete_table_list_for_restaurant_owner.html', {
-        'table': table,
-        'restaurant': restaurant
-    })
+        messages.success(request, "Table deleted successfully.")
+    except Table_list.DoesNotExist:
+        messages.error(request, "Table not found or already deleted.")
+        restaurant_id = request.GET.get('restaurant_id')  # fallback
+    return redirect('view_table_list_for_restaurant_owner', id=restaurant_id)

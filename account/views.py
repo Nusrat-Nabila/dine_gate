@@ -74,6 +74,11 @@ def edit_customer_profile(request, user_id):
     return render(request, 'account/edit_customer_profile.html', {'form': form})
         
 def Home(request):
+    if request.session.get('user_id'):
+        return redirect('Customer_home')
+    elif request.session.get('restaurant_id'):
+        return redirect('restaurant_dashboard')
+    
     total_restaurants = Restaurant.objects.count()
     total_users = CustomerUser.objects.count()
     return render(request, 'home.html', {'total_restaurants': total_restaurants, 'total_users': total_users})

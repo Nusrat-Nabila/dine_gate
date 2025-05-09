@@ -11,6 +11,7 @@
   {% if upcoming %}
     <div class="menu-wrapper">
       {% for booking in upcoming %}
+      {%  if booking.status == 'confirm' %}
         <div class="menu-item" style="background-color: #e3e4e3;width:20%">
           <h5 class="card-title">{{ booking.restaurant.restaurant_name }} - Table {{ booking.table.table_no }}</h5>
           <p class="card-text"><strong>Date:</strong> {{ booking.reserve_date }}</p>
@@ -20,6 +21,12 @@
             {% csrf_token %}
             <button class="btn btn-danger"><a href="{% url 'cancel_book' booking.id %}" class="card-link"> Cancel</a></button>
           </form>
+          {% elif booking.status == 'cancel' %}
+          <h5 class="card-title">{{ booking.restaurant.restaurant_name }} - Table {{ booking.table.table_no }}</h5>
+          <p class="card-text"><strong>Date:</strong> {{ booking.reserve_date }}</p>
+          <p class="card-text"><strong>Time:</strong> {{ booking.start_time }} - {{ booking.end_time }}</p>
+          <p class="card-text"><strong>status:</strong> {{ booking.status }}</p>
+          {% endif %}
         </div>
       {% endfor %}
     </div>

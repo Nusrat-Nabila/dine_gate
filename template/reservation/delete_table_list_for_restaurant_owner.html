@@ -23,7 +23,7 @@
                 <br>This action cannot be undone.
             </p>
 
-            <form method="POST" class="delete-confirmation-form">
+            <form method="POST" action="{% url 'delete_table_list_for_restaurant_owner' table.id %}" class="delete-confirmation-form">
                 {% csrf_token %}
                 <a href="{% url 'view_table_list_for_restaurant_owner' restaurant.id %}" class="cancel-btn">
                     <i class="fas fa-arrow-left"></i> Cancel
