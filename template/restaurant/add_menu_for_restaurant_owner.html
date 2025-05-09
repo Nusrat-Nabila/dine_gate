@@ -1,41 +1,98 @@
 {% extends 'base.html' %}
+{% load static %}
+
 {% block content %}
-<div class="profile-card-wrapper">
-  <h2>Add Or Edit Menu Item</h2>
+<div class="login-wrapper" style="
+    background: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)),
+                url('{% static 'images/back2.jpg' %}') no-repeat center center fixed;
+    background-size: cover;
+    min-height: 100vh;
+    padding: 2rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+">
+    <div class="login-container">
+        <!-- Compact Header with #004d40 Border -->
+        <div class="login-header">
+            <img src="{% static 'images/logo.jpg' %}" alt="DineGate Logo" class="logo">
+            <h4>{% if form.instance.pk %}Edit Menu Item{% else %}Add Menu Item{% endif %}</h4>
+        </div>
 
-  <form method="POST">
-    {% csrf_token %}
-    <div class="profile-info-block">
+        <div class="login-body">
+            <form method="POST" class="login-form">
+                {% csrf_token %}
 
-      <!-- Item Name -->
-      <label for="id_item_name" style="font-weight: 600; color: #004D40; display: block; margin-bottom: 6px;">
-        <i class="fas fa-hamburger"></i> Item Name
-      </label>
-      <input type="text" name="item_name" id="id_item_name" placeholder="Enter item name"
-             style="width: 100%; padding: 10px 15px; border: 1px solid #004D40; border-radius: 6px; margin-bottom: 18px; font-size: 1rem; color: #004D40; background-color: #e3e4e3; box-sizing: border-box;">
+                {% if form.errors %}
+                <div class="alert alert-error">
+                    <i class="fas fa-exclamation-circle"></i>
+                    <span>Please correct the errors below</span>
+                </div>
+                {% endif %}
 
-      <!-- Cuisine -->
-      <label for="id_cuisine" style="font-weight: 600; color: #004D40; display: block; margin-bottom: 6px;">
-        <i class="fas fa-globe-asia"></i> Cuisine
-      </label>
-      <input type="text" name="cuisine" id="id_cuisine" placeholder="e.g., Italian, Chinese"
-             style="width: 100%; padding: 10px 15px; border: 1px solid #004D40; border-radius: 6px; margin-bottom: 18px; font-size: 1rem; color: #004D40; background-color: #e3e4e3; box-sizing: border-box;">
+                <!-- Item Name -->
+                <div class="form-group">
+                    <label for="id_item_name">Item Name</label>
+                    <div class="input-group">
+                        <span class="input-icon">
+                            <i class="fas fa-hamburger"></i>
+                        </span>
+                        <input type="text" id="id_item_name" name="item_name"
+                               class="form-control" placeholder="Item Name"
+                               value="{{ form.item_name.value|default:'' }}" required
+                               style="border: 2px solid #004d40; padding-left: 40px;">
+                    </div>
+                    {% if form.item_name.errors %}
+                        <small class="error-text">{{ form.item_name.errors }}</small>
+                    {% endif %}
+                </div>
 
-      <!-- Price -->
-      <label for="id_price" style="font-weight: 600; color: #004D40; display: block; margin-bottom: 6px;">
-        <i class="fas fa-dollar-sign"></i> Price
-      </label>
-      <input type="number" name="price" id="id_price" placeholder="Enter price in BDT"
-             style="width: 100%; padding: 10px 15px; border: 1px solid #004D40; border-radius: 6px; margin-bottom: 18px; font-size: 1rem; color: #004D40; background-color: #e3e4e3; box-sizing: border-box;">
+                <!-- Cuisine -->
+                <div class="form-group">
+                    <label for="id_cuisine">Cuisine</label>
+                    <div class="input-group">
+                        <span class="input-icon">
+                            <i class="fas fa-globe-asia"></i>
+                        </span>
+                        <input type="text" id="id_cuisine" name="cuisine"
+                               class="form-control" placeholder="e.g., Italian, Chinese"
+                               value="{{ form.cuisine.value|default:'' }}" required
+                               style="border: 2px solid #004d40; padding-left: 40px;">
+                    </div>
+                    {% if form.cuisine.errors %}
+                        <small class="error-text">{{ form.cuisine.errors }}</small>
+                    {% endif %}
+                </div>
 
-      <!-- Submit Button -->
-      <div class="profile-action-btns" style="display: flex; justify-content: center; margin-top: 30px;">
-        <button type="submit" style="background-color: #004D40; color: white; padding: 12px 25px; border: none; border-radius: 8px; font-size: 1rem; cursor: pointer; transition: background-color 0.3s ease;">
-          Submit
-        </button>
-      </div>
+                <!-- Price -->
+                <div class="form-group">
+                    <label for="id_price">Price (BDT)</label>
+                    <div class="input-group">
+                        <span class="input-icon">
+                            <i class="fas fa-dollar-sign"></i>
+                        </span>
+                        <input type="number" id="id_price" name="price"
+                               class="form-control" placeholder="Price in BDT"
+                               value="{{ form.price.value|default:'' }}" required
+                               style="border: 2px solid #004d40; padding-left: 40px;">
+                    </div>
+                    {% if form.price.errors %}
+                        <small class="error-text">{{ form.price.errors }}</small>
+                    {% endif %}
+                </div>
 
+                <!-- Submit Button -->
+                <button type="submit" class="btn btn-login" style="background-color:#004d40; color:#ffffff; border: 2px solid #004d40;">
+                    <i class="fas fa-save"></i> {% if form.instance.pk %}Update{% else %}Add{% endif %} Item
+                </button>
+            </form>
+
+            <div class="login-footer">
+                <p><a href="{% url 'restaurant_dashboard' %}" class="signup-link" style="color:#004d40">
+                    <b>Back to Dashboard</b>
+                </a></p>
+            </div>
+        </div>
     </div>
-  </form>
 </div>
 {% endblock %}

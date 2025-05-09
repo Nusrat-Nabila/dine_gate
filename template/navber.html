@@ -2,7 +2,10 @@
 
 <nav class="navbar navbar-expand-lg" style="background-color: #004D40;">
   <div class="container-fluid">
-    <a class="navbar-brand text-white" href="{% url 'Home' %}">DineGate</a>
+    <a class="navbar-brand" href="{% url 'Home' %}">
+      <img src="{% static 'images/logo.jpg' %}" alt="DineGate Logo" width="auto" height="50">
+    </a>
+
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarMain">
       <span class="navbar-toggler-icon"></span>
     </button>
@@ -68,14 +71,14 @@
           <li class="nav-item">
             <a class="nav-link text-white" onclick="alert('Please login to reserve the table.')">Reserve Table</a>
           </li>
-          <li class="nav-item">
-            <a class="btn btn-outline-light mx-2" href="{% url 'Restaurant_signup' %}">Register Restaurant</a>
+          <li class="nav-item px-2">  <!-- Added padding between buttons -->
+            <a class="btn btn-outline-light" href="{% url 'Restaurant_signup' %}">Register Restaurant</a>
           </li>
-          <li class="nav-item">
-            <a class="btn btn-outline-light mx-2" href="{% url 'Customer_signup' %}">Sign Up</a>
+          <li class="nav-item px-2">  <!-- Added padding between buttons -->
+            <a class="btn btn-outline-light" href="{% url 'Customer_signup' %}">Sign Up</a>
           </li>
-          <li class="nav-item">
-            <a class="btn btn-light text-dark mx-2" href="{% url 'login' %}">Login</a>
+          <li class="nav-item ps-2">  <!-- Added padding between buttons -->
+            <a class="btn btn-light text-dark" href="{% url 'login' %}">Login</a>
           </li>
         {% endif %}
       </ul>

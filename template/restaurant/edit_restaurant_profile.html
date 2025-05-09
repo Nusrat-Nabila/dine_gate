@@ -1,13 +1,255 @@
 {% extends 'base.html' %}
+{% load static %}
+
 {% block content %}
-<div class="profile-form-container">
-  <h2>Edit Profile</h2>
-  <form method="POST" enctype="multipart/form-data">
-      {% csrf_token %}
-      {{ form.as_p }}
-      <div class="button-container">
-          <button type="submit" class="btn btn-success">Save Changes</button>
-      </div>
-  </form>
+<div class="login-wrapper" style="
+    background: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)),
+                url('{% static 'images/back2.jpg' %}') no-repeat center center fixed;
+    background-size: cover;
+    min-height: 100vh;
+    padding: 2rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+">
+    <div class="login-container">
+        <!-- Compact Header with #004d40 Border -->
+        <div class="login-header">
+            <img src="{% static 'images/logo.jpg' %}" alt="DineGate Logo" class="logo">
+            <h4>Edit Restaurant Profile</h4>
+        </div>
+
+        <div class="login-body">
+            <form method="POST" class="login-form" enctype="multipart/form-data">
+                {% csrf_token %}
+
+                {% if form.errors %}
+                <div class="alert alert-error">
+                    <i class="fas fa-exclamation-circle"></i>
+                    <span>Please correct the errors below</span>
+                </div>
+                {% endif %}
+
+                <!-- Restaurant Logo -->
+                <div class="form-group">
+                    <label for="id_logo">Restaurant Logo</label>
+                    <div class="input-group">
+                        <span class="input-icon">
+                            <i class="fas fa-camera"></i>
+                        </span>
+                        <input type="file" id="id_logo" name="logo"
+                               class="form-control" style="border: 2px solid #004d40; padding-left: 40px;">
+                    </div>
+                    {% if form.logo.errors %}
+                        <small class="error-text">{{ form.logo.errors }}</small>
+                    {% endif %}
+                    {% if form.instance.logo %}
+                        <div class="current-image-preview mt-2">
+                            <small>Current Logo:</small>
+                            <img src="{{ form.instance.logo.url }}" alt="Current logo" style="max-width: 100px; max-height: 100px; display: block; margin-top: 5px;">
+                        </div>
+                    {% endif %}
+                </div>
+
+                <!-- Restaurant Name -->
+                <div class="form-group">
+                    <label for="id_restaurant_name">Restaurant Name</label>
+                    <div class="input-group">
+                        <span class="input-icon">
+                            <i class="fas fa-utensils"></i>
+                        </span>
+                        <input type="text" id="id_restaurant_name" name="restaurant_name"
+                               class="form-control" placeholder="Restaurant Name"
+                               value="{{ form.restaurant_name.value|default:'' }}" required
+                               style="border: 2px solid #004d40; padding-left: 40px;">
+                    </div>
+                    {% if form.restaurant_name.errors %}
+                        <small class="error-text">{{ form.restaurant_name.errors }}</small>
+                    {% endif %}
+                </div>
+
+                <!-- Email -->
+                <div class="form-group">
+                    <label for="id_email">Email</label>
+                    <div class="input-group">
+                        <span class="input-icon">
+                            <i class="fas fa-envelope"></i>
+                        </span>
+                        <input type="email" id="id_email" name="email"
+                               class="form-control" placeholder="Email"
+                               value="{{ form.email.value|default:'' }}" required
+                               style="border: 2px solid #004d40; padding-left: 40px;">
+                    </div>
+                    {% if form.email.errors %}
+                        <small class="error-text">{{ form.email.errors }}</small>
+                    {% endif %}
+                </div>
+
+                <!-- Contact Number -->
+                <div class="form-group">
+                    <label for="id_contact_no">Contact Number</label>
+                    <div class="input-group">
+                        <span class="input-icon">
+                            <i class="fas fa-phone"></i>
+                        </span>
+                        <input type="text" id="id_contact_no" name="contact_no"
+                               class="form-control" placeholder="Contact Number"
+                               value="{{ form.contact_no.value|default:'' }}" required
+                               style="border: 2px solid #004d40; padding-left: 40px;">
+                    </div>
+                    {% if form.contact_no.errors %}
+                        <small class="error-text">{{ form.contact_no.errors }}</small>
+                    {% endif %}
+                </div>
+
+                <!-- Business Registration ID -->
+                <div class="form-group">
+                    <label for="id_business_reg_id">Business Registration No</label>
+                    <div class="input-group">
+                        <span class="input-icon">
+                            <i class="fas fa-id-card"></i>
+                        </span>
+                        <input type="text" id="id_business_reg_id" name="business_reg_id"
+                               class="form-control" placeholder="Business Registration No"
+                               value="{{ form.business_reg_id.value|default:'' }}" required
+                               style="border: 2px solid #004d40; padding-left: 40px;">
+                    </div>
+                    {% if form.business_reg_id.errors %}
+                        <small class="error-text">{{ form.business_reg_id.errors }}</small>
+                    {% endif %}
+                </div>
+
+                <!-- City -->
+                <div class="form-group">
+                    <label for="id_city">City</label>
+                    <div class="input-group">
+                        <span class="input-icon">
+                            <i class="fas fa-city"></i>
+                        </span>
+                        <input type="text" id="id_city" name="city"
+                               class="form-control" placeholder="City"
+                               value="{{ form.city.value|default:'' }}" required
+                               style="border: 2px solid #004d40; padding-left: 40px;">
+                    </div>
+                    {% if form.city.errors %}
+                        <small class="error-text">{{ form.city.errors }}</small>
+                    {% endif %}
+                </div>
+
+                <!-- Area -->
+                <div class="form-group">
+                    <label for="id_area">Area</label>
+                    <div class="input-group">
+                        <span class="input-icon">
+                            <i class="fas fa-map-marker-alt"></i>
+                        </span>
+                        <input type="text" id="id_area" name="area"
+                               class="form-control" placeholder="Area"
+                               value="{{ form.area.value|default:'' }}" required
+                               style="border: 2px solid #004d40; padding-left: 40px;">
+                    </div>
+                    {% if form.area.errors %}
+                        <small class="error-text">{{ form.area.errors }}</small>
+                    {% endif %}
+                </div>
+
+                <!-- Location -->
+                <div class="form-group">
+                    <label for="id_location">Location</label>
+                    <div class="input-group">
+                        <span class="input-icon">
+                            <i class="fas fa-map-pin"></i>
+                        </span>
+                        <input type="text" id="id_location" name="location"
+                               class="form-control" placeholder="Location"
+                               value="{{ form.location.value|default:'' }}" required
+                               style="border: 2px solid #004d40; padding-left: 40px;">
+                    </div>
+                    {% if form.location.errors %}
+                        <small class="error-text">{{ form.location.errors }}</small>
+                    {% endif %}
+                </div>
+
+                <!-- Opening Time -->
+                <div class="form-group">
+                    <label for="id_s_time">Opening Time</label>
+                    <div class="input-group">
+                        <span class="input-icon">
+                            <i class="fas fa-clock"></i>
+                        </span>
+                        <input type="time" id="id_s_time" name="s_time"
+                               class="form-control" placeholder="Opening Time"
+                               value="{{ form.s_time.value|default:''|time:'H:i' }}" required
+                               style="border: 2px solid #004d40; padding-left: 40px;">
+                    </div>
+                    {% if form.s_time.errors %}
+                        <small class="error-text">{{ form.s_time.errors }}</small>
+                    {% endif %}
+                </div>
+
+                <!-- Closing Time -->
+                <div class="form-group">
+                    <label for="id_e_time">Closing Time</label>
+                    <div class="input-group">
+                        <span class="input-icon">
+                            <i class="fas fa-clock"></i>
+                        </span>
+                        <input type="time" id="id_e_time" name="e_time"
+                               class="form-control" placeholder="Closing Time"
+                               value="{{ form.e_time.value|default:''|time:'H:i' }}" required
+                               style="border: 2px solid #004d40; padding-left: 40px;">
+                    </div>
+                    {% if form.e_time.errors %}
+                        <small class="error-text">{{ form.e_time.errors }}</small>
+                    {% endif %}
+                </div>
+
+                <!-- Minimum Price -->
+                <div class="form-group">
+                    <label for="id_min_price">Minimum Price (₹)</label>
+                    <div class="input-group">
+                        <span class="input-icon">
+                            <i class="fas fa-rupee-sign"></i>
+                        </span>
+                        <input type="number" id="id_min_price" name="min_price"
+                               class="form-control" placeholder="Minimum Price"
+                               value="{{ form.min_price.value|default:'' }}" required
+                               style="border: 2px solid #004d40; padding-left: 40px;">
+                    </div>
+                    {% if form.min_price.errors %}
+                        <small class="error-text">{{ form.min_price.errors }}</small>
+                    {% endif %}
+                </div>
+
+                <!-- Maximum Price -->
+                <div class="form-group">
+                    <label for="id_max_price">Maximum Price (₹)</label>
+                    <div class="input-group">
+                        <span class="input-icon">
+                            <i class="fas fa-rupee-sign"></i>
+                        </span>
+                        <input type="number" id="id_max_price" name="max_price"
+                               class="form-control" placeholder="Maximum Price"
+                               value="{{ form.max_price.value|default:'' }}" required
+                               style="border: 2px solid #004d40; padding-left: 40px;">
+                    </div>
+                    {% if form.max_price.errors %}
+                        <small class="error-text">{{ form.max_price.errors }}</small>
+                    {% endif %}
+                </div>
+
+                <!-- Save Changes Button -->
+                <button type="submit" class="btn btn-login" style="background-color:#004d40; color:#ffffff; border: 2px solid #004d40;">
+                    <i class="fas fa-save"></i> Save Changes
+                </button>
+            </form>
+
+            <div class="login-footer">
+                <p><a href="{% url 'restaurant_dashboard' %}" class="signup-link" style="color:#004d40">
+                    <b>Back to Dashboard</b>
+                </a></p>
+            </div>
+        </div>
+    </div>
 </div>
 {% endblock %}

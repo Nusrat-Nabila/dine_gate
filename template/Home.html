@@ -1,33 +1,52 @@
 {% extends 'base.html' %}
 {% load static %}
 {% block content %}
-<div class="container mt-5">
-  <div class="row d-flex justify-content-center align-items-center">
 
-    <div class="col-md-6">
-      <!-- Heading Section -->
-      <h1 class="text-white"><strong>Welcome to <i id="dinegate-logo" class="breathe-logo">DineGate</i>
+<!-- Home Page with Background Image -->
+<div class="home-container" style="
+    background: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)),
+    url('{% static 'images/back2.jpg' %}');
+    background-size: cover;
+    background-position: center;
+    min-height: 90vh;
+    padding: 90px 0;
+    color: white;
+">
+    <div class="container">
+        <div class="row d-flex justify-content-center align-items-center">
+            <div class="col-md-8 text-center">
+                <!-- Heading Section -->
+                <h1 class="display-4 mb-4">
+                    <strong>Welcome to <div class="rolling-text">
+                        <span class="dinegate-logo">DineGate</span>
+                        <span class="dinegate-logo">Search</span>
+                        <span class="dinegate-logo">Reserve</span>
+                        <span class="dinegate-logo">Eat</span>
+                        <span class="dinegate-logo">DineGate</span>
+                    </div></strong>
+                </h1>
+                <h2 class="mb-5">Browse restaurants, reserve a table, and enjoy your meal!</h2>
 
-</strong></h1>
-      <h2 style="color:#ffffff">Browse restaurants, reserve a table, and enjoy your meal!</h2>
-
-      <div class="mt-5">
-
-        <!-- Search Form -->
-<form class="d-flex mt-4" method="GET" action="{% url 'search_restaurant' %}">
-  <input class="form-control me-2" type="text" name="query" placeholder="Search restaurants..." required>
-  <button class="btn btn-dark" type="submit">Search</button>
-</form>
-      </div>
-
-
+                <!-- Search Form -->
+                <form class="search-form" method="GET" action="{% url 'search_restaurant' %}">
+    <div class="input-group">
+        <input class="form-control"
+               type="text"
+               name="query"
+               placeholder="Search restaurants..."
+               aria-label="Search restaurants"
+               required>
+        <button class="btn-search btn-search"  type="submit">
+            <i class="fas fa-search me-2"></i> Search
+        </button>
     </div>
-    <br><br><br><br><br>    <br><br><br><br><br>
-    <br><br><br><br><br><br><br><br><br><br>
+</form>
+                    </div>
+                </form>
 
-  </div>
-
-<!-- Link your script -->
-<script src="{% static 'js/script.js' %}"></script>
+            </div>
+        </div>
+    </div>
 </div>
+
 {% endblock %}

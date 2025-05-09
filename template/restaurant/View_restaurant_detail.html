@@ -1,37 +1,99 @@
 {% extends 'base.html' %}
 {% load static %}
-
 {% block content %}
-<br>
-<div class="content-container">
-  <div class="content-header">
-    <h1 class="content-title" style="font-size:34px">Details</h1>
-  </div>
+
+
+
+<div class="rd-main-wrapper" style="
+      background: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)),
+                  url('{% static 'images/back2.jpg' %}') no-repeat center center fixed;
+      background-size: cover;
+      min-height: 100vh;
+      padding: 3rem 1rem;
+  ">
+    <div class="rd-content-box">
+        <div class="rd-page-header">
+            <h1 class="rd-page-title">Restaurant Details</h1>
+        </div>
+    </div>
+
+    {% if restaurants %}
+    <div class="rd-card-container">
+        <div class="rd-image-wrapper">
+            {% if restaurants.logo %}
+                <img src="{{ restaurants.logo.url }}" alt="{{ restaurants.restaurant_name }}">
+            {% else %}
+                <img src="{% static 'images/dp2.jpg' %}" alt="Default Restaurant Logo">
+            {% endif %}
+        </div>
+
+        <div class="rd-info-section">
+            <h2 class="rd-restaurant-name">{{ restaurants.restaurant_name }}</h2>
+
+            <div class="rd-details-grid">
+                <div class="rd-detail-card">
+                    <span class="rd-detail-icon"><i class="fas fa-clock"></i></span>
+                    <div class="rd-detail-content">
+                        <div class="rd-detail-label">Opening Hours</div>
+                        <div class="rd-detail-value">{{ restaurants.s_time|time:"g:i A" }} - {{ restaurants.e_time|time:"g:i A" }}</div>
+                    </div>
+                </div>
+
+                <div class="rd-detail-card">
+                    <span class="rd-detail-icon"><i class="fas fa-tags"></i></span>
+                    <div class="rd-detail-content">
+                        <div class="rd-detail-label">Price Range</div>
+                        <div class="rd-detail-value">{{ restaurants.min_price }} - {{ restaurants.max_price }}</div>
+                    </div>
+                </div>
+
+                <div class="rd-detail-card">
+                    <span class="rd-detail-icon"><i class="fas fa-map-marker-alt"></i></span>
+                    <div class="rd-detail-content">
+                        <div class="rd-detail-label">Location</div>
+                        <div class="rd-detail-value">{{ restaurants.location }}</div>
+                    </div>
+                </div>
+
+                <div class="rd-detail-card">
+                    <span class="rd-detail-icon"><i class="fas fa-map-marked-alt"></i></span>
+                    <div class="rd-detail-content">
+                        <div class="rd-detail-label">Area & City</div>
+                        <div class="rd-detail-value">{{ restaurants.area }} , {{ restaurants.city }}</div>
+                    </div>
+                </div>
+                <div class="rd-detail-card">
+                    <span class="rd-detail-icon"><i class="fas fa-phone"></i></span>
+                    <div class="rd-detail-content">
+                        <div class="rd-detail-label">Contact</div>
+                        <div class="rd-detail-value">{{ restaurants.contact_no }}</div>
+                    </div>
+                </div>
+
+                <div class="rd-detail-card">
+                    <span class="rd-detail-icon"><i class="fas fa-envelope"></i></span>
+                    <div class="rd-detail-content">
+                        <div class="rd-detail-label">Email</div>
+                        <div class="rd-detail-value">{{ restaurants.email }}</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="rd-action-buttons">
+                <a href="{% url 'view_menu' restaurants.id %}" class="rd-action-btn rd-btn-primary">
+                    <i class="fas fa-utensils"></i> View Menu
+                </a>
+                <a href="{% url 'search_table' restaurants.id %}" class="rd-action-btn rd-btn-outline">
+                    <i class="fas fa-calendar-check"></i> Book Table
+                </a>
+            </div>
+        </div>
+    </div>
+    {% else %}
+    <div class="rd-not-found">
+        <p>No restaurant details found.</p>
+    </div>
+    {% endif %}
 </div>
 
-<div class="container mt-4">
-  {% if restaurants %}
-  <div class="restaurant-profile-card mb-4">
-    <div class="profile-left">
-     {% if restaurants.logo %}
-                <img src="{{ restaurants.logo.url }}" class="rounded-circle" width="300" height="300" alt="restaurant logo">
-              {% else %}
-                <img src="{% static 'images/dp2.jpg' %}" class="rounded-circle" width="300" height="300" alt="default restaurant logo">
-              {% endif %}
-    </div>
-    <div class="profile-right">
-      <h2 class="restaurant-name">{{ restaurants.restaurant_name }}</h2>
-      <p><strong>Opening and closing time:</strong> {{ restaurants.s_time }} - {{ restaurants.e_time }}</p>
-      <p><strong>Price:</strong> {{ restaurants.min_price }} to {{ restaurants.max_price }} </p>
-      <p><strong>Address:</strong> {{ restaurants.location }}</p>
-      <p><strong>Contact:</strong> {{ restaurants.contact_no }}</p>
-      <p><strong>Email:</strong> {{ restaurants.email }}</p>
-      <div class="profile-buttons">
-        <a href="{% url 'view_menu' restaurants.id %}" class="btn btn-success" style="background-color:#004D40">View Menu</a>
-        <a href="{% url 'search_table' restaurants.id %}" class="btn btn-success" style="background-color:#004D40">Book Now</a>
-      </div>
-    </div>
-  </div>
-  {% endif %}
-</div>
 {% endblock %}

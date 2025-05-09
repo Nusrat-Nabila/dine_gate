@@ -1,50 +1,60 @@
 {% extends 'base.html' %}
 {% load static %}
 {% block content %}
-<br><br>
-<div class="content-container">
-  <div class="content-header">
-    <h1 class="content-title">View All Restaurants</h1>
+
+
+
+<div class="restaurant-list-wrapper" style="background: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)),
+                  url('{% static 'images/back2.jpg' %}') no-repeat center center fixed;
+      background-size: cover;
+      min-height: 100vh;
+      padding: 3rem 1rem;">
+  <div class="content-container">
+    <div class="content-header">
+      <h1 class="content-title">Discover Our Restaurants</h1>
+      <p class="content-subtitle">Explore the finest dining experiences in your city</p>
+    </div>
   </div>
-</div>
 
-<br><br>
-
-<div class="container profile-page">
-  <div class="row">
+  <div class="restaurant-grid">
     {% if restaurants %}
       {% for restaurant in restaurants %}
-        <div class="col-xl-6 col-lg-7 col-md-12">
-          <div class="profile-card">
-            <a href="{% url 'View_restaurant_detail' restaurant.id %}" class="card-link">
-              <div class="profile-card-body">
-                <div class="profile-card-left">
-                  <div class="profile-image">
-  {% if restaurant.logo %}
-    <img src="{{ restaurant.logo.url }}" alt="Restaurant Logo" class="logo">
-  {% else %}
-    <img src="{% static 'images/dp2.jpg' %}" alt="Default Logo" class="logo">
-  {% endif %}
-</div>
-
-                </div>
-                <div class="profile-card-right">
-                  <h4>{{ restaurant.restaurant_name }}</h4>
-
-                  <div class="profile-info">
-                    <p><i class="fa-solid fa-location-dot"></i> {{ restaurant.city }}, {{ restaurant.area }}, {{ restaurant.location }}</p>
-                    <p><i class="fa-solid fa-phone"></i> {{ restaurant.contact_no }}</p>
-                    <p><i class="fa-solid fa-envelope"></i> {{ restaurant.email }}</p>
-                    <p><i class="fa-solid fa-tags"></i> Price Range: {{ restaurant.min_price }} - {{ restaurant.max_price }}</p>
+        <div class="restaurant-card">
+          <a href="{% url 'View_restaurant_detail' restaurant.id %}" class="card-link">
+            <div class="card-image">
+              {% if restaurant.logo %}
+                <img src="{{ restaurant.logo.url }}" alt="{{ restaurant.restaurant_name }}" class="restaurant-logo">
+              {% else %}
+                <img src="{% static 'images/dp2.jpg' %}" alt="Default Restaurant Logo" class="restaurant-logo">
+              {% endif %}
+            </div>
+            <div class="card-content">
+              <div>
+                <h3 class="restaurant-name">{{ restaurant.restaurant_name }}</h3>
+                <div class="restaurant-meta">
+                  <div class="meta-item">
+                    <i class="fas fa-map-marker-alt meta-icon"></i>
+                    {{ restaurant.location }}, {{ restaurant.area }}, {{ restaurant.city }}
+                  </div>
+                  <div class="meta-item">
+                    <i class="fas fa-phone meta-icon"></i>
+                    {{ restaurant.contact_no }}
                   </div>
                 </div>
+                <div class="working-hours">
+                  <i class="fas fa-clock"></i>
+                  {{ restaurant.s_time|time:"g:i A" }} - {{ restaurant.e_time|time:"g:i A" }}
+                </div>
               </div>
-            </a>
-          </div>
+
+            </div>
+          </a>
         </div>
       {% endfor %}
     {% else %}
-      <p style="text-align:center;">No restaurants available.</p>
+      <div class="no-restaurants">
+        No restaurants available at the moment. Please check back later.
+      </div>
     {% endif %}
   </div>
 </div>

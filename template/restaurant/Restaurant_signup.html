@@ -1,62 +1,181 @@
 {% extends 'base.html' %}
+{% load static %}
 
 {% block content %}
+<div class="login-wrapper" style="
+    background: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)),
+                url('{% static 'images/back2.jpg' %}') no-repeat center center fixed;
+    background-size: cover;
+    min-height: 100vh;
+    padding: 2rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+">
     <div class="login-container">
-        <h2>Register Your Restaurant</h2>
-        <form method="POST">
-            {% csrf_token %}
-            {% if form.errors %}
-                <p class="error">{{ form.errors }}</p>
-            {% endif %}
+        <!-- Compact Header with #004d40 Border -->
+        <div class="login-header">
+            <img src="{% static 'images/logo.jpg' %}" alt="DineGate Logo" class="logo">
+            <h4>Register Your Restaurant</h4>
+        </div>
 
+        <div class="login-body">
+            <form method="POST" class="login-form">
+                {% csrf_token %}
 
-    <div class="form-group">
-        <label for="restaurant_name">Restaurant Name</label>
-        <input type="text" id="restaurant_name" name="restaurant_name" class="form-control" placeholder="Restaurant Name" value="{{ form.restaurant_name.value|default:'' }}" required>
-    </div>
+                {% if form.errors %}
+                <div class="alert alert-error">
+                    <i class="fas fa-exclamation-circle"></i>
+                    <span>Please correct the errors below</span>
+                </div>
+                {% endif %}
 
-    <div class="form-group">
-        <label for="email">Email</label>
-        <input type="text" id="email" name="email" class="form-control" placeholder="Email" value="{{ form.email.value|default:'' }}" required>
-    </div>
+                <!-- Restaurant Name -->
+                <div class="form-group">
+                    <label for="restaurant_name">Restaurant Name</label>
+                    <div class="input-group">
+                        <span class="input-icon">
+                            <i class="fas fa-utensils"></i>
+                        </span>
+                        <input type="text" id="restaurant_name" name="restaurant_name"
+                               class="form-control" placeholder="Restaurant Name"
+                               value="{{ form.restaurant_name.value|default:'' }}" required
+                               style="border: 2px solid #004d40; padding-left: 40px;">
+                    </div>
+                    {% if form.restaurant_name.errors %}
+                        <small class="error-text">{{ form.restaurant_name.errors }}</small>
+                    {% endif %}
+                </div>
 
-    <div class="form-group">
-        <label for="city">City</label>
-        <input type="text" id="city" name="city" class="form-control" placeholder="City" value="{{ form.city.value|default:'' }}" required>
-    </div>
+                <!-- Email -->
+                <div class="form-group">
+                    <label for="email">Email</label>
+                    <div class="input-group">
+                        <span class="input-icon">
+                            <i class="fas fa-envelope"></i>
+                        </span>
+                        <input type="email" id="email" name="email"
+                               class="form-control" placeholder="Email"
+                               value="{{ form.email.value|default:'' }}" required
+                               style="border: 2px solid #004d40; padding-left: 40px;">
+                    </div>
+                    {% if form.email.errors %}
+                        <small class="error-text">{{ form.email.errors }}</small>
+                    {% endif %}
+                </div>
 
-    <div class="form-group">
-        <label for="area">Area</label>
-        <input type="text" id="area" name="area" class="form-control" placeholder="Area" value="{{ form.area.value|default:'' }}" required>
-    </div>
+                <!-- City -->
+                <div class="form-group">
+                    <label for="city">City</label>
+                    <div class="input-group">
+                        <span class="input-icon">
+                            <i class="fas fa-city"></i>
+                        </span>
+                        <input type="text" id="city" name="city"
+                               class="form-control" placeholder="City"
+                               value="{{ form.city.value|default:'' }}" required
+                               style="border: 2px solid #004d40; padding-left: 40px;">
+                    </div>
+                    {% if form.city.errors %}
+                        <small class="error-text">{{ form.city.errors }}</small>
+                    {% endif %}
+                </div>
 
-    <div class="form-group">
-        <label for="location">Location</label>
-        <input type="text" id="location" name="location" class="form-control" placeholder="location" value="{{ form.location.value|default:'' }}" required>
-    </div>
+                <!-- Area -->
+                <div class="form-group">
+                    <label for="area">Area</label>
+                    <div class="input-group">
+                        <span class="input-icon">
+                            <i class="fas fa-map-marker-alt"></i>
+                        </span>
+                        <input type="text" id="area" name="area"
+                               class="form-control" placeholder="Area"
+                               value="{{ form.area.value|default:'' }}" required
+                               style="border: 2px solid #004d40; padding-left: 40px;">
+                    </div>
+                    {% if form.area.errors %}
+                        <small class="error-text">{{ form.area.errors }}</small>
+                    {% endif %}
+                </div>
 
-    <div class="form-group">
-        <label for="business_reg_id">Business Registration No</label>
-        <input type="text" id="business_reg_id" name="business_reg_id" class="form-control" placeholder="Business Registration No" value="{{ form.business_reg_id.value|default:'' }}" required>
-    </div>
-    <!-- Password field -->
-    <div class="form-group">
-        <label for="password">Password</label>
-        {{ form.password }}
-    </div>
+                <!-- Location -->
+                <div class="form-group">
+                    <label for="location">Location</label>
+                    <div class="input-group">
+                        <span class="input-icon">
+                            <i class="fas fa-map-pin"></i>
+                        </span>
+                        <input type="text" id="location" name="location"
+                               class="form-control" placeholder="Location"
+                               value="{{ form.location.value|default:'' }}" required
+                               style="border: 2px solid #004d40; padding-left: 40px;">
+                    </div>
+                    {% if form.location.errors %}
+                        <small class="error-text">{{ form.location.errors }}</small>
+                    {% endif %}
+                </div>
 
-    <!-- Confirm Password field -->
-    <div class="form-group">
-       <label for="confirm_password">Confirm Password</label>
-        {{ form.confirm_password }}
-    </div>
-    <button type="submit" class="btn btn-primary">Register Restaurant</button>
+                <!-- Business Registration No -->
+                <div class="form-group">
+                    <label for="business_reg_id">Business Registration No</label>
+                    <div class="input-group">
+                        <span class="input-icon">
+                            <i class="fas fa-id-card"></i>
+                        </span>
+                        <input type="text" id="business_reg_id" name="business_reg_id"
+                               class="form-control" placeholder="Business Registration No"
+                               value="{{ form.business_reg_id.value|default:'' }}" required
+                               style="border: 2px solid #004d40; padding-left: 40px;">
+                    </div>
+                    {% if form.business_reg_id.errors %}
+                        <small class="error-text">{{ form.business_reg_id.errors }}</small>
+                    {% endif %}
+                </div>
 
-    <div class="text-center mt-3">
-        <p>Already have an account?</p>
-        <a href="{% url 'login' %}" class="btn btn-primary">Login</a>
+                <!-- Password -->
+                <div class="form-group">
+                    <label for="password">Password</label>
+                    <div class="input-group">
+                        <span class="input-icon">
+                            <i class="fas fa-lock"></i>
+                        </span>
+                        <input type="password" id="password" name="password"
+                               class="form-control" placeholder="Password" required
+                               style="border: 2px solid #004d40; padding-left: 40px;">
+                    </div>
+                    {% if form.password.errors %}
+                        <small class="error-text">{{ form.password.errors }}</small>
+                    {% endif %}
+                </div>
+
+                <!-- Confirm Password -->
+                <div class="form-group">
+                    <label for="confirm_password">Confirm Password</label>
+                    <div class="input-group">
+                        <span class="input-icon">
+                            <i class="fas fa-lock"></i>
+                        </span>
+                        <input type="password" id="confirm_password" name="confirm_password"
+                               class="form-control" placeholder="Confirm Password" required
+                               style="border: 2px solid #004d40; padding-left: 40px;">
+                    </div>
+                    {% if form.confirm_password.errors %}
+                        <small class="error-text">{{ form.confirm_password.errors }}</small>
+                    {% endif %}
+                </div>
+
+                <!-- Register Button -->
+                <button type="submit" class="btn btn-login" style="background-color:#004d40; color:#ffffff; border: 2px solid #004d40;">
+                    <i class="fas fa-store"></i> Register Restaurant
+                </button>
+            </form>
+
+            <div class="login-footer">
+                <p>Already have an account? <a href="{% url 'login' %}" class="signup-link" style="color:#004d40">
+                    <b>Login here</b>
+                </a></p>
+            </div>
+        </div>
     </div>
 </div>
-</form>
-    </div>
 {% endblock %}

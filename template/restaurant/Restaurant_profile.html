@@ -1,30 +1,57 @@
+
 {% extends 'base.html' %}
 {% load static %}
-
 {% block content %}
-<br>
 
-<div class="profile-card-wrapper">
-  <div class="profile-card-header">
+
+<div class="profile-background" style="
+    background: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)),
+                url('{% static 'images/back2.jpg' %}') no-repeat center center fixed;
+    background-size: cover;
+    min-height: 100vh;
+    padding: 2rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  ">
+  <div class="profile-card-wrapper">
+    <!-- Full-width header with image -->
+   <div class="profile-header-container">
     {% if restaurant.logo %}
-      <img src="{{ restaurant.logo.url }}" class="profile-avatar-img" alt="Restaurant Logo">
+      <img src="{{ restaurant.logo.url }}" class="profile-header-image" alt="Restaurant Logo">
     {% else %}
-      <img src="{% static 'images/dp2.jpg' %}" class="profile-avatar-img" alt="Default Restaurant Logo">
+      <img src="{% static 'images/dp2.jpg' %}" class="profile-header-image" alt="Default Restaurant Logo">
     {% endif %}
+    <div class="profile-name-overlay">
+        <h2>{{ restaurant.restaurant_name }}</h2>
+    </div>
+</div>
 
-    <div class="profile-card-user">
-      <h2>{{ restaurant.restaurant_name }}</h2>
+    <!-- Profile information section -->
+    <div class="profile-info-section">
+       <div class="info-item">
+        <i class="fas fa-clock info-icon"></i>
+        <span class="info-text">{{ restaurant.s_time }} - {{ restaurant.e_time }}</span>
+    </div>
+       <div class="info-item">
+        <i class="fas fa-tags info-icon"></i>
+        <span class="info-text">{{ restaurant.min_price }} to {{ restaurant.max_price }}</span>
+    </div>
+      <div class="info-item">
+        <i class="fas fa-map-marker-alt info-icon"></i>
+        <span class="info-text">{{ restaurant.location }}</span>
+      </div>
+      <div class="info-item">
+        <i class="fas fa-phone info-icon"></i>
+        <span class="info-text">{{ restaurant.contact_no }}</span>
+      </div>
+
+      <div class="info-item">
+        <i class="fas fa-envelope info-icon"></i>
+        <span class="info-text">{{ restaurant.email }}</span>
+      </div>
     </div>
   </div>
-
-  <div class="profile-info-block" style="text-align: center;">
-    <p><i class="fa fa-clock"></i> <b><i> {{ restaurant.s_time }} - {{ restaurant.e_time }}</b></i></p>
-    <p><i class="fa fa-tags"></i> <b><i>{{ restaurant.min_price }} to {{ restaurant.max_price }}</b></i></p>
-    <p><i class="fa fa-map-marker"></i> <b><i> {{ restaurant.location }}</b></i></p>
-    <p><i class="fa fa-phone"></i> <b><i> {{ restaurant.contact_no }}</b></i></p>
-    <p><i class="fa fa-envelope"></i> <b><i> {{ restaurant.email }}</b></i></p>
-
-
-  </div>
 </div>
+
 {% endblock %}

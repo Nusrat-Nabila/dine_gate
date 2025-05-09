@@ -1,56 +1,105 @@
 {% extends 'base.html' %}
+{% load static %}
 
 {% block content %}
-<div class="login-container">
-    <h2>Sign Up as Customer</h2>
+<div class="login-wrapper" style="
+    background: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)),
+                url('{% static 'images/back2.jpg' %}') no-repeat center center fixed;
+    background-size: cover;
+    min-height: 100vh;
+    padding: 2rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+">
+    <div class="login-container">
+        <!-- Compact Header with #004d40 Border -->
+        <div class="login-header">
+            <img src="{% static 'images/logo.jpg' %}" alt="DineGate Logo" class="logo">
+            <h4>Sign Up </h4>
+        </div>
 
-    <form method="POST">
-        {% csrf_token %}
+        <div class="login-body">
+            <form method="POST" class="login-form">
+                {% csrf_token %}
 
-        {% if form.errors %}
-            <div class="error">
-                <ul>
-                    {% for field in form %}
-                        {% for error in field.errors %}
+                {% if form.errors %}
+                <div class="alert alert-error">
+                    <i class="fas fa-exclamation-circle"></i>
+                    <ul style="margin: 0; padding-left: 1rem;">
+                        {% for field in form %}
+                            {% for error in field.errors %}
+                                <li>{{ error }}</li>
+                            {% endfor %}
+                        {% endfor %}
+                        {% for error in form.non_field_errors %}
                             <li>{{ error }}</li>
                         {% endfor %}
-                    {% endfor %}
-                    {% for error in form.non_field_errors %}
-                        <li>{{ error }}</li>
-                    {% endfor %}
-                </ul>
+                    </ul>
+                </div>
+                {% endif %}
+
+                <!-- Form Fields with #004d40 Borders -->
+                <div class="form-group">
+                    <label for="user_name">Username</label>
+                    <div class="input-group">
+                        <span class="input-icon">
+                            <i class="fas fa-user"></i>
+                        </span>
+                        <input type="text" name="user_name" id="user_name"
+                               class="form-control" placeholder="Enter username" required
+                               value="{{ form.user_name.value|default:'' }}"
+                               style="border: 2px solid #004d40; padding-left: 40px;">
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="user_email">Email</label>
+                    <div class="input-group">
+                        <span class="input-icon">
+                            <i class="fas fa-envelope"></i>
+                        </span>
+                        <input type="email" name="user_email" id="user_email"
+                               class="form-control" placeholder="Enter email" required
+                               value="{{ form.user_email.value|default:'' }}"
+                               style="border: 2px solid #004d40; padding-left: 40px;">
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="user_password">Password</label>
+                    <div class="input-group">
+                        <span class="input-icon">
+                            <i class="fas fa-lock"></i>
+                        </span>
+                        <input type="password" name="user_password" id="user_password"
+                               class="form-control" placeholder="Enter password" required
+                               style="border: 2px solid #004d40; padding-left: 40px;">
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="confirm_password">Confirm Password</label>
+                    <div class="input-group">
+                        <span class="input-icon">
+                            <i class="fas fa-lock"></i>
+                        </span>
+                        <input type="password" name="confirm_password" id="confirm_password"
+                               class="form-control" placeholder="Confirm password" required
+                               style="border: 2px solid #004d40; padding-left: 40px;">
+                    </div>
+                </div>
+
+                <!-- #004d40 Sign Up Button -->
+                <button type="submit" class="btn btn-login" style="background-color:#004d40; color:#ffffff; border: 2px solid #004d40;">
+                    <i class="fas fa-user-plus"></i> Sign Up
+                </button>
+            </form>
+
+            <div class="login-footer">
+                <p>Already have an account? <a href="{% url 'login' %}" class="signup-link" style="color:#004d40"><b>Login now</b></a></p>
             </div>
-        {% endif %}
-
-        <div class="form-group">
-            <label for="user_name">Username</label>
-            <input type="text" name="user_name" id="user_name" class="form-control" placeholder="user_name" value="{{ form.user_name.value|default:'' }}">
         </div>
-
-        <div class="form-group">
-            <label for="user_email">Email</label>
-            <input type="text" name="user_email" id="user_email" class="form-control" placeholder="user_email" value="{{ form.user_email.value|default:'' }}">
-        </div>
-
-
-        <div class="form-group">
-            <label for="user_password">Password</label>
-            <input type="password" name="user_password" id="user_password" class="form-control" placeholder="user_password" value="{{ form.user_password.value|default:'' }}">
-        </div>
-
-
-        <div class="form-group">
-            <label for="confirm_passsword">Confirm Password</label>
-            <input type="password" name="confirm_password" id="confirm_password" class="form-control" placeholder="Confirm Password" value="{{ form.confirm_password.value|default:'' }}">
-        </div>
-
-
-        <button type="submit" class="btn btn-primary">Sign Up</button>
-    </form>
-
-    <div class="text-center mt-3">
-        <p>Already have an account?</p>
-        <a href="{% url 'login' %}" class="btn btn-primary">Login</a>
     </div>
 </div>
 {% endblock %}

@@ -1,23 +1,50 @@
 {% extends 'base.html' %}
 {% load static %}
 {% block content %}
-<div class="profile-card-wrapper">
-  <div class="profile-card-header">
-    {% if customer.user_image %}
-      <img src="{{ customer.user_image.url }}" alt="User Avatar" class="profile-avatar-img">
-    {% else %}
-      <img src="{% static 'images/dp2.jpg' %}" alt="Default Avatar" class="profile-avatar-img">
-    {% endif %}
 
-    <div class="profile-card-user">
-      <h2>{{ customer.user_name }}</h2>
+
+<div class="profile-background" style="
+    background: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)),
+                url('{% static 'images/back2.jpg' %}') no-repeat center center fixed;
+    background-size: cover;
+    min-height: 100vh;
+    padding: 2rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  ">
+  <div class="profile-card-wrapper">
+    <!-- Full-width header with image -->
+    <div class="profile-header-container">
+      {% if customer.user_image %}
+        <img src="{{ customer.user_image.url }}" alt="Profile Header" class="profile-header-image">
+      {% else %}
+        <img src="{% static 'images/dp2.jpg' %}" alt="Default Header" class="profile-header-image">
+      {% endif %}
+
+      <div class="profile-name-overlay">
+        <h2>{{ customer.user_name }}</h2>
+      </div>
+    </div>
+
+    <!-- Profile information section -->
+    <div class="profile-info-section">
+      <div class="info-item">
+        <i class="fas fa-map-marker-alt info-icon"></i>
+        <span class="info-text">{{ customer.user_address }}</span>
+      </div>
+
+      <div class="info-item">
+        <i class="fas fa-phone info-icon"></i>
+        <span class="info-text">{{ customer.user_contact_number }}</span>
+      </div>
+
+      <div class="info-item">
+        <i class="fas fa-envelope info-icon"></i>
+        <span class="info-text">{{ customer.user_email }}</span>
+      </div>
     </div>
   </div>
-
-  <div class="profile-info-block" style="text-align: center;">
-    <p><i class="fas fa-map-marker-alt"></i> <b><i> {{ customer.user_address }}</b></i></p>
-    <p><i class="fas fa-phone"></i> <b><i>{{ customer.user_contact_number }}</b></i></p>
-    <p><i class="fas fa-envelope"></i><b><i> {{ customer.user_email }}</b></i></p>
-  </div>
 </div>
+
 {% endblock %}

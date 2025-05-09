@@ -1,13 +1,129 @@
 {% extends 'base.html' %}
+{% load static %}
+
 {% block content %}
-<div class="profile-form-container">
-  <h2>Edit Profile</h2>
-  <form method="POST" enctype="multipart/form-data">
-      {% csrf_token %}
-      {{ form.as_p }}
-      <div class="button-container">
-          <button type="submit">Save Changes</button>
-      </div>
-  </form>
+<div class="login-wrapper" style="
+    background: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)),
+                url('{% static 'images/back2.jpg' %}') no-repeat center center fixed;
+    background-size: cover;
+    min-height: 100vh;
+    padding: 2rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+">
+    <div class="login-container">
+        <!-- Compact Header with #004d40 Border -->
+        <div class="login-header">
+            <img src="{% static 'images/logo.jpg' %}" alt="DineGate Logo" class="logo">
+            <h4>Edit Your Profile</h4>
+        </div>
+
+        <div class="login-body">
+            <form method="POST" class="login-form" enctype="multipart/form-data">
+                {% csrf_token %}
+
+                {% if form.errors %}
+                <div class="alert alert-error">
+                    <i class="fas fa-exclamation-circle"></i>
+                    <span>Please correct the errors below</span>
+                </div>
+                {% endif %}
+
+                <!-- Profile Picture -->
+                <div class="form-group">
+                    <label for="id_user_image">Profile Picture</label>
+                    <div class="input-group">
+                        <span class="input-icon">
+                            <i class="fas fa-camera"></i>
+                        </span>
+                        <input type="file" id="id_user_image" name="user_image"
+                               class="form-control" style="border: 2px solid #004d40; padding-left: 40px;">
+                    </div>
+                    {% if form.user_image.errors %}
+                        <small class="error-text">{{ form.user_image.errors }}</small>
+                    {% endif %}
+                    {% if form.instance.user_image %}
+                        <div class="current-image-preview mt-2">
+                            <small>Current Image:</small>
+                            <img src="{{ form.instance.user_image.url }}" alt="Current profile image" style="max-width: 100px; max-height: 100px; display: block; margin-top: 5px;">
+                        </div>
+                    {% endif %}
+                </div>
+
+                <!-- Username -->
+                <div class="form-group">
+                    <label for="id_user_name">Username</label>
+                    <div class="input-group">
+                        <span class="input-icon">
+                            <i class="fas fa-user"></i>
+                        </span>
+                        <input type="text" id="id_user_name" name="user_name"
+                               class="form-control" placeholder="Username"
+                               value="{{ form.user_name.value|default:'' }}"
+                               style="border: 2px solid #004d40; padding-left: 40px;">
+                    </div>
+                    {% if form.user_name.errors %}
+                        <small class="error-text">{{ form.user_name.errors }}</small>
+                    {% endif %}
+                </div>
+
+                <!-- Email -->
+                <div class="form-group">
+                    <label for="id_user_email">Email</label>
+                    <div class="input-group">
+                        <span class="input-icon">
+                            <i class="fas fa-envelope"></i>
+                        </span>
+                        <input type="email" id="id_user_email" name="user_email"
+                               class="form-control" placeholder="Email"
+                               value="{{ form.user_email.value|default:'' }}"
+                               style="border: 2px solid #004d40; padding-left: 40px;">
+                    </div>
+                    {% if form.user_email.errors %}
+                        <small class="error-text">{{ form.user_email.errors }}</small>
+                    {% endif %}
+                </div>
+
+                <!-- Contact Number -->
+                <div class="form-group">
+                    <label for="id_user_contact_number">Phone Number</label>
+                    <div class="input-group">
+                        <span class="input-icon">
+                            <i class="fas fa-phone"></i>
+                        </span>
+                        <input type="text" id="id_user_contact_number" name="user_contact_number"
+                               class="form-control" placeholder="Phone Number"
+                               value="{{ form.user_contact_number.value|default:'' }}"
+                               style="border: 2px solid #004d40; padding-left: 40px;">
+                    </div>
+                    {% if form.user_contact_number.errors %}
+                        <small class="error-text">{{ form.user_contact_number.errors }}</small>
+                    {% endif %}
+                </div>
+
+                <!-- Address -->
+                <div class="form-group">
+                    <label for="id_user_address">Address</label>
+                    <div class="input-group">
+                        <span class="input-icon">
+                            <i class="fas fa-map-marker-alt"></i>
+                        </span>
+                        <textarea id="id_user_address" name="user_address" class="form-control" placeholder="Your Address"
+                                  style="border: 2px solid #004d40; padding-left: 40px; min-height: 100px;">{{ form.user_address.value|default:'' }}</textarea>
+                    </div>
+                    {% if form.user_address.errors %}
+                        <small class="error-text">{{ form.user_address.errors }}</small>
+                    {% endif %}
+                </div>
+
+                <!-- Save Changes Button -->
+                <button type="submit" class="btn btn-login" style="background-color:#004d40; color:#ffffff; border: 2px solid #004d40;">
+                    <i class="fas fa-save"></i> Save Changes
+                </button>
+            </form>
+
+        </div>
+    </div>
 </div>
 {% endblock %}

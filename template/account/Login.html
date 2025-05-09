@@ -1,45 +1,86 @@
 {% extends 'base.html' %}
+{% load static %}
 
 {% block content %}
+<div class="login-wrapper" style="
+    background: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)),
+                url('{% static 'images/back2.jpg' %}') no-repeat center center fixed;
+    background-size: cover;
+    min-height: 100vh;
+    padding: 2rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+">
     <div class="login-container">
-        <h2>Login</h2>
-        
-        <form method="POST">
-            {% csrf_token %}
-            
-            {% if error %}
-                <p class="error">{{ error }}</p>
-            {% endif %}
+        <!-- Header -->
+        <div class="login-header">
+            <img src="{% static 'images/logo.jpg' %}" alt="DineGate Logo" class="logo">
+            <h4>Login</h4>
+        </div>
 
-            <!-- User or Restaurant Name -->
-            <div class="form-group">
-                <label for="id_name">Username/Restaurant Name</label>
-                <input type="text" name="name" id="id_name" class="form-control" placeholder="Enter your username or restaurant name">
+        <div class="login-body">
+            <form method="POST" class="login-form">
+                {% csrf_token %}
+
+                {% if error %}
+                <div class="alert alert-error">
+                    <i class="fas fa-exclamation-circle"></i>
+                    <p>{{ error }}</p>
+                </div>
+                {% endif %}
+
+                <!-- Username/Restaurant Name -->
+                <div class="form-group">
+                    <label for="id_name">Username / Restaurant Name</label>
+                    <div class="input-group">
+                        <span class="input-icon"><i class="fas fa-user"></i></span>
+                        <input type="text" name="name" id="id_name"
+                               class="form-control"
+                               placeholder="Enter your username or restaurant name"
+                               style="border: 2px solid #004d40; padding-left: 40px;">
+                    </div>
+                </div>
+
+                <!-- Password -->
+                <div class="form-group">
+                    <label for="id_password">Password</label>
+                    <div class="input-group">
+                        <span class="input-icon"><i class="fas fa-lock"></i></span>
+                        <input type="password" name="password" id="id_password"
+                               class="form-control"
+                               placeholder="Enter your password"
+                               style="border: 2px solid #004d40; padding-left: 40px;">
+                    </div>
+                </div>
+
+                <!-- Role Dropdown -->
+                <div class="form-group">
+                    <label for="id_role">Role</label>
+                    <div class="input-group">
+                        <span class="input-icon"><i class="fas fa-user-tag"></i></span>
+                        <select name="role" id="id_role" class="form-control"
+                                style="border: 2px solid #004d40; padding-left: 40px;" required>
+                            <option value="" disabled selected>Select Role</option>
+                            <option value="customer">Customer</option>
+                            <option value="restaurant">Restaurant</option>
+                        </select>
+                    </div>
+                </div>
+
+                <!-- Login Button -->
+                <button type="submit" class="btn btn-login"
+                        style="background-color:#004d40; color:#ffffff; border: 2px solid #004d40;">
+                    <i class="fas fa-sign-in-alt"></i> Login
+                </button>
+            </form>
+
+            <div class="login-footer">
+                <p>Don't have an account?
+                    <a href="{% url 'signup_home' %}" class="signup-link" style="color:#004d40"><b>Sign up now</b></a>
+                </p>
             </div>
-
-            <!-- Password -->
-            <div class="form-group">
-                <label for="id_password">Password</label>
-                <input type="password" name="password" id="id_password" class="form-control" placeholder="Enter your password">
-            </div>
-
-            <!-- Role Dropdown (Customer or Restaurant) -->
-            <div class="form-group">
-                <label for="id_role">Role</label>
-                <select name="role" id="id_role" class="form-control" required>
-                    <option value="" disabled selected>Select Role</option> <!-- This ensures no role is preselected -->
-                    <option value="customer">Customer</option>
-                    <option value="restaurant">Restaurant</option>
-                </select>
-            </div>
-            
-
-            <button type="submit" class="btn btn-primary">Login</button>
-        </form>
-
-        <div class="text-center mt-3">
-            <p>Don't have an account?</p>
-            <a href="{% url 'signup_home' %}" class="btn btn-primary">Sign Up</a>
         </div>
     </div>
+</div>
 {% endblock %}

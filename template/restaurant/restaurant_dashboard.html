@@ -1,27 +1,46 @@
 {% extends 'base.html' %}
-
+{% load static %}
 {% block content %}
-  {% if restaurant %}
-<br><br>
-    <div class="restaurant-dashboard-container">
-      <div class="restaurant-dashboard-card">
-        <h1 class="text-white"><strong>Hello! <b>{{ restaurant.restaurant_name }}</b> <br> Welcome to <i>DineGate</i>
-        <div class="restaurant-dashboard-links">
-          <a href="{% url 'view_menu_for_restaurant_owner' restaurant.id %}" class="restaurant-dashboard-link">
-            <i class="fas fa-utensils icon-left"></i> View Menu
-          </a>
-          <a href="{% url 'view_table_list_for_restaurant_owner' restaurant.id %}" class="restaurant-dashboard-link">
-            <i class="fas fa-chair icon-left"></i> View Table List
-          </a>
-          <a href="{% url 'recent_book_history_for_restaurant' restaurant.id %}" class="restaurant-dashboard-link">
-            <i class="fas fa-calendar-alt icon-left"></i> Recent Bookings
-          </a>
-          <a href="{% url 'recent_cancel_booking_history_for_restaurant' restaurant.id %}" class="restaurant-dashboard-link">
-            <i class="fas fa-calendar-alt icon-left"></i> Recent cancel Bookings
-          </a>
-        </div>
-      </div>
-    </div>
-  {% endif %}
-{% endblock %}
 
+
+
+<div class="db-main-container" style="background: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)),
+                url('{% static "images/back2.jpg" %}') no-repeat center center fixed;
+    background-size: cover;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 2rem;
+    font-family: 'Poppins', sans-serif;">
+    <div class="db-content-wrapper">
+        <h1 class="db-welcome-text">
+            Hello! <b>{{ restaurant.restaurant_name }}</b><br>
+            Welcome to <i>DineGate</i>
+        </h1>
+
+        <div class="db-button-grid">
+            <a href="{% url 'view_menu_for_restaurant_owner' restaurant.id %}" class="db-action-btn">
+                <i class="fas fa-utensils db-btn-icon"></i>
+                View Menu
+            </a>
+
+            <a href="{% url 'view_table_list_for_restaurant_owner' restaurant.id %}" class="db-action-btn">
+                <i class="fas fa-chair db-btn-icon"></i>
+                View Tables
+            </a>
+
+            <a href="{% url 'recent_book_history_for_restaurant' restaurant.id %}" class="db-action-btn">
+                <i class="fas fa-calendar-check db-btn-icon"></i>
+                Recent Bookings
+            </a>
+
+            <a href="{% url 'recent_cancel_booking_history_for_restaurant' restaurant.id %}" class="db-action-btn">
+                <i class="fas fa-calendar-times db-btn-icon"></i>
+                Canceled Bookings
+            </a>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

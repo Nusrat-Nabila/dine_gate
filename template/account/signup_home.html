@@ -1,12 +1,41 @@
 {% extends 'base.html' %}
-
+{% load static %}
 {% block content %}
+<div class="login-wrapper" style="
+    background: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)),
+                url('{% static 'images/back2.jpg' %}') no-repeat center center fixed;
+    background-size: cover;
+    min-height: 100vh;
+    padding: 2rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+">
     <div class="login-container">
-        <div class="text-center mt-3">
-            <h2>Signup As<br></h2>
-            <a href="{% url 'Customer_signup' %}" class="btn btn-primary">Customer</a>
-            <h4>or<br></h4>
-            <a href="{% url 'Restaurant_signup' %}" class="btn btn-primary">Restaurant</a> <!-- Changed to Restaurant -->
+        <!-- Compact Header with #004d40 Border -->
+        <div class="login-header">
+            <img src="{% static 'images/logo.jpg' %}" alt="DineGate Logo" class="logo">
+            <h4>Create Your Account</h4>
+            <p>Join us as</p>
+        </div>
+
+        <div class="login-body text-center">
+            <div class="signup-options">
+                <a href="{% url 'Customer_signup' %}" class="btn btn-signup-option" style="background-color:#004d40; color:#ffffff;">
+                    <i class="fas fa-user"></i> Customer
+                </a>
+                <div class="or-divider">
+                    <span>or</span>
+                </div>
+                <a href="{% url 'Restaurant_signup' %}" class="btn btn-signup-option" style="background-color:#004d40; color:#ffffff;">
+                    <i class="fas fa-utensils"></i> Restaurant
+                </a>
+            </div>
+
+            <div class="login-footer mt-4">
+                <p>Already have an account? <a href="{% url 'login' %}" class="signup-link" style="color:#004d40"><b>Login here</b></a></p>
+            </div>
         </div>
     </div>
+</div>
 {% endblock %}

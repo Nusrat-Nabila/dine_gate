@@ -1,33 +1,48 @@
-<!-- footer -->
 <footer class="site-footer">
-    <div class="footer-content">
-        <div class="footer-section">
-            <h3>Quick Links</h3>
-            <ul>
-                <li><a href="{% url 'Home' %}">Home</a></li>
-                <li><a href="{% url 'about_us' %}">About Us</a></li>
-                <li><a href="{% url 'contact_us' %}">Contact Us</a></li>
-                <li><a href="{% url 'our_service' %}">Our Services</a></li>
-            </ul>
+    <div class="container">
+        <div class="row">
+            <!-- Quick Links -->
+            <div class="col-md-4 mb-4">
+                <h2 class="text mb-4" style="color:#ffffff">DineGate</h2>
+                <p>Your ultimate dining companion. Discover the best restaurants and make reservations with ease.</p>
+                <div class="social-icons mt-4">
+                    <a href="#" class="text-white me-3"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#" class="text-white me-3"><i class="fab fa-twitter"></i></a>
+                    <a href="#" class="text-white me-3"><i class="fab fa-instagram"></i></a>
+                </div>
+            </div>
+
+            <!-- Quick Links -->
+            <div class="col-md-2 mb-4">
+                <h3 class="text mb-4">Quick Links</h5>
+                <ul class="list-styled" >
+                    <li class="mb-2"><a href="{% url 'Home' %}" style="color:#ffffff">Home</a></li>
+                    <li class="mb-2"><a href="{% url 'about_us' %}" style="color:#ffffff">About Us</a></li>
+                    <li class="mb-2"><a href="{% url 'contact_us' %}" style="color:#ffffff">Contact</a></li>
+                    <li class="mb-2"><a href="{% url 'our_service' %}" style="color:#ffffff">Services</a></li>
+                </ul>
+            </div>
+
+            <!-- Contact Info -->
+            <div class="col-md-3 mb-4">
+                <h3 class="text mb-4">Contact Us</h3>
+                <p><i class="fas fa-map-marker-alt me-2"></i> 123 Food Street, Foodville</p>
+                <p><i class="fas fa-phone me-2"></i> +(123) 456-7890</p>
+                <p><i class="fas fa-envelope me-2"></i> info@dinegate.com</p>
+            </div>
+
+            <!-- Opening Hours -->
+            <div class="col-md-3 mb-4">
+                <h3 class="text mb-4">Opening Hours</h3>
+                <p>Monday - Friday: 9am - 10pm</p>
+                <p>Saturday: 10am - 11pm</p>
+                <p>Sunday: 10am - 9pm</p>
+            </div>
         </div>
 
-        <div class="footer-section">
-            <h3>Contact Information</h3>
-            <p>Feel free to reach out to us for any inquiries or support!</p>
-            <p>Phone: +(123) 456-7890</p>
-            <p>Email: info@dingate.com</p>
+        <!-- Copyright -->
+        <div class="footer-bottom border-top pt-4 mt-4 text-center" style="background: #004D40">
+            <p>&copy; {% now "Y" %} DineGate. All rights reserved.</p>
         </div>
-
-        <div class="footer-section">
-            <h3>Operating Hours</h3>
-            <p>Monday - Friday: 8am - 6pm</p>
-            <p>Saturday: 9am - 3pm</p>
-            <p>Closed on Sunday</p>
-        </div>
-    </div>
-
-    <div class="footer-bottom">
-        <p style="color:#ffffff">&copy; 2025 Din Gate. All Rights Reserved.</p>
     </div>
 </footer>
-<!-- footer -->
