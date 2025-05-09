@@ -1,58 +1,108 @@
 {% extends 'base.html' %}
-
+{% load static %}
 {% block content %}
-<div class="container mt-5" style="width: 90%; margin: 0 auto;">
-  <div class="content-container">
-  <div class="content-header">
-    <h1 class="content-title" style="font-size:24px">Upcoming Bookings</h1>
-  </div>
-</div>
-<br>
-  {% if upcoming %}
-    <div class="menu-wrapper">
-      {% for booking in upcoming %}
-      {%  if booking.status == 'confirm' %}
-        <div class="menu-item" style="background-color: #e3e4e3;width:20%">
-          <h5 class="card-title">{{ booking.restaurant.restaurant_name }} - Table {{ booking.table.table_no }}</h5>
-          <p class="card-text"><strong>Date:</strong> {{ booking.reserve_date }}</p>
-          <p class="card-text"><strong>Time:</strong> {{ booking.start_time }} - {{ booking.end_time }}</p>
-          <p class="card-text"><strong>status:</strong> {{ booking.status }}</p>
-          <form method="post" action="{% url 'cancel_book' booking.id %}">
-            {% csrf_token %}
-            <button class="btn btn-danger"><a href="{% url 'cancel_book' booking.id %}" class="card-link"> Cancel</a></button>
-          </form>
-          {% elif booking.status == 'cancel' %}
-          <h5 class="card-title">{{ booking.restaurant.restaurant_name }} - Table {{ booking.table.table_no }}</h5>
-          <p class="card-text"><strong>Date:</strong> {{ booking.reserve_date }}</p>
-          <p class="card-text"><strong>Time:</strong> {{ booking.start_time }} - {{ booking.end_time }}</p>
-          <p class="card-text"><strong>status:</strong> {{ booking.status }}</p>
-          {% endif %}
-        </div>
-      {% endfor %}
+
+<div class="booking-history-container" style="
+    background: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)),
+                url('{% static 'images/back2.jpg' %}') no-repeat center center fixed;
+    background-size: cover;
+    min-height: 100vh;
+    padding: 3rem 1rem;
+">
+    <div class="booking-header">
+        <h1 class="booking-title">Booking History</h1>
     </div>
-  {% else %}
-    <p class="text-center" style="color: #ffffff"><strong>No upcoming bookings.</strong></p>
-  {% endif %}
-<br><br>
-  <div class="content-container">
-  <div class="content-header">
-    <h1 class="content-title" style="font-size:24px">Past Bookings</h1>
-  </div>
-</div>
-<br>
-  {% if past %}
-    <div class="menu-wrapper">
-      {% for booking in past %}
-        <div class="menu-item" style="background-color: #e3e4e3;width:20%">
-          <h5 class="card-title">{{ booking.restaurant.restaurant_name }} - Table {{ booking.table.table_no }}</h5>
-          <p class="card-text"><strong>Date:</strong> {{ booking.reserve_date }}</p>
-          <p class="card-text"><strong>Time:</strong> {{ booking.start_time }} - {{ booking.end_time }}</p>
-          <p class="card-text"><strong>Status:</strong> {{ booking.status }}</p>
+
+    <!-- Upcoming Bookings Section -->
+    <section class="booking-section">
+        <h2 class="section-title">
+            <i class="fas fa-calendar-check"></i> Upcoming Bookings
+        </h2>
+
+        {% if upcoming %}
+        <div class="booking-grid">
+            {% for booking in upcoming %}
+            <div class="booking-card">
+                <h3 class="booking-restaurant">{{ booking.restaurant.restaurant_name }} - Table {{ booking.table.table_no }}</h3>
+
+                <div class="booking-detail">
+                    <i class="fas fa-calendar-day"></i>
+                    <span>Date: {{ booking.reserve_date }}</span>
+                </div>
+
+                <div class="booking-detail">
+                    <i class="fas fa-clock"></i>
+                    <span>Time: {{ booking.start_time|time:"H:i" }} - {{ booking.end_time|time:"H:i" }}</span>
+                </div>
+
+                {% if booking.status == 'confirm' %}
+                <div class="booking-status status-confirm">
+                    <i class="fas fa-check-circle"></i> Confirmed
+                </div>
+
+                <form method="post" action="{% url 'cancel_book' booking.id %}">
+                    {% csrf_token %}
+                    <button type="submit" class="btn-cancel">
+                        <i class="fas fa-times"></i> Cancel Booking
+                    </button>
+                </form>
+                {% elif booking.status == 'cancel' %}
+                <div class="booking-status status-cancel">
+                    <i class="fas fa-times-circle"></i> Cancelled
+                </div>
+                {% endif %}
+            </div>
+            {% endfor %}
         </div>
-      {% endfor %}
-    </div>
-  {% else %}
-    <p class="text-center" style="color: #ffffff"><strong>No past bookings</strong></p>
-  {% endif %}
-</div>
+        {% else %}
+        <div class="empty-booking">
+            <i class="far fa-calendar-times"></i>
+            <p>No upcoming bookings found.</p>
+        </div>
+        {% endif %}
+    </section>
+
+    <!-- Past Bookings Section -->
+    <section class="booking-section">
+        <h2 class="section-title">
+            <i class="fas fa-history"></i> Past Bookings
+        </h2>
+
+        {% if past %}
+        <div class="booking-grid">
+            {% for booking in past %}
+            <div class="booking-card">
+                <h3 class="booking-restaurant">{{ booking.restaurant.restaurant_name }} - Table {{ booking.table.table_no }}</h3>
+
+                <div class="booking-detail">
+                    <i class="fas fa-calendar-day"></i>
+                    <span>Date: {{ booking.reserve_date }}</span>
+                </div>
+
+                <div class="booking-detail">
+                    <i class="fas fa-clock"></i>
+                    <span>Time: {{ booking.start_time|time:"H:i" }} - {{ booking.end_time|time:"H:i" }}</span>
+                </div>
+
+                <div class="booking-detail">
+                    <i class="fas fa-info-circle"></i>
+                    <span>Status:
+                        {% if booking.status == 'confirm' %}
+                        <span class="status-confirm">Completed</span>
+                        {% else %}
+                        <span class="status-cancel">Cancelled</span>
+                        {% endif %}
+                    </span>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+        {% else %}
+        <div class="empty-booking">
+            <i class="far fa-calendar-times"></i>
+            <p>No past bookings found.</p>
+        </div>
+        {% endif %}
+    </section>
+</div></div>
 {% endblock %}

@@ -21,13 +21,13 @@ class RestaurantAddForm(forms.ModelForm):
 class MenuAddForm(forms.ModelForm):
       class Meta:
           model=Menu
-          fields=['item_name','cuisine','price']
+          fields=['item_name','cuisine','price','food_pic']
           
 class RestaurantEditForm(forms.ModelForm):
     class Meta:
         model = Restaurant
 
-        fields = ['restaurant_name', 'city', 'area', 'location', 'email', 'business_reg_id','contact_no','s_time','e_time','min_price','max_price','logo',]
+        fields = ['restaurant_name', 'city', 'area', 'location', 'email', 'password','business_reg_id','contact_no','s_time','e_time','min_price','max_price','logo',]
    
          
           

@@ -1,49 +1,74 @@
 {% extends 'base.html' %}
+{% load static %}
 
-{% block content %} <br><br>
+{% block content %}
 
-<div class="menu-container mt-5">
-  <div class="content-container">
-  <div class="content-header">
-    <h1 class="content-title" style="font-size:30px">Menu</h1>
-  </div>
-</div>
-  <hr>
-  {% if restaurant %}
+
+<div class="menu-main-wrapper" style="
+    background: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)),
+                url('{% static 'images/back2.jpg' %}') no-repeat center center fixed;
+    background-size: cover;
+    min-height: 100vh;
+    padding: 3rem 1rem;
+    padding-bottom: 6rem;"> <!-- Added padding to prevent content from being hidden behind fixed button -->
+
+    <div class="menu-content-box">
+        <div class="menu-page-header">
+            <h1 class="menu-page-title">Our Menu</h1>
+        </div>
+    </div>
+
+    <!-- Fixed Add Menu Button at Bottom -->
+    <a href="{% url 'add_menu_for_restaurant_owner' restaurant.id %}" class="btn-add-menu" >
+        <i class="fas fa-plus-circle"></i> Add Menu Item
+    </a>
     {% if menu %}
-      <div class="menu-grid">
+    <div class="menu-grid-wrapper">
         {% for item in menu %}
-          <div class="menu-card">
-            <h5 class="menu-item-name">
-              <i class="fas fa-hamburger"></i> {{ item.item_name }}
-            </h5>
-            <p class="menu-item-detail">
-              <i class="fas fa-utensils"></i> <strong>Cuisine:</strong> {{ item.cuisine }}
-            </p>
-            <p class="menu-item-detail">
-              <i class="fas fa-tag"></i> <strong>Price:</strong> {{ item.price }}
-            </p>
-            <div class="d-flex justify-content-center gap-3 mt-3">
-              <a href="{% url 'edit_menu_for_restaurant_owner' item.id %}" class="btn btn-secondary" style="background-color:#004D40">
-                <i class="fas fa-edit"></i> Edit
-              </a>
-              <a href="{% url 'delete_menu_for_restaurant_owner' item.id %}"class="btn btn-danger" style="background-color:#e53935">
-                <i class="fas fa-trash-alt"></i> Delete
-              </a>
+        <div class="menu-item-card">
+            {% if item.food_pic %}
+            <div class="menu-image-container">
+                <img src="{{ item.food_pic.url }}" alt="{{ item.item_name }}" class="menu-item-image">
+                <div class="price-badge">
+                    {{ item.price }}Tk
+                </div>
             </div>
-          </div>
+            {% else %}
+            <div class="menu-image-container" style="display: flex; align-items: center; justify-content: center;">
+                <i class="fas fa-utensils" style="font-size: 3rem; color: #004D40;"></i>
+                <div class="price-badge">
+                     {{ item.price }}Tk
+                </div>
+            </div>
+            {% endif %}
+
+            <div class="menu-item-content">
+                <h5 class="menu-item-name">
+                    <i class="fas fa-hamburger"></i> {{ item.item_name }}
+                </h5>
+
+                <div class="menu-item-meta">
+                    <div class="menu-meta-item">
+                        <span class="menu-meta-icon"><i class="fas fa-globe-asia"></i></span>
+                        <span><strong>Cuisine:</strong> {{ item.cuisine|default:"International" }}</span>
+                    </div>
+                </div>
+                <div class="menu-item-actions">
+                    <a href="{% url 'edit_menu_for_restaurant_owner' item.id %}" class="btn-edit">
+                        <i class="fas fa-edit"></i> Edit
+                    </a>
+                    <a href="{% url 'delete_menu_for_restaurant_owner' item.id %}" class="btn-delete">
+                        <i class="fas fa-trash-alt"></i> Delete
+                    </a>
+                </div>
+            </div>
+        </div>
         {% endfor %}
-      </div>
+    </div>
     {% else %}
-      <p class="text-center no-menu">No menu items available for this restaurant.</p>
+    <div class="no-menu-message">
+        <p><i class="fas fa-exclamation-circle"></i> Our menu is currently being updated. Please check back soon!</p>
+    </div>
     {% endif %}
-
-<a href="{% url 'add_menu_for_restaurant_owner' restaurant.id %}" class="add-menu-button">
-  <i class="fas fa-plus-circle"></i> Add Menu Item
-</a>
-
-
-{% endif %}
-
 </div>
 {% endblock %}

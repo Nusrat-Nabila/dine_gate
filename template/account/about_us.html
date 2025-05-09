@@ -1,6 +1,16 @@
 {% extends 'base.html' %}
+{% load static %}
 {% block content %}
-
+<div style="
+    background: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)),
+                url('{% static 'images/back2.jpg' %}') no-repeat center center fixed;
+    background-size: cover;
+    min-height: 100vh;
+    padding: 2rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+">
 <div class="container my-5 animate__animated animate__fadeIn">
   <div class="p-5 rounded shadow-lg" style="background-color: #e3e4e3; border-left: 6px solid #004D40;">
     <h2 class="text-center mb-4" style="color: #004D40; font-weight: bold;">
@@ -19,7 +29,7 @@
       <div class="col-md-6 mb-4">
         <div class="card border-0 shadow-sm h-100 animate__animated animate__fadeInLeft" style="background-color: #F5F0E6;">
           <div class="card-body">
-            <i class="fas fa-user-check fa-3x mb-3" style="color: #008080;"></i>
+            <i class="fas fa-user-check fa-3x mb-3" style="color: #004D40;"></i>
             <h5 class="card-title" style="color: #004D40;">For Customers</h5>
             <p class="card-text" style="color: #004D40;">Browse, book, and breathe easy with real-time availability and smart filters — built for comfort and clarity.</p>
           </div>
@@ -28,7 +38,7 @@
       <div class="col-md-6 mb-4">
         <div class="card border-0 shadow-sm h-100 animate__animated animate__fadeInRight" style="background-color: #F5F0E6;">
           <div class="card-body">
-            <i class="fas fa-store-alt fa-3x mb-3" style="color: #008080;"></i>
+            <i class="fas fa-store-alt fa-3x mb-3" style="color: #004D40;"></i>
             <h5 class="card-title" style="color: #004D40;">For Restaurants</h5>
             <p class="card-text" style="color: #004D40;">Manage tables effortlessly, minimize chaos, and create experiences your guests won’t forget.</p>
           </div>
@@ -42,9 +52,9 @@
 
     <h4 class="text-center mt-4" style="color: #004D40; font-style: italic;">
       Come. Click. Dine.<br>
-      <span style="color: #008080;">Your table is waiting.</span>
+      <span style="color: #004D40;">Your table is waiting.</span>
     </h4>
   </div>
 </div>
-
+</div>
 {% endblock %}

@@ -1,31 +1,245 @@
 {% extends 'base.html' %}
+{% load static %}
 
 {% block content %}
-<div class="container mt-5">
+<style>
+  /* Table Booking System Styles */
+  .booking_wrapper {
+    background: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)),
+                url('{% static 'images/back2.jpg' %}') no-repeat center center fixed;
+    background-size: cover;
+    min-height: 100vh;
+    padding: 2rem 1rem;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+  }
 
-      <div class="content-container">
-  <div class="content-header">
-    <h1 class="content-title" style="font-size:28px">Available Tables at {{ restaurant.restaurant_name }}</h1>
-  </div>
-</div>
-  <hr style="border-color: #004D40;">
+  .booking-container {
+    max-width: 800px;
+    width: 100%;
+    margin: 1rem auto;
+    padding: 2rem;
+    background: transparent; /* Removed white background */
+    border-radius: 10px;
+  }
 
-  {% if tables %}
-    <div class="menu-wrapper" >
-      {% for t in tables %}
-        <div class="menu-item" style="background-color:#e3e4e3">
-          <h5><i class="fa fa-chair"></i> Table No: {{ t.table_no }}</h5>
-          <p><i class="fa fa-clock"></i>  {{ t.start_time }} - {{ t.end_time }}</p>
-          <p><i class="fa fa-users"></i>  {{ t.no_of_people }} People</p>
-          <form method="post" action="{% url 'confirm_booking' t.table_no t.date|date:'Y-m-d' t.start_time|time:'Hi' t.end_time|time:'Hi' %}">
-            {% csrf_token %}
-            <button class="profile-btn-save" style="background-color:#004D40">Confirm Booking</button>
-          </form>
-        </div>
-      {% endfor %}
+  .booking-header {
+    text-align: center;
+    margin-bottom: 1.5rem;
+  }
+
+  .booking-title {
+    font-size: 1.8rem;
+    color: #ffffff; /* Changed back to white */
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+    text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.5);
+  }
+
+  .booking-subtitle {
+    color: #ffffff;
+    font-size: 1rem;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+  }
+
+  .divider {
+    height: 1px;
+    background: linear-gradient(to right, transparent, #ffffff, transparent);
+    margin: 1rem 0;
+  }
+
+  .tables-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+    gap: 1.2rem;
+    margin-top: 1.5rem;
+  }
+
+  .table-card {
+    background: #ffffff; /* Semi-transparent white */
+    backdrop-filter: blur(5px);
+    border-radius: 8px;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    padding: 1.2rem;
+    transition: all 0.3s ease;
+    color: white;
+  }
+
+  .table-card:hover {
+    transform: translateY(-3px);
+    background: #ffffff;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+  }
+
+  .table-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1rem;
+    padding-bottom: 0.6rem;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.3);
+  }
+
+  .table-number {
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: #004D40;
+  }
+
+  .table-capacity {
+    background: #004D40;
+    color: white;
+    padding: 0.2rem 0.6rem;
+    border-radius: 20px;
+    font-size: 0.8rem;
+    font-weight: 500;
+  }
+
+  .table-details {
+    margin-bottom: 1.2rem;
+  }
+
+  .time-slot, .booking-date {
+    display: flex;
+    align-items: center;
+    margin-bottom: 0.5rem;
+    color: #004D40;
+    font-size: 0.9rem;
+  }
+
+  .time-slot i, .booking-date i {
+    margin-right: 0.6rem;
+    color: #004D40;
+    width: 16px;
+    text-align: center;
+  }
+
+  .book-btn {
+    width: 100%;
+    padding: 0.6rem;
+    background-color: #004D40;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    font-weight: 500;
+    font-size: 0.9rem;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+  }
+
+  .book-btn:hover {
+    background-color: rgba(0, 105, 92, 0.9);
+  }
+
+  .no-tables {
+    text-align: center;
+    padding: 2rem;
+    background: rgba(248, 249, 250, 0.2);
+    border-radius: 8px;
+    color: white;
+  }
+
+  .no-tables i {
+    font-size: 2rem;
+    color: #ffffff;
+    margin-bottom: 1rem;
+  }
+
+  .no-tables p {
+    color: #ffffff;
+    font-size: 1rem;
+    margin-bottom: 1.2rem;
+  }
+
+  .back-link {
+    color: #ffffff;
+    text-decoration: none;
+    font-weight: 500;
+    border-bottom: 1px dashed #ffffff;
+    transition: color 0.3s ease;
+  }
+
+  .back-link:hover {
+    color: #e0e0e0;
+  }
+
+  /* Responsive adjustments */
+  @media (max-width: 768px) {
+    .booking-container {
+      padding: 1.5rem;
+    }
+
+    .tables-grid {
+      grid-template-columns: 1fr;
+    }
+
+    .booking-title {
+      font-size: 1.5rem;
+    }
+  }
+
+  @media (max-width: 480px) {
+    .booking_wrapper {
+      padding: 1rem 0.5rem;
+    }
+
+    .booking-container {
+      padding: 1rem;
+    }
+  }
+</style>
+
+<div class="booking_wrapper">
+  <div class="booking-container">
+    <div class="booking-header">
+      <h1 class="booking-title">Available Tables at {{ restaurant.restaurant_name }}</h1>
+      <p class="booking-subtitle">Select your preferred table from the options below</p>
     </div>
-  {% else %}
-    <p class="text-center text-danger"><i class="fa fa-exclamation-circle"></i> No tables available for the selected time and criteria.</p>
-  {% endif %}
+
+    <div class="divider"></div>
+
+    {% if tables %}
+      <div class="tables-grid">
+        {% for t in tables %}
+          <div class="table-card">
+            <div class="table-header">
+              <span class="table-number">Table #{{ t.table_no }}</span>
+              <span class="table-capacity">{{ t.no_of_people }} <i class="fas fa-user"></i></span>
+            </div>
+
+            <div class="table-details">
+              <div class="time-slot">
+                <i class="far fa-clock"></i>
+                <span><b>{{ t.start_time|time:"g:i A" }} - {{ t.end_time|time:"g:i A" }}</b></span>
+              </div>
+              <div class="booking-date">
+                <i class="far fa-calendar-alt"></i>
+                <span><b>{{ t.date|date:"F j, Y" }}</b></span>
+              </div>
+            </div>
+
+            <form method="post" action="{% url 'confirm_booking' t.table_no t.date|date:'Y-m-d' t.start_time|time:'Hi' t.end_time|time:'Hi' %}">
+              {% csrf_token %}
+              <button class="book-btn" type="submit">
+                <i class="fas fa-check-circle"></i> Confirm Booking
+              </button>
+            </form>
+          </div>
+        {% endfor %}
+      </div>
+    {% else %}
+      <div class="no-tables">
+        <i class="fas fa-exclamation-triangle"></i>
+        <p>No tables available for the selected time and criteria.</p>
+        <a href="{% url 'search_table' restaurant.id %}" class="back-link">Try different time</a>
+
+      </div>
+    {% endif %}
+  </div>
 </div>
 {% endblock %}

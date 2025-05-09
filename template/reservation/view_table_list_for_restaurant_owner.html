@@ -1,44 +1,74 @@
 {% extends 'base.html' %}
+{% load static %}
 
 {% block content %}
-<div class="menu-container mt-5">
-  <div class="content-container">
-  <div class="content-header">
-    <h1 class="content-title" style="font-size:34px">Table List</h1>
-  </div>
-</div>
-  <hr>
-  {% if restaurant %}
-    {% if table %}
-      <div class="menu-grid">
-        {% for t in table %}
-          <div class="menu-card">
-            <h5 class="menu-item-name"><i class="fas fa-chair"></i> Table No: {{ t.table_no }}</h5>
-            <p class="menu-item-detail"><i class="fas fa-calendar-day"></i> <strong>Date:</strong> {{ t.date }}</p>
-            <p class="menu-item-detail"><i class="fas fa-clock"></i> <strong>Start Time:</strong> {{ t.start_time }}</p>
-            <p class="menu-item-detail"><i class="fas fa-hourglass-end"></i> <strong>End Time:</strong> {{ t.end_time }}</p>
-            <p class="menu-item-detail"><i class="fas fa-users"></i> <strong>Capacity:</strong> {{ t.no_of_people }}</p>
-            <p class="menu-item-detail"><i class="fas fa-users"></i> <strong>Is available:</strong> {{ t.is_available }}</p>
-            <div class="d-flex justify-content-center gap-3 mt-3">
-              <a href="{% url 'edit_table_list_for_restaurant_owner' t.id %}" class="btn btn-secondary" style="background-color:#004D40">
-                <i class="fas fa-edit"></i> Edit
-              </a>
-              <a href="{% url 'confirm_delete_table' t.id %}" class="btn btn-danger" style="background-color:#e53935">
-                <i class="fas fa-trash-alt"></i> Delete
-              </a>
-            </div>
-          </div>
-        {% endfor %}
-      </div>
-    {% else %}
-      <p class="text-center no-menu" style="color:#ffffff">No tables are available.</p>
-    {% endif %}
-
-    <div class="text-center mt-4">
-      <a href="{% url 'add_table_list_for_restaurant_owner' restaurant.id %}" class="add-menu-button">
-        <i class="fas fa-plus-circle"></i> Add Table
-      </a>
+<div style="
+    background: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)),
+                url('{% static 'images/back2.jpg' %}') no-repeat center center fixed;
+    background-size: cover;
+    min-height: 100vh;
+    padding: 3rem 1rem;">
+<div class="table-management-system">
+  <!-- Dashboard Header -->
+ <div class="menu-content-box">
+        <div class="menu-page-header">
+            <h1 class="menu-page-title">Table List</h1>
+        </div>
     </div>
-  {% endif %}
-</div>
+
+
+  <!-- Table List Section -->
+  <div class="table-list-container">
+    {% if table %}
+    <div class="table-list">
+      {% for t in table %}
+      <div class="table-card">
+        <div class="table-card-header">
+          <span class="table-number">Table #{{ t.table_no }}</span>
+          <span class="table-status-badge {% if t.is_available %}available{% else %}reserved{% endif %}">
+            {% if t.is_available %}<i class="fas fa-check-circle"></i> Available{% else %}<i class="fas fa-times-circle"></i> Reserved{% endif %}
+          </span>
+        </div>
+
+        <div class="table-card-details">
+          <div class="table-detail-row">
+            <i class="fas fa-users"></i>
+            <span>Capacity: <strong>{{ t.no_of_people }} people</strong></span>
+          </div>
+          <div class="table-detail-row">
+            <i class="fas fa-calendar-day"></i>
+            <span>Date: <strong>{{ t.date }}</strong></span>
+          </div>
+          <div class="table-detail-row">
+            <i class="fas fa-clock"></i>
+            <span>Time: <strong>{{ t.start_time }} - {{ t.end_time }}</strong></span>
+          </div>
+        </div>
+
+        <div class="table-card-actions">
+          <a href="{% url 'edit_table_list_for_restaurant_owner' t.id %}" class="table-btn-edit">
+            <i class="fas fa-edit"></i> Edit
+          </a>
+          <a href="{% url 'confirm_delete_table' t.id %}" class="table-btn-delete">
+            <i class="fas fa-trash-alt"></i> Delete
+          </a>
+        </div>
+      </div>
+      {% endfor %}
+    </div>
+    {% else %}
+    <div class="table-empty-state">
+      <i class="fas fa-table"></i>
+      <h3>No Tables Found</h3>
+      <p>You haven't added any tables yet. Create your first table to get started.</p>
+
+    </div>
+    {% endif %}
+  </div>
+
+  <!-- Fixed Add Table Button -->
+  <a href="{% url 'add_table_list_for_restaurant_owner' restaurant.id %}" class="table-btn-add">
+    <i class="fas fa-plus"></i> Add New Table
+  </a>
+</div></div>
 {% endblock %}

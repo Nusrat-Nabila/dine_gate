@@ -1,5 +1,16 @@
 {% extends 'base.html' %}
+{% load static %}
 {% block content %}
+<div style="
+    background: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)),
+                url('{% static 'images/back2.jpg' %}') no-repeat center center fixed;
+    background-size: cover;
+    min-height: 100vh;
+    padding: 2rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+">
 
 <div class="container my-5 animate__animated animate__fadeIn">
   <div class="p-5 rounded shadow-lg" style="background-color: #e3e4e3; border-left: 6px solid #004D40; max-width: 900px; margin: 0 auto;">
@@ -17,9 +28,9 @@
       <div class="col-md-6">
         <div class="contact-info">
           <h4 style="color: #004D40; font-weight: bold;">Get in Touch</h4>
-          <p style="color: #008080;"><i class="fas fa-map-marker-alt"></i> Address: 123 DineGate Lane, City, Country</p>
-          <p style="color: #008080;"><i class="fas fa-phone-alt"></i> Phone: +123 456 7890</p>
-          <p style="color: #008080;"><i class="fas fa-envelope"></i> Email: contact@dinegate.com</p>
+          <p style="color: #004D40;"><i class="fas fa-map-marker-alt"></i> Address: 123 DineGate Lane, City, Country</p>
+          <p style="color: #004D40;"><i class="fas fa-phone-alt"></i> Phone: +123 456 7890</p>
+          <p style="color: #004D40;"><i class="fas fa-envelope"></i> Email: contact@dinegate.com</p>
         </div>
       </div>
 
@@ -30,5 +41,5 @@
     </div>
   </div>
 </div>
-
+</div>
 {% endblock %}

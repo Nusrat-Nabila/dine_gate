@@ -1968,3 +1968,784 @@ select.form-control {
         width: 100%;
     }
 }
+
+/* Menu Page Styling - Matches Restaurant Details Page */
+
+.menu-content-box {
+    max-width: 1200px;
+    margin: 0 auto 2rem;
+    padding: 0 1rem;
+    text-align: center;
+}
+
+.menu-page-header {
+    margin-bottom: 2.5rem;
+    animation: fadeInDown 0.8s ease;
+}
+
+.menu-page-title {
+    font-size: 3rem;
+    color: white;
+    font-weight: 600;
+    margin-bottom: 1rem;
+    letter-spacing: -1px;
+    text-shadow: 0 2px 10px rgba(0,0,0,0.3);
+    position: relative;
+    display: inline-block;
+    font-family: 'Poppins', sans-serif;
+}
+
+.menu-page-title::after {
+    content: '';
+    position: absolute;
+    bottom: -12px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 100px;
+    height: 4px;
+    background: linear-gradient(90deg, #27ae60, #2ecc71);
+    border-radius: 3px;
+    box-shadow: 0 2px 10px rgba(39, 174, 96, 0.4);
+}
+
+/* Menu Grid - Matches Restaurant Details Card Style */
+.menu-grid-wrapper {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+    gap: 2rem;
+    padding: 0 1rem;
+}
+
+.menu-item-card {
+    background: white;
+    border-radius: 16px;
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    overflow: hidden;
+    position: relative;
+    border: none;
+}
+
+.menu-item-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+}
+
+/* Image Container - Preserving Your Liked Style */
+.menu-image-container {
+    width: 100%;
+    height: 220px;
+    overflow: hidden;
+    position: relative;
+    background: linear-gradient(135deg, #f5f7fa 0%, #e4e8eb 100%);
+}
+
+.menu-item-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.8s ease, filter 0.5s ease;
+}
+
+.menu-item-card:hover .menu-item-image {
+    transform: scale(1.1);
+    filter: brightness(1.05);
+}
+
+/* Content Section */
+.menu-item-content {
+    padding: 1.8rem;
+    display: flex;
+    flex-direction: column;
+}
+
+.menu-item-name {
+    font-size: 1.7rem;
+    color: #004D40;
+    margin-bottom: 0.8rem;
+    font-weight: 700;
+    line-height: 1.3;
+    position: relative;
+    display: inline-block;
+    font-family: 'Poppins', sans-serif;
+}
+
+.menu-item-name::after {
+    content: '';
+    position: absolute;
+    bottom: -8px;
+    left: 0;
+    width: 50px;
+    height: 3px;
+    background: #27ae60;
+    border-radius: 3px;
+    transition: width 0.3s ease;
+}
+
+.menu-item-card:hover .menu-item-name::after {
+    width: 70px;
+}
+
+.menu-item-meta {
+    color: #555;
+    font-size: 0.95rem;
+    margin-top: 0.5rem;
+}
+
+.menu-meta-item {
+    margin-bottom: 0.8rem;
+    display: flex;
+    align-items: center;
+}
+
+.menu-meta-icon {
+    margin-right: 12px;
+    color: #004D40;
+    width: 22px;
+    text-align: center;
+    font-size: 1.1rem;
+}
+
+.price-badge {
+    position: absolute;
+    top: 1.5rem;
+    right: 1.5rem;
+    background: #FFC107;
+    color: #fff;
+    padding: 0.3rem 0.8rem;
+    border-radius: 50px;
+    font-weight: 700;
+    font-size: 0.85rem;
+    display: flex;
+    align-items: center;
+    box-shadow: 0 3px 10px rgba(255, 193, 7, 0.3);
+}
+
+.price-badge i {
+    margin-right: 5px;
+    font-size: 0.9rem;
+}
+
+/* No Menu Message */
+.no-menu-message {
+    text-align: center;
+    width: 100%;
+    padding: 3rem;
+    color: rgba(255,255,255,0.8);
+    font-size: 1.3rem;
+    grid-column: 1 / -1;
+    background: rgba(255,255,255,0.1);
+    border-radius: 12px;
+    backdrop-filter: blur(5px);
+}
+
+.no-menu-btn {
+    background-color: #004D40;
+    color: white;
+    padding: 0.8rem 1.8rem;
+    border-radius: 8px;
+    text-decoration: none;
+    font-weight: 600;
+    border: none;
+    transition: all 0.3s ease;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    margin-top: 1.5rem;
+}
+
+.no-menu-btn:hover {
+    background-color: #00695C;
+    color: white;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+}
+
+.no-menu-btn i {
+    margin-right: 8px;
+}
+
+/* Animations */
+@keyframes fadeInDown {
+    from {
+        opacity: 0;
+        transform: translateY(-30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Responsive Adjustments */
+@media (max-width: 1100px) {
+    .menu-grid-wrapper {
+        grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    }
+}
+
+@media (max-width: 768px) {
+    .menu-page-title {
+        font-size: 2.2rem;
+    }
+
+    .menu-grid-wrapper {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media (max-width: 576px) {
+    .menu-page-title {
+        font-size: 2rem;
+    }
+
+    .menu-grid-wrapper {
+        padding: 0;
+    }
+
+    .menu-item-name {
+        font-size: 1.5rem;
+    }
+
+    .menu-item-content {
+        padding: 1.5rem;
+    }
+}
+
+/* Action Buttons - Added to Match Your Requirements */
+.menu-item-actions {
+    display: flex;
+    gap: 1rem;
+    margin-top: 1.5rem;
+    padding-top: 1rem;
+    border-top: 1px dashed rgba(0, 77, 64, 0.2);
+}
+
+.btn-edit {
+    background-color: #004D40;
+    color: white;
+    padding: 0.5rem 1rem;
+    border-radius: 5px;
+    text-decoration: none;
+    font-weight: 500;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    transition: all 0.3s ease;
+    flex: 1;
+}
+
+.btn-edit:hover {
+    background-color: #00695C;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0, 77, 64, 0.2);
+}
+
+.btn-delete {
+    background-color: #e53935;
+    color: white;
+    padding: 0.5rem 1rem;
+    border-radius: 5px;
+    text-decoration: none;
+    font-weight: 500;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    transition: all 0.3s ease;
+    flex: 1;
+}
+
+.btn-delete:hover {
+    background-color: #c62828;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(198, 40, 40, 0.2);
+}
+/* Fixed "Add Menu" Button */
+.btn-add-menu {
+    /* Button Styling */
+    background-color: white;
+    color: #004D40;
+    padding: 0.5rem 1.5rem;
+    border-radius: 30px;
+    font-weight: 600;
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    border: 2px solid #004D40;
+    box-shadow: 0 4px 8px rgba(0, 77, 64, 0.2);
+    transition: all 0.3s ease;
+
+    /* Fixed Positioning (Sticks to bottom) */
+    position: fixed;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 1000; /* Ensures it stays above other content */
+}
+
+/* Hover Effect */
+.btn-add-menu:hover {
+    background-color: #004D40;
+    color: white;
+    transform: translateX(-50%) scale(1.05);
+    box-shadow: 0 6px 12px rgba(0, 77, 64, 0.3);
+}
+
+/* Mobile Responsiveness */
+@media (max-width: 768px) {
+    .btn-add-menu {
+        width: 90%;
+        max-width: 300px;
+        text-align: center;
+        justify-content: center;
+    }
+}
+
+/* ===== Table Management System Styles ===== */
+.table-management-system {
+    max-width: 1200px;
+    margin: 2rem auto;
+    padding: 0 1.5rem;
+    font-family: 'Poppins', sans-serif;
+}
+
+/* Header Styles */
+.table-dashboard-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 2rem;
+    padding-bottom: 1rem;
+    border-bottom: 2px solid #004D40;
+}
+
+.table-dashboard-header h1 {
+    font-size: 2rem;
+    color: #2c3e50;
+    margin: 0;
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+}
+
+.table-dashboard-header p {
+    color: #555;
+    margin: 0.5rem 0 0 0;
+}
+
+/* Primary Button */
+.table-primary-button {
+    padding: 0.75rem 1.5rem;
+    border-radius: 5px;
+    background-color: #004D40;
+    color: white;
+    text-decoration: none;
+    font-weight: 600;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.75rem;
+    transition: all 0.3s ease;
+}
+
+.table-primary-button:hover {
+    background-color: #00382f;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* Table List */
+.table-list {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 1.5rem;
+}
+
+.table-card {
+    background: white;
+    border-radius: 8px;
+    padding: 1.5rem;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+    transition: all 0.3s ease;
+    border-left: 4px solid #004D40;
+}
+
+.table-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.12);
+}
+
+.table-card-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1rem;
+}
+
+.table-number {
+    font-weight: 600;
+    font-size: 1.1rem;
+    color: #2c3e50;
+}
+
+.table-status-badge {
+    padding: 0.35rem 0.75rem;
+    border-radius: 20px;
+    font-size: 0.85rem;
+    font-weight: 500;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.table-status-badge.available {
+    background-color: #e8f5e9;
+    color: #2e7d32;
+}
+
+.table-status-badge.reserved {
+    background-color: #ffebee;
+    color: #c62828;
+}
+
+.table-card-details {
+    margin: 1.5rem 0;
+}
+
+.table-detail-row {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    margin-bottom: 1rem;
+    font-size: 0.95rem;
+}
+
+.table-detail-row i {
+    color: #004D40;
+    width: 20px;
+    text-align: center;
+}
+
+.table-detail-row span {
+    color: #555;
+}
+
+.table-detail-row strong {
+    color: #2c3e50;
+}
+
+/* Table Actions */
+.table-card-actions {
+    display: flex;
+    gap: 0.75rem;
+    padding-top: 1rem;
+    margin-top: 1rem;
+    border-top: 1px dashed #e0e0e0;
+}
+
+.table-btn-edit, .table-btn-delete {
+    padding: 0.5rem 1rem;
+    border-radius: 5px;
+    text-decoration: none;
+    font-weight: 500;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    transition: all 0.2s ease;
+    flex: 1;
+    justify-content: center;
+}
+
+.table-btn-edit {
+    background-color: #004D40;
+    color: white;
+}
+
+.table-btn-edit:hover {
+    background-color: #00382f;
+    transform: translateY(-2px);
+}
+
+.table-btn-delete {
+    background-color: #e53935;
+    color: white;
+}
+
+.table-btn-delete:hover {
+    background-color: #c62828;
+    transform: translateY(-2px);
+}
+
+/* Empty State */
+.table-empty-state {
+    text-align: center;
+    padding: 3rem 2rem;
+    background-color: #f9f9f9;
+    border-radius: 10px;
+    margin: 2rem 0;
+}
+
+.table-empty-state i {
+    font-size: 3rem;
+    color: #bdbdbd;
+    margin-bottom: 1rem;
+}
+
+.table-empty-state h3 {
+    color: #2c3e50;
+    margin-bottom: 0.5rem;
+}
+
+.table-empty-state p {
+    color: #7f8c8d;
+    margin-bottom: 1.5rem;
+}
+
+/* Fixed Add Button */
+.table-btn-add {
+    position: fixed;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 1000;
+    background-color: white;
+    color: #004D40;
+    padding: 0.8rem 2rem;
+    border-radius: 50px;
+    font-weight: 600;
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.8rem;
+    border: 2px solid #004D40;
+    box-shadow: 0 4px 15px rgba(0, 77, 64, 0.3);
+    transition: all 0.3s ease;
+}
+
+.table-btn-add:hover {
+    background-color: #004D40;
+    color: white;
+    transform: translateX(-50%) scale(1.05);
+    box-shadow: 0 6px 20px rgba(0, 77, 64, 0.4);
+}
+
+/* Responsive Adjustments */
+@media (max-width: 768px) {
+    .table-dashboard-header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 1rem;
+    }
+
+    .table-list {
+        grid-template-columns: 1fr;
+    }
+
+    .table-card-actions {
+        flex-direction: column;
+    }
+
+    .table-btn-add {
+        width: 90%;
+        text-align: center;
+        justify-content: center;
+    }
+}
+
+@media (max-width: 576px) {
+    .table-dashboard-header h1 {
+        font-size: 1.8rem;
+    }
+
+    .table-number {
+        font-size: 1rem;
+    }
+
+    .table-card {
+        padding: 1.25rem;
+    }
+}
+
+
+/* Content Header */
+.booking-header {
+    max-width: 1200px;
+    margin: 0 auto 2rem;
+    padding: 0 1rem;
+    text-align: center;
+}
+
+.booking-title {
+    font-size: 2.5rem;
+    font-weight: 700;
+    margin-bottom: 1rem;
+    position: relative;
+    display: inline-block;
+    color: #fff;
+}
+
+.booking-title::after {
+    content: '';
+    position: absolute;
+    bottom: -10px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 80px;
+    height: 4px;
+    background: #27ae60;
+    border-radius: 2px;
+}
+
+/* Booking Sections */
+.booking-section {
+    max-width: 1200px;
+    margin: 0 auto 3rem;
+    padding: 2rem;
+}
+
+.section-title {
+    font-size: 1.8rem;
+    margin-bottom: 1.5rem;
+    color: #fff;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+/* Booking Cards Grid */
+.booking-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 1.5rem;
+}
+
+.booking-card {
+    background: #fff;
+    border-radius: 10px;
+    padding: 1.5rem;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease;
+    border-left: 4px solid #004D40;
+}
+
+.booking-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+}
+
+/* Card Content */
+.booking-restaurant {
+    font-size: 1.3rem;
+    font-weight: 600;
+    color: #004D40;
+    margin-bottom: 0.5rem;
+}
+
+.booking-detail {
+    display: flex;
+    align-items: center;
+    margin-bottom: 0.5rem;
+    color: #555;
+    font-size: 0.95rem;
+}
+
+.booking-detail i {
+    margin-right: 10px;
+    color: #004D40;
+    width: 20px;
+    text-align: center;
+}
+
+.booking-status {
+    display: inline-block;
+    padding: 0.3rem 0.8rem;
+    border-radius: 20px;
+    font-size: 0.85rem;
+    font-weight: 500;
+    margin-top: 0.5rem;
+}
+
+.status-confirm {
+    background-color: #e8f5e9;
+    color: #2e7d32;
+}
+
+.status-cancel {
+    background-color: #ffebee;
+    color: #c62828;
+}
+
+/* Cancel Button */
+.btn-cancel {
+    display: inline-block;
+    padding: 0.5rem 1rem;
+    background: #e53935;
+    color: white;
+    border-radius: 5px;
+    text-decoration: none;
+    font-weight: 500;
+    margin-top: 1rem;
+    transition: all 0.3s ease;
+    border: none;
+    cursor: pointer;
+    font-size: 0.9rem;
+}
+
+.btn-cancel:hover {
+    background: #c62828;
+    transform: translateY(-2px);
+}
+
+/* Empty State */
+.empty-booking {
+    text-align: center;
+    padding: 2rem;
+    color: rgba(255, 255, 255, 0.8);
+    grid-column: 1 / -1;
+}
+
+.empty-booking i {
+    font-size: 2.5rem;
+    margin-bottom: 1rem;
+    color: rgba(255, 255, 255, 0.5);
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .booking-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .booking-title {
+        font-size: 2rem;
+    }
+
+    .section-title {
+        font-size: 1.5rem;
+    }
+
+    .booking-section {
+        padding: 1.5rem;
+    }
+}
+
+@media (max-width: 576px) {
+    .booking-title {
+        font-size: 1.8rem;
+    }
+
+    .booking-restaurant {
+        font-size: 1.1rem;
+    }
+
+    .booking-detail {
+        font-size: 0.9rem;
+    }
+}
+
+

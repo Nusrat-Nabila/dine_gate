@@ -1,36 +1,61 @@
 {% extends 'base.html' %}
+{% load static %}
+
 {% block content %}
-<div class="container mt-5" style="width: 90%; margin: 0 auto;">
-   <div class="content-container">
-  <div class="content-header">
-    <h1 class="content-title" style="font-size:24px">Cancel Book List</h1>
-  </div>
-</div>
-  <br>
+<div class="booking-history-container" style="
+    background: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)),
+                url('{% static 'images/back2.jpg' %}') no-repeat center center fixed;
+    background-size: cover;
+    min-height: 100vh;
+    padding: 3rem 1rem;
+">
+    <div class="content-container">
+        <div class="content-header">
+            <h1 class="content-title">Canceled Bookings</h1>
+        </div>
+    </div>
+    <br>
+
     {% if recent_cancel %}
-      <div class="menu-wrapper">
-        {% for r in recent_cancel %}
-          <div class="menu-item" style="background-color: #e3e4e3;width:15%">
-            <h5 class="card-title" style="text-align:center">
-              <i class="fas fa-user"></i> {{ r.user.user_name }}</h5>
-              <p class="card-title">
-              <i class="fas fa-chair"></i> {{ r.table.table_no }}
-            </p>
+    <div class="booking-section">
+        <h2 class="section-title">
+            <i class="fas fa-times-circle"></i> Recently Canceled
+        </h2>
 
+        <div class="booking-grid">
+            {% for r in recent_cancel %}
+            <div class="booking-card">
+                <h3 class="booking-restaurant">
+                    <i class="fas fa-user"></i> {{ r.user.user_name }}
+                </h3>
 
-            <p class="card-title">
-              <i class="fas fa-calendar-day"></i> {{ r.reserve_date }}
-            </p>
-            <p class="card-title">
-              <i class="fas fa-clock"></i>  {{ r.start_time }} - {{ r.end_time }}
-            </p>
-            <p class="card-title">
-              <i class="fas fa-info-circle"></i>  {{ r.status }}
-            </p>
-          </div>
-        {% endfor %}
-      </div>
-  {% else %}
-      <p class="text-center" style="color: #ffffff"><b>No booking canceled.</b></p>
+                <div class="booking-detail">
+                    <i class="fas fa-chair"></i>
+                    <span>Table: {{ r.table.table_no }}</span>
+                </div>
+
+                <div class="booking-detail">
+                    <i class="fas fa-calendar-day"></i>
+                    <span>Date: {{ r.reserve_date }}</span>
+                </div>
+
+                <div class="booking-detail">
+                    <i class="fas fa-clock"></i>
+                    <span>Time: {{ r.start_time|time:"H:i" }} - {{ r.end_time|time:"H:i" }}</span>
+                </div>
+
+                <div class="booking-status status-cancel">
+                    <i class="fas fa-ban"></i> Canceled
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+    {% else %}
+    <div class="empty-booking">
+        <i class="far fa-calendar-times"></i>
+        <p>No canceled bookings found.</p>
+    </div>
     {% endif %}
+</div>
 {% endblock %}

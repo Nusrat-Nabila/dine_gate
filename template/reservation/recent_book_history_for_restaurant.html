@@ -1,36 +1,65 @@
 {% extends 'base.html' %}
+{% load static %}
+
 {% block content %}
-<div class="container mt-5" style="width: 90%; margin: 0 auto;">
+<div class="booking-history-container" style="
+    background: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)),
+                url('{% static 'images/back2.jpg' %}') no-repeat center center fixed;
+    background-size: cover;
+    min-height: 100vh;
+    padding: 3rem 1rem;
+">
     <div class="content-container">
-  <div class="content-header">
-    <h1 class="content-title" style="font-size:28px">Upcoming Bookings</h1>
-  </div>
-</div>
-  <br>
+        <div class="content-header">
+            <h1 class="content-title">Upcoming Bookings</h1>
+        </div>
+    </div>
+    <br>
+
     {% if upcoming %}
-      <div class="menu-wrapper">
-        {% for booking in upcoming %}
-          <div class="menu-item" style="background-color: #e3e4e3;width:15%">
-            <h5 class="card-title" style="text-align:center">
-              <i class="fas fa-user"></i> {{ booking.user.user_name }}</h5>
-              <p class="card-title">
-              <i class="fas fa-chair"></i> {{ booking.table.table_no }}
-            </p>
+    <div class="booking-section">
+        <h2 class="section-title">
+            <i class="fas fa-calendar-check"></i> Active Reservations
+        </h2>
+
+        <div class="booking-grid">
+            {% for booking in upcoming %}
+            <div class="booking-card">
+                <h3 class="booking-restaurant">
+                    <i class="fas fa-user"></i> {{ booking.user.user_name }}
+                </h3>
+
+                <div class="booking-detail">
+                    <i class="fas fa-chair"></i>
+                    <span>Table: {{ booking.table.table_no }}</span>
+                </div>
+
+                <div class="booking-detail">
+                    <i class="fas fa-calendar-day"></i>
+                    <span>Date: {{ booking.reserve_date }}</span>
+                </div>
+
+                <div class="booking-detail">
+                    <i class="fas fa-clock"></i>
+                    <span>Time: {{ booking.start_time|time:"H:i" }} - {{ booking.end_time|time:"H:i" }}</span>
+                </div>
+
+                <div class="booking-status {% if booking.status == 'confirm' %}status-confirm{% else %}status-cancel{% endif %}">
+                    <i class="fas fa-{% if booking.status == 'confirm' %}check-circle{% else %}times-circle{% endif %}"></i>
+                    {{ booking.status|title }}
+                </div>
 
 
-            <p class="card-title">
-              <i class="fas fa-calendar-day"></i> {{ booking.reserve_date }}
-            </p>
-            <p class="card-title">
-              <i class="fas fa-clock"></i>  {{ booking.start_time }} - {{ booking.end_time }}
-            </p>
-            <p class="card-title">
-              <i class="fas fa-info-circle"></i>  {{ booking.status }}
-            </p>
-          </div>
-        {% endfor %}
-      </div>
+
+            </div>
+            {% endfor %}
+        </div>
+    </div>
     {% else %}
-      <p class="text-center" style="color: #ffffff"><b>No upcoming bookings.</b></p>
+    <div class="empty-booking">
+        <i class="far fa-calendar-times"></i>
+        <p>No upcoming bookings found.</p>
+    </div>
     {% endif %}
+</div>
 {% endblock %}

@@ -2,8 +2,8 @@
 {% load static %}
 
 {% block content %}
-<div class="login-wrapper" style="
-    background: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)),
+<div class="form-wrapper" style="
+    background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
                 url('{% static 'images/back2.jpg' %}') no-repeat center center fixed;
     background-size: cover;
     min-height: 100vh;
@@ -12,87 +12,363 @@
     align-items: center;
     justify-content: center;
 ">
-    <div class="login-container">
-        <!-- Compact Header with #004d40 Border -->
-        <div class="login-header">
-            <img src="{% static 'images/logo.jpg' %}" alt="DineGate Logo" class="logo">
-            <h4>{% if form.instance.pk %}Edit Menu Item{% else %}Add Menu Item{% endif %}</h4>
+    <div class="form-container" style="
+        background: white;
+        border-radius: 10px;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+        width: 100%;
+        max-width: 600px;
+        overflow: hidden;
+    ">
+        <!-- Form Header -->
+        <div class="form-header" style="
+            background: #004d40;
+            padding: 1.5rem;
+            color: white;
+            text-align: center;
+            border-bottom: 4px solid #00251a;
+        ">
+            <img src="{% static 'images/logo.jpg' %}" alt="DineGate Logo" style="
+                height: 60px;
+                margin-bottom: 1rem;
+                border-radius: 50%;
+                border: 3px solid white;
+            ">
+            <h3 style="margin: 0; font-weight: 600;">
+                {% if form.instance.pk %}Edit Menu Item{% else %}Add New Menu Item{% endif %}
+            </h3>
         </div>
 
-        <div class="login-body">
-            <form method="POST" class="login-form">
+        <div class="form-body" style="padding: 2rem;">
+            <form method="POST" class="menu-form" enctype="multipart/form-data">
                 {% csrf_token %}
 
                 {% if form.errors %}
-                <div class="alert alert-error">
-                    <i class="fas fa-exclamation-circle"></i>
+                <div class="alert alert-danger" style="
+                    background: #f8d7da;
+                    color: #721c24;
+                    padding: 0.75rem 1.25rem;
+                    margin-bottom: 1.5rem;
+                    border: 1px solid #f5c6cb;
+                    border-radius: 5px;
+                    display: flex;
+                    align-items: center;
+                ">
+                    <i class="fas fa-exclamation-circle" style="margin-right: 10px;"></i>
                     <span>Please correct the errors below</span>
                 </div>
                 {% endif %}
 
                 <!-- Item Name -->
-                <div class="form-group">
-                    <label for="id_item_name">Item Name</label>
-                    <div class="input-group">
-                        <span class="input-icon">
-                            <i class="fas fa-hamburger"></i>
+                <div class="form-group" style="margin-bottom: 1.5rem;">
+                    <label for="id_item_name" style="
+                        display: block;
+                        margin-bottom: 0.5rem;
+                        font-weight: 500;
+                        color: #004d40;
+                    ">Item Name</label>
+                    <div class="input-group" style="position: relative;">
+                        <span class="input-icon" style="
+                            position: absolute;
+                            left: 15px;
+                            top: 50%;
+                            transform: translateY(-50%);
+                            color: #004d40;
+                        ">
+                            <i class="fas fa-utensils"></i>
                         </span>
                         <input type="text" id="id_item_name" name="item_name"
-                               class="form-control" placeholder="Item Name"
+                               class="form-control" placeholder="Enter item name"
                                value="{{ form.item_name.value|default:'' }}" required
-                               style="border: 2px solid #004d40; padding-left: 40px;">
+                               style="
+                                    width: 100%;
+                                    padding: 12px 15px 12px 45px;
+                                    border: 2px solid #004d40;
+                                    border-radius: 5px;
+                                    font-size: 16px;
+                                    transition: all 0.3s;
+                               ">
                     </div>
                     {% if form.item_name.errors %}
-                        <small class="error-text">{{ form.item_name.errors }}</small>
+                        <small class="error-text" style="
+                            color: #dc3545;
+                            font-size: 0.875rem;
+                            margin-top: 0.25rem;
+                            display: block;
+                        ">{{ form.item_name.errors }}</small>
                     {% endif %}
                 </div>
 
                 <!-- Cuisine -->
-                <div class="form-group">
-                    <label for="id_cuisine">Cuisine</label>
-                    <div class="input-group">
-                        <span class="input-icon">
+                <div class="form-group" style="margin-bottom: 1.5rem;">
+                    <label for="id_cuisine" style="
+                        display: block;
+                        margin-bottom: 0.5rem;
+                        font-weight: 500;
+                        color: #004d40;
+                    ">Cuisine Type</label>
+                    <div class="input-group" style="position: relative;">
+                        <span class="input-icon" style="
+                            position: absolute;
+                            left: 15px;
+                            top: 50%;
+                            transform: translateY(-50%);
+                            color: #004d40;
+                        ">
                             <i class="fas fa-globe-asia"></i>
                         </span>
                         <input type="text" id="id_cuisine" name="cuisine"
                                class="form-control" placeholder="e.g., Italian, Chinese"
                                value="{{ form.cuisine.value|default:'' }}" required
-                               style="border: 2px solid #004d40; padding-left: 40px;">
+                               style="
+                                    width: 100%;
+                                    padding: 12px 15px 12px 45px;
+                                    border: 2px solid #004d40;
+                                    border-radius: 5px;
+                                    font-size: 16px;
+                                    transition: all 0.3s;
+                               ">
                     </div>
                     {% if form.cuisine.errors %}
-                        <small class="error-text">{{ form.cuisine.errors }}</small>
+                        <small class="error-text" style="
+                            color: #dc3545;
+                            font-size: 0.875rem;
+                            margin-top: 0.25rem;
+                            display: block;
+                        ">{{ form.cuisine.errors }}</small>
                     {% endif %}
                 </div>
 
                 <!-- Price -->
-                <div class="form-group">
-                    <label for="id_price">Price (BDT)</label>
-                    <div class="input-group">
-                        <span class="input-icon">
-                            <i class="fas fa-dollar-sign"></i>
+                <div class="form-group" style="margin-bottom: 1.5rem;">
+                    <label for="id_price" style="
+                        display: block;
+                        margin-bottom: 0.5rem;
+                        font-weight: 500;
+                        color: #004d40;
+                    ">Price (BDT)</label>
+                    <div class="input-group" style="position: relative;">
+                        <span class="input-icon" style="
+                            position: absolute;
+                            left: 15px;
+                            top: 50%;
+                            transform: translateY(-50%);
+                            color: #004d40;
+                        ">
+                            <i class="fas fa-tag"></i>
                         </span>
                         <input type="number" id="id_price" name="price"
-                               class="form-control" placeholder="Price in BDT"
+                               class="form-control" placeholder="Enter price in BDT"
                                value="{{ form.price.value|default:'' }}" required
-                               style="border: 2px solid #004d40; padding-left: 40px;">
+                               style="
+                                    width: 100%;
+                                    padding: 12px 15px 12px 45px;
+                                    border: 2px solid #004d40;
+                                    border-radius: 5px;
+                                    font-size: 16px;
+                                    transition: all 0.3s;
+                               ">
                     </div>
                     {% if form.price.errors %}
-                        <small class="error-text">{{ form.price.errors }}</small>
+                        <small class="error-text" style="
+                            color: #dc3545;
+                            font-size: 0.875rem;
+                            margin-top: 0.25rem;
+                            display: block;
+                        ">{{ form.price.errors }}</small>
                     {% endif %}
                 </div>
 
-                <!-- Submit Button -->
-                <button type="submit" class="btn btn-login" style="background-color:#004d40; color:#ffffff; border: 2px solid #004d40;">
-                    <i class="fas fa-save"></i> {% if form.instance.pk %}Update{% else %}Add{% endif %} Item
-                </button>
-            </form>
+                <!-- Food Image -->
+                <div class="form-group" style="margin-bottom: 2rem;">
+                    <label style="
+                        display: block;
+                        margin-bottom: 0.5rem;
+                        font-weight: 500;
+                        color: #004d40;
+                    ">Food Image</label>
 
-            <div class="login-footer">
-                <p><a href="{% url 'restaurant_dashboard' %}" class="signup-link" style="color:#004d40">
-                    <b>Back to Dashboard</b>
-                </a></p>
-            </div>
+                    <div class="image-upload-container">
+                        <!-- Image Preview -->
+                        <div class="image-preview" id="imagePreview" style="
+                            width: 100%;
+                            height: 200px;
+                            border: 2px dashed #004d40;
+                            border-radius: 8px;
+                            margin-bottom: 1rem;
+                            display: flex;
+                            align-items: center;
+                            justify-content: center;
+                            overflow: hidden;
+                            background-color: #f8f9fa;
+                            position: relative;
+                        ">
+                            {% if form.instance.food_pic %}
+                                <img src="{{ form.instance.food_pic.url }}" alt="Current Image" class="preview-image" style="
+                                    width: 100%;
+                                    height: 100%;
+                                    object-fit: cover;
+                                ">
+                                <span class="default-text" style="
+                                    color: #6c757d;
+                                    font-style: italic;
+                                    display: none;
+                                ">No image selected</span>
+                            {% else %}
+                                <span class="default-text" style="
+                                    color: #6c757d;
+                                    font-style: italic;
+                                ">No image selected</span>
+                            {% endif %}
+                        </div>
+
+                        <!-- File Upload Button -->
+                        <div class="file-upload-wrapper">
+                            <label class="custom-file-upload" style="
+                                display: block;
+                                padding: 12px;
+                                background-color: #f8f9fa;
+                                color: #004d40;
+                                border: 2px solid #004d40;
+                                border-radius: 5px;
+                                text-align: center;
+                                font-weight: 600;
+                                cursor: pointer;
+                                transition: all 0.3s;
+                            ">
+                                <i class="fas fa-camera" style="margin-right: 8px;"></i>
+                                Choose Image
+                                <input type="file" id="id_food_pic" name="food_pic" accept="image/*" style="display: none;">
+                            </label>
+                        </div>
+                    </div>
+
+                    {% if form.food_pic.errors %}
+                        <small class="error-text" style="
+                            color: #dc3545;
+                            font-size: 0.875rem;
+                            margin-top: 0.5rem;
+                            display: block;
+                        ">{{ form.food_pic.errors }}</small>
+                    {% endif %}
+                </div>
+
+                <!-- Form Actions -->
+                <div class="form-actions" style="
+                    display: flex;
+                    justify-content: space-between;
+                    align-items: center;
+                    margin-top: 2rem;
+                ">
+                    <a href="{% url 'restaurant_dashboard' %}" style="
+                        color: #004d40;
+                        font-weight: 600;
+                        text-decoration: none;
+                        display: flex;
+                        align-items: center;
+                    ">
+                        <i class="fas fa-arrow-left" style="margin-right: 8px;"></i>
+                        Back to Dashboard
+                    </a>
+
+                    <button type="submit" class="submit-btn" style="
+                        background-color: #004d40;
+                        color: white;
+                        border: none;
+                        padding: 12px 25px;
+                        border-radius: 5px;
+                        font-weight: 600;
+                        cursor: pointer;
+                        transition: all 0.3s;
+                        display: flex;
+                        align-items: center;
+                        justify-content: center;
+                    ">
+                        <i class="fas fa-save" style="margin-right: 8px;"></i>
+                        {% if form.instance.pk %}Update Item{% else %}Add Item{% endif %}
+                    </button>
+                </div>
+            </form>
         </div>
     </div>
 </div>
+
+<script>
+    // Enhanced Image Preview Functionality
+    document.addEventListener('DOMContentLoaded', function() {
+        const fileInput = document.getElementById('id_food_pic');
+        const preview = document.getElementById('imagePreview');
+        const defaultText = preview.querySelector('.default-text');
+
+        fileInput.addEventListener('change', function(event) {
+            const file = event.target.files[0];
+
+            // Hide default text
+            if (defaultText) defaultText.style.display = 'none';
+
+            // Remove existing preview image if any
+            const existingPreview = preview.querySelector('.preview-image');
+            if (existingPreview) existingPreview.remove();
+
+            if (file) {
+                // Check if file is an image
+                if (!file.type.match('image.*')) {
+                    alert('Please select an image file (JPEG, PNG, etc.)');
+                    return;
+                }
+
+                // Check file size (max 5MB)
+                if (file.size > 5 * 1024 * 1024) {
+                    alert('Image size should be less than 5MB');
+                    return;
+                }
+
+                const reader = new FileReader();
+
+                reader.onload = function(e) {
+                    const img = document.createElement('img');
+                    img.classList.add('preview-image');
+                    img.style.width = '100%';
+                    img.style.height = '100%';
+                    img.style.objectFit = 'cover';
+                    img.src = e.target.result;
+
+                    preview.insertBefore(img, defaultText);
+                }
+
+                reader.readAsDataURL(file);
+            } else {
+                // Show default text if no file selected
+                if (defaultText) defaultText.style.display = 'block';
+            }
+        });
+
+        // Add hover effects
+        const submitBtn = document.querySelector('.submit-btn');
+        if (submitBtn) {
+            submitBtn.addEventListener('mouseenter', function() {
+                this.style.backgroundColor = '#00251a';
+                this.style.transform = 'translateY(-2px)';
+            });
+
+            submitBtn.addEventListener('mouseleave', function() {
+                this.style.backgroundColor = '#004d40';
+                this.style.transform = 'translateY(0)';
+            });
+        }
+
+        const fileUpload = document.querySelector('.custom-file-upload');
+        if (fileUpload) {
+            fileUpload.addEventListener('mouseenter', function() {
+                this.style.backgroundColor = '#004d40';
+                this.style.color = 'white';
+            });
+
+            fileUpload.addEventListener('mouseleave', function() {
+                this.style.backgroundColor = '#f8f9fa';
+                this.style.color = '#004d40';
+            });
+        }
+    });
+</script>
 {% endblock %}
