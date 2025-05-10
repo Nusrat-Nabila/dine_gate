@@ -13,15 +13,15 @@
         <h1 class="booking-title">Booking History</h1>
     </div>
 
-    <!-- Upcoming Bookings Section -->
+    <!-- Recently Bookings Section -->
     <section class="booking-section">
         <h2 class="section-title">
-            <i class="fas fa-calendar-check"></i> Upcoming Bookings
+            <i class="fas fa-calendar-check"></i> Recently Bookings
         </h2>
 
-        {% if upcoming %}
+        {% if recently_booking %}
         <div class="booking-grid">
-            {% for booking in upcoming %}
+            {% for booking in recently_booking %}
             <div class="booking-card">
                 <h3 class="booking-restaurant">{{ booking.restaurant.restaurant_name }} - Table {{ booking.table.table_no }}</h3>
 
@@ -32,10 +32,9 @@
 
                 <div class="booking-detail">
                     <i class="fas fa-clock"></i>
-                    <span>Time: {{ booking.start_time|time:"H:i" }} - {{ booking.end_time|time:"H:i" }}</span>
+                    <span>Time: {{ booking.start_time }} - {{ booking.end_time }}</span>
                 </div>
 
-                {% if booking.status == 'confirm' %}
                 <div class="booking-status status-confirm">
                     <i class="fas fa-check-circle"></i> Confirmed
                 </div>
@@ -46,26 +45,21 @@
                         <i class="fas fa-times"></i> Cancel Booking
                     </button>
                 </form>
-                {% elif booking.status == 'cancel' %}
-                <div class="booking-status status-cancel">
-                    <i class="fas fa-times-circle"></i> Cancelled
-                </div>
-                {% endif %}
             </div>
             {% endfor %}
         </div>
         {% else %}
         <div class="empty-booking">
             <i class="far fa-calendar-times"></i>
-            <p>No upcoming bookings found.</p>
+            <p>No recent bookings found.</p>
         </div>
         {% endif %}
     </section>
 
-    <!-- Past Bookings Section -->
+    <!-- Cancelled & Past Bookings Section -->
     <section class="booking-section">
         <h2 class="section-title">
-            <i class="fas fa-history"></i> Past Bookings
+            <i class="fas fa-history"></i> All Cancel List and Past Bookings
         </h2>
 
         {% if past %}
@@ -81,7 +75,7 @@
 
                 <div class="booking-detail">
                     <i class="fas fa-clock"></i>
-                    <span>Time: {{ booking.start_time|time:"H:i" }} - {{ booking.end_time|time:"H:i" }}</span>
+                    <span>Time: {{ booking.start_time }} - {{ booking.end_time }}</span>
                 </div>
 
                 <div class="booking-detail">
@@ -104,5 +98,5 @@
         </div>
         {% endif %}
     </section>
-</div></div>
+</div>
 {% endblock %}

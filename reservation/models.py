@@ -30,8 +30,5 @@ class TableReservation(models.Model):
     )
     status=models.CharField(max_length=100,choices=status_choice)
 
-    class Meta:
-        unique_together = ('user', 'table', 'reserve_date', 'start_time', 'end_time')
-
     def __str__(self):
         return (f"user: {self.user.user_name} ,Restau_name: {self.restaurant.restaurant_name}")

@@ -41,6 +41,6 @@ class TableAddForm(forms.ModelForm):
             ).filter(
             Q(start_time__lt=end_time) & Q(end_time__gt=start_time)
             ).exists():
-            raise ValidationError("This table already has a reservation that overlaps with the selected time.")
+            raise ValidationError("This table already has existed with the selected  date and time.")
 
         return cleaned_data

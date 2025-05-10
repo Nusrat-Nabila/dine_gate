@@ -23,12 +23,21 @@
             <form method="POST" class="login-form">
                 {% csrf_token %}
 
-                {% if form.errors %}
-                <div class="alert alert-error">
+                {% if form.non_field_errors %}
+                 <div class="alert alert-error">
                     <i class="fas fa-exclamation-circle"></i>
-                    <span>Please correct the errors below</span>
-                </div>
-                {% endif %}
+                    <span>{{ form.non_field_errors.0 }}</span>
+                 </div>
+                {% elif form.errors %}
+                 <div class="alert alert-error">
+                   <i class="fas fa-exclamation-circle"></i>
+                   <span>Please correct the errors below</span>
+                 </div>
+               {% endif %}
+
+            <!-- rest of the form... -->
+
+
 
                 <!-- Table Number -->
                 <div class="form-group">

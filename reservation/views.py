@@ -133,16 +133,19 @@ def Book_history(request):
 
     bookings = TableReservation.objects.filter(user=customer).order_by('-reserve_date')
 
-    upcoming = []
+    recently_booking = []
     past = []
 
     for b in bookings:
-        if b.reserve_date > today or (b.reserve_date == today and b.start_time >= current_time):
-             upcoming.append(b)
+        if b.reserve_date > today or (b.reserve_date == today and b.end_time >= current_time):
+             if b.status=='confirm':
+                recently_booking.append(b)
+             else:
+                past.append(b)
         else:
             past.append(b)
-
-    return render(request,'reservation/Book_history.html' ,{'upcoming': upcoming,'past': past})
+    print(past)
+    return render(request,'reservation/Book_history.html' ,{'recently_booking': recently_booking,'past': past})
 
 #cancel booking of customer
 def cancel_book(request,reservation_id):

@@ -41,7 +41,7 @@
 
                 <div class="booking-detail">
                     <i class="fas fa-clock"></i>
-                    <span>Time: {{ booking.start_time|time:"H:i" }} - {{ booking.end_time|time:"H:i" }}</span>
+                    <span>Time: {{ booking.start_time }} - {{ booking.end_time }}</span>
                 </div>
 
                 <div class="booking-status {% if booking.status == 'confirm' %}status-confirm{% else %}status-cancel{% endif %}">

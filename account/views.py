@@ -3,9 +3,10 @@ from .forms import CustomerAdd,CustomerEditForm
 from restaurant.models import Restaurant
 from .models import CustomerUser
 # Create your views here.
+
 def login(request):
     error = ""
-    
+
     if request.method == 'POST':
         # Get values from the form
         name = request.POST.get('name')
@@ -15,30 +16,29 @@ def login(request):
         # If the role is customer
         if role == 'customer':
             try:
-                customer = CustomerUser.objects.get(user_name=name)
+                customer = CustomerUser.objects.get(user_name__iexact=name)
                 if customer.user_password == password:
                     request.session['user_id'] = customer.id
-                    return redirect('Customer_home')  # Redirect to customer's dashboard
+                    return redirect('Customer_home')
                 else:
                     error = "Invalid password."
             except CustomerUser.DoesNotExist:
                 error = "Customer not found."
-           
-        
+
         # If the role is restaurant
         elif role == 'restaurant':
             try:
-                restaurant = Restaurant.objects.get(restaurant_name=name)
+                restaurant = Restaurant.objects.get(restaurant_name__iexact=name)
                 if restaurant.password == password:
                     request.session['restaurant_id'] = restaurant.id
-                    return redirect('restaurant_dashboard')  # Redirect to restaurant's dashboard
+                    return redirect('restaurant_dashboard')
                 else:
                     error = "Invalid password."
             except Restaurant.DoesNotExist:
                 error = "Restaurant not found."
-                restaurant = Restaurant.objects.get(restaurant_name=name)
-        
+
     return render(request, 'account/login.html', {'error': error})
+
 
 def logout_view(request):
     request.session.flush()  # session clear
