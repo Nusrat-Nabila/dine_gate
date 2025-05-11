@@ -19,9 +19,13 @@ class RestaurantAddForm(forms.ModelForm):
             raise forms.ValidationError("Passwords do not match")
 
 class MenuAddForm(forms.ModelForm):
-      class Meta:
-          model=Menu
-          fields=['item_name','cuisine','price','food_pic']
+    class Meta:
+        model = Menu
+        fields = ['item_name', 'cuisine', 'price', 'food_pic']
+        widgets = {
+            'food_pic': forms.ClearableFileInput(attrs={'class': 'form-control-file'})
+        }
+
           
 class RestaurantEditForm(forms.ModelForm):
     class Meta:

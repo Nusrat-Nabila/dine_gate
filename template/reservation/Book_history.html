@@ -38,13 +38,14 @@
                 <div class="booking-status status-confirm">
                     <i class="fas fa-check-circle"></i> Confirmed
                 </div>
-
+                <div <div style="margin-top: 10px;">
                 <form method="post" action="{% url 'cancel_book' booking.id %}">
-                    {% csrf_token %}
-                    <button type="submit" class="btn-cancel">
-                        <i class="fas fa-times"></i> Cancel Booking
-                    </button>
-                </form>
+    {% csrf_token %}
+        <a href="{% url 'cancel_book' booking.id %}" class="table-btn-delete">
+            <i class="fas fa-times"></i> Cancel Booking
+          </a>
+</form>
+</div>
             </div>
             {% endfor %}
         </div>

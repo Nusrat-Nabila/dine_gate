@@ -38,7 +38,7 @@
         </div>
 
         <div class="form-body" style="padding: 2rem;">
-            <form method="POST" class="menu-form" enctype="multipart/form-data">
+            <form method="POST" enctype="multipart/form-data">
                 {% csrf_token %}
 
                 {% if form.errors %}
@@ -88,12 +88,7 @@
                                ">
                     </div>
                     {% if form.item_name.errors %}
-                        <small class="error-text" style="
-                            color: #dc3545;
-                            font-size: 0.875rem;
-                            margin-top: 0.25rem;
-                            display: block;
-                        ">{{ form.item_name.errors }}</small>
+                        <small style="color: #dc3545;">{{ form.item_name.errors }}</small>
                     {% endif %}
                 </div>
 
@@ -128,12 +123,7 @@
                                ">
                     </div>
                     {% if form.cuisine.errors %}
-                        <small class="error-text" style="
-                            color: #dc3545;
-                            font-size: 0.875rem;
-                            margin-top: 0.25rem;
-                            display: block;
-                        ">{{ form.cuisine.errors }}</small>
+                        <small style="color: #dc3545;">{{ form.cuisine.errors }}</small>
                     {% endif %}
                 </div>
 
@@ -164,111 +154,64 @@
                                     border: 2px solid #004d40;
                                     border-radius: 5px;
                                     font-size: 16px;
-                                    transition: all 0.3s;
                                ">
                     </div>
                     {% if form.price.errors %}
-                        <small class="error-text" style="
-                            color: #dc3545;
-                            font-size: 0.875rem;
-                            margin-top: 0.25rem;
-                            display: block;
-                        ">{{ form.price.errors }}</small>
+                        <small style="color: #dc3545;">{{ form.price.errors }}</small>
                     {% endif %}
                 </div>
 
                 <!-- Food Image -->
                 <div class="form-group" style="margin-bottom: 2rem;">
-                    <label style="
-                        display: block;
-                        margin-bottom: 0.5rem;
-                        font-weight: 500;
-                        color: #004d40;
-                    ">Food Image</label>
-
-                    <div class="image-upload-container">
-                        <!-- Image Preview -->
-                        <div class="image-preview" id="imagePreview" style="
-                            width: 100%;
-                            height: 200px;
-                            border: 2px dashed #004d40;
-                            border-radius: 8px;
-                            margin-bottom: 1rem;
-                            display: flex;
-                            align-items: center;
-                            justify-content: center;
-                            overflow: hidden;
-                            background-color: #f8f9fa;
-                            position: relative;
-                        ">
-                            {% if form.instance.food_pic %}
-                                <img src="{{ form.instance.food_pic.url }}" alt="Current Image" class="preview-image" style="
-                                    width: 100%;
-                                    height: 100%;
-                                    object-fit: cover;
-                                ">
-                                <span class="default-text" style="
-                                    color: #6c757d;
-                                    font-style: italic;
-                                    display: none;
-                                ">No image selected</span>
-                            {% else %}
-                                <span class="default-text" style="
-                                    color: #6c757d;
-                                    font-style: italic;
-                                ">No image selected</span>
-                            {% endif %}
-                        </div>
-
-                        <!-- File Upload Button -->
-                        <div class="file-upload-wrapper">
-                            <label class="custom-file-upload" style="
-                                display: block;
-                                padding: 12px;
-                                background-color: #f8f9fa;
-                                color: #004d40;
-                                border: 2px solid #004d40;
-                                border-radius: 5px;
-                                text-align: center;
-                                font-weight: 600;
-                                cursor: pointer;
-                                transition: all 0.3s;
+                    <label style="font-weight: 500; color: #004d40;">Food Image</label>
+                    <div id="imagePreview" style="
+                        width: 100%;
+                        height: 200px;
+                        border: 2px dashed #004d40;
+                        border-radius: 8px;
+                        margin-bottom: 1rem;
+                        display: flex;
+                        align-items: center;
+                        justify-content: center;
+                        background-color: #f8f9fa;
+                        overflow: hidden;
+                    ">
+                        {% if form.instance.food_pic %}
+                            <img src="{{ form.instance.food_pic.url }}" alt="Current Image" class="preview-image" style="
+                                width: 100%;
+                                height: 100%;
+                                object-fit: cover;
                             ">
-                                <i class="fas fa-camera" style="margin-right: 8px;"></i>
-                                Choose Image
-                                <input type="file" id="id_food_pic" name="food_pic" accept="image/*" style="display: none;">
-                            </label>
-                        </div>
+                        {% else %}
+                            <span class="default-text" style="color: #6c757d;">No image selected</span>
+                        {% endif %}
                     </div>
 
+                    <label class="custom-file-upload" style="
+                        display: block;
+                        padding: 12px;
+                        background-color: #f8f9fa;
+                        color: #004d40;
+                        border: 2px solid #004d40;
+                        border-radius: 5px;
+                        text-align: center;
+                        font-weight: 600;
+                        cursor: pointer;
+                    ">
+                        <i class="fas fa-camera"></i> Choose Image
+                        <input type="file" id="id_food_pic" name="food_pic" accept="image/*" style="display: none;">
+                    </label>
+
                     {% if form.food_pic.errors %}
-                        <small class="error-text" style="
-                            color: #dc3545;
-                            font-size: 0.875rem;
-                            margin-top: 0.5rem;
-                            display: block;
-                        ">{{ form.food_pic.errors }}</small>
+                        <small style="color: #dc3545;">{{ form.food_pic.errors }}</small>
                     {% endif %}
                 </div>
 
                 <!-- Form Actions -->
-                <div class="form-actions" style="
-                    display: flex;
-                    justify-content: space-between;
-                    align-items: center;
-                    margin-top: 2rem;
-                ">
-                    <a href="{% url 'restaurant_dashboard' %}" style="
-                        color: #004d40;
-                        font-weight: 600;
-                        text-decoration: none;
-                        display: flex;
-                        align-items: center;
-                    ">
-                        <i class="fas fa-arrow-left" style="margin-right: 8px;"></i>
-                        Back to Dashboard
+                <div style="display: flex; justify-content: space-between; align-items: center;">
+                    <a href="{% url 'restaurant_dashboard' %}" style="color: #004d40; font-weight: 600;">
+                        <i class="fas fa-arrow-left"></i> Back to Dashboard
                     </a>
-
                     <button type="submit" class="submit-btn" style="
                         background-color: #004d40;
                         color: white;
@@ -277,96 +220,44 @@
                         border-radius: 5px;
                         font-weight: 600;
                         cursor: pointer;
-                        transition: all 0.3s;
-                        display: flex;
-                        align-items: center;
-                        justify-content: center;
                     ">
-                        <i class="fas fa-save" style="margin-right: 8px;"></i>
-                        {% if form.instance.pk %}Update Item{% else %}Add Item{% endif %}
+                        <i class="fas fa-save"></i> {% if form.instance.pk %}Update Item{% else %}Add Item{% endif %}
                     </button>
                 </div>
             </form>
         </div>
     </div>
 </div>
-
 <script>
-    // Enhanced Image Preview Functionality
-    document.addEventListener('DOMContentLoaded', function() {
+    document.addEventListener('DOMContentLoaded', () => {
         const fileInput = document.getElementById('id_food_pic');
         const preview = document.getElementById('imagePreview');
-        const defaultText = preview.querySelector('.default-text');
 
-        fileInput.addEventListener('change', function(event) {
-            const file = event.target.files[0];
+        fileInput.addEventListener('change', function () {
+            const file = this.files[0];
 
-            // Hide default text
-            if (defaultText) defaultText.style.display = 'none';
-
-            // Remove existing preview image if any
-            const existingPreview = preview.querySelector('.preview-image');
-            if (existingPreview) existingPreview.remove();
-
-            if (file) {
-                // Check if file is an image
-                if (!file.type.match('image.*')) {
-                    alert('Please select an image file (JPEG, PNG, etc.)');
-                    return;
-                }
-
-                // Check file size (max 5MB)
-                if (file.size > 5 * 1024 * 1024) {
-                    alert('Image size should be less than 5MB');
+            if (file && file.type.startsWith('image/')) {
+                if (file.size > 5 * 1024 * 1024) { // Check if file size is greater than 5MB
+                    alert('Image must be less than 5MB.');
                     return;
                 }
 
                 const reader = new FileReader();
-
-                reader.onload = function(e) {
+                reader.onload = function (e) {
+                    preview.innerHTML = ''; // Clear previous image
                     const img = document.createElement('img');
-                    img.classList.add('preview-image');
+                    img.src = e.target.result;
                     img.style.width = '100%';
                     img.style.height = '100%';
                     img.style.objectFit = 'cover';
-                    img.src = e.target.result;
-
-                    preview.insertBefore(img, defaultText);
-                }
-
+                    preview.appendChild(img); // Add new image to preview
+                };
                 reader.readAsDataURL(file);
             } else {
-                // Show default text if no file selected
-                if (defaultText) defaultText.style.display = 'block';
+                preview.innerHTML = '<span class="default-text" style="color: #6c757d;">No image selected</span>';
             }
         });
-
-        // Add hover effects
-        const submitBtn = document.querySelector('.submit-btn');
-        if (submitBtn) {
-            submitBtn.addEventListener('mouseenter', function() {
-                this.style.backgroundColor = '#00251a';
-                this.style.transform = 'translateY(-2px)';
-            });
-
-            submitBtn.addEventListener('mouseleave', function() {
-                this.style.backgroundColor = '#004d40';
-                this.style.transform = 'translateY(0)';
-            });
-        }
-
-        const fileUpload = document.querySelector('.custom-file-upload');
-        if (fileUpload) {
-            fileUpload.addEventListener('mouseenter', function() {
-                this.style.backgroundColor = '#004d40';
-                this.style.color = 'white';
-            });
-
-            fileUpload.addEventListener('mouseleave', function() {
-                this.style.backgroundColor = '#f8f9fa';
-                this.style.color = '#004d40';
-            });
-        }
     });
 </script>
+
 {% endblock %}

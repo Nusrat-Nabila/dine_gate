@@ -75,7 +75,8 @@ def view_menu_for_restaurant_owner(request,id):
 def add_menu_for_restaurant_owner(request, id):
     restaurant = Restaurant.objects.get(pk=id)
     if request.method == "POST":
-        form = MenuAddForm(request.POST)
+        form = MenuAddForm(request.POST, request.FILES)
+
         if form.is_valid():
             menu_item = form.save(commit=False)
             menu_item.restaurant = restaurant  
